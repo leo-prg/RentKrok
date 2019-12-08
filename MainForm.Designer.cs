@@ -35,10 +35,12 @@
             this.dgObjects = new System.Windows.Forms.DataGridView();
             this.dgLayers = new System.Windows.Forms.DataGridView();
             this.AddArea = new System.Windows.Forms.Button();
+            this.dgAreas = new System.Windows.Forms.DataGridView();
             this.LayerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LayerPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgObjects)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLayers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAreas)).BeginInit();
             this.SuspendLayout();
             // 
             // LayerPanel
@@ -112,11 +114,20 @@
             this.AddArea.UseVisualStyleBackColor = true;
             this.AddArea.Click += new System.EventHandler(this.AddArea_Click);
             // 
+            // dgAreas
+            // 
+            this.dgAreas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgAreas.Location = new System.Drawing.Point(763, 374);
+            this.dgAreas.Name = "dgAreas";
+            this.dgAreas.Size = new System.Drawing.Size(378, 117);
+            this.dgAreas.TabIndex = 8;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 536);
+            this.Controls.Add(this.dgAreas);
             this.Controls.Add(this.AddArea);
             this.Controls.Add(this.dgLayers);
             this.Controls.Add(this.dgObjects);
@@ -131,6 +142,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.LayerPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgObjects)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLayers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAreas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -143,6 +155,7 @@
         private System.Windows.Forms.DataGridView dgObjects;
         private System.Windows.Forms.DataGridView dgLayers;
         private System.Windows.Forms.Button AddArea;
+        private System.Windows.Forms.DataGridView dgAreas;
     }
 }
 

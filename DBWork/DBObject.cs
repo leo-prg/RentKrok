@@ -26,8 +26,6 @@ namespace RentKrok.DBWork
 
             or = context.Value.RentObjects.Select(x => new ObjectRect() { Name = x.Name, Address = x.Address }).ToList();
 
-           
-
             //foreach (var o in context.Value.RentObjects)
             //{
             //    or.Add(new ObjectRect() { Name = o.Name, Address = o.Address });

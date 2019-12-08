@@ -31,5 +31,13 @@ namespace RentKrok.Common
             return (byte[])converter.ConvertTo(img, typeof(byte[]));
         }
 
+        public static void PointsToDimensions(int x1, int y1, int x2, int y2, out int width, out int height)
+        {
+
+            width = Math.Abs(x2 - x1);
+            height = Math.Abs(y2-y1);
+            
+        }
+
     }
 }

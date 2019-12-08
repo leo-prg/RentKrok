@@ -23,6 +23,7 @@ namespace RentKrok
 
         Lazy<DBObject> dbo = new Lazy<DBObject>();
         Lazy<DBLayer> dbl = new Lazy<DBLayer>();
+        Lazy<DBArea> dba = new Lazy<DBArea>();
 
 
         public MainForm()
@@ -63,9 +64,6 @@ namespace RentKrok
             RefreshLayerList();
         }
 
- 
- 
-
         private void addObject_Click(object sender, EventArgs e)
         {
             string nameO = Interaction.InputBox("Введите название объекта", "Запрос", "", -1, -1);
@@ -104,6 +102,13 @@ namespace RentKrok
                 dgLayers.Columns[2].Visible = false;
                 dgLayers.Rows[0].Selected = true;
             }
+        }
+
+        private void RefreshAreaList()
+        {
+            dgAreas.DataSource = null;
+            if (dgLayers.Rows.Count > 0)
+                dgAreas.DataSource = dba.Value.GetLayerAreas(dgLayers.CurrentRow.DataBoundItem as LayerRect);
         }
 
         private void dgObjects_Click(object sender, EventArgs e)
@@ -154,11 +159,9 @@ namespace RentKrok
 
             // listBox1.DataSource = null;
             //listBox1.DataSource = rects;
-
-
             // Здесь добавим в базу с привязкой к вбранному слою его площади 
-
-
+            dba.Value.AddLayerArea(dgLayers.CurrentRow.DataBoundItem as LayerRect, orx);
+            RefreshAreaList();
             // Отключаем обработку сообщений
             this.LayerPicture.MouseDown -= new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseDown);
             this.LayerPicture.MouseUp -= new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseUp);

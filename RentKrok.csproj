@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Common\Common.cs" />
     <Compile Include="DataModel\RentModel.cs" />
+    <Compile Include="DBWork\DBArea.cs" />
     <Compile Include="DBWork\DBLayer.cs" />
     <Compile Include="DBWork\DBObject.cs" />
     <Compile Include="MainForm.cs">
