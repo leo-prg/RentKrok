@@ -40,5 +40,12 @@ namespace RentKrok.DBWork
                 .Select(a => a.Name).FirstOrDefault(); 
         }
 
+        public AreaRect FindAreaByName(string name)
+        {
+            return context.Value.RentAreas
+                .Where(a => a.Name == name)
+                .Select(a => new AreaRect() { AreaName = name, x1 = a.X, y1 = a.Y, x2 = (a.X + a.Width), y2 = (a.Y + a.Height) }).FirstOrDefault();
+        }
+
     }
 }

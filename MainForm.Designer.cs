@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.LayerPanel = new System.Windows.Forms.Panel();
             this.LayerPicture = new System.Windows.Forms.PictureBox();
             this.addLayer = new System.Windows.Forms.Button();
@@ -67,8 +68,8 @@
             this.LayerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.LayerPicture.TabIndex = 0;
             this.LayerPicture.TabStop = false;
-            this.LayerPicture.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LayerPicture_MouseMove);
             this.LayerPicture.Click += new System.EventHandler(this.LayerPicture_Click);
+            this.LayerPicture.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LayerPicture_MouseMove);
             // 
             // addLayer
             // 
@@ -115,7 +116,7 @@
             this.AddArea.Name = "AddArea";
             this.AddArea.Size = new System.Drawing.Size(162, 23);
             this.AddArea.TabIndex = 7;
-            this.AddArea.Text = "Добавить площадь на слой";
+            this.AddArea.Text = "Добавить площадь в слой";
             this.AddArea.UseVisualStyleBackColor = true;
             this.AddArea.Click += new System.EventHandler(this.AddArea_Click);
             // 
@@ -126,6 +127,7 @@
             this.dgAreas.Name = "dgAreas";
             this.dgAreas.Size = new System.Drawing.Size(378, 117);
             this.dgAreas.TabIndex = 8;
+            this.dgAreas.Click += new System.EventHandler(this.dgAreas_Click);
             // 
             // statusStrip1
             // 
@@ -155,6 +157,7 @@
             this.Controls.Add(this.addObject);
             this.Controls.Add(this.addLayer);
             this.Controls.Add(this.LayerPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Аренда помещений";

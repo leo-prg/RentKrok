@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using RentKrok.DBWork;
 using RentKrok.Common;
+using System.Threading;
 
 namespace RentKrok
 {
@@ -25,6 +26,7 @@ namespace RentKrok
         Lazy<DBLayer> dbl = new Lazy<DBLayer>();
         Lazy<DBArea> dba = new Lazy<DBArea>();
 
+        Image tmpImage;
 
         public MainForm()
         {
@@ -101,7 +103,12 @@ namespace RentKrok
                 dgLayers.Columns[1].Width = 200;
                 dgLayers.Columns[2].Visible = false;
                 dgLayers.Rows[0].Selected = true;
+                LayerPicture.Image = null;
+                if ((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile != null)
+                LayerPicture.Image = Transform.ByteToImage((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile);
+                tmpImage = LayerPicture.Image;
             }
+            RefreshAreaList();
         }
 
         private void RefreshAreaList()
@@ -112,7 +119,7 @@ namespace RentKrok
             if (dgAreas.Rows.Count > 0)
             {
                 dgAreas.Columns[0].HeaderText = "Наименование площади";
-                dgAreas.Columns[0].Width = 100;
+                dgAreas.Columns[0].Width = 250;
                 dgAreas.Columns[1].Visible = false;
                 dgAreas.Columns[2].Visible = false;
                 dgAreas.Columns[3].Visible = false;
@@ -159,7 +166,8 @@ namespace RentKrok
             AreaRect orx = new AreaRect() { AreaName = nameR, x1 = point1.X, y1 = point1.Y, x2 = point2.X, y2 = point2.Y };
 
             Graphics g = LayerPicture.CreateGraphics();
-            Pen p = new Pen(Color.Red, 1);
+            g.Clear(Color.Transparent);
+            Pen p = new Pen(Color.Red, 3);
             Rectangle r = new Rectangle(orx.x1, orx.y1, Math.Abs(orx.x2 - orx.x1), Math.Abs(orx.y2 - orx.y1));
             g.DrawRectangle(p, r);
             rects.Add(orx);
@@ -182,14 +190,43 @@ namespace RentKrok
                                       Convert.ToInt32(mPosition.Text.Split(':')[0]),
                                       Convert.ToInt32(mPosition.Text.Split(':')[1]));
             if (area != null)
-            MessageBox.Show(area);
-
-           // dgAreas.Rows[].Selected = true;
+            {
+                DataGridViewRow row = dgAreas.Rows
+                  .Cast<DataGridViewRow>()
+                  .Where(r => r.Cells["AreaName"].Value.ToString().Equals(area))
+                  .FirstOrDefault();
+                //if (row != null)
+                //{
+                    dgAreas.ClearSelection();
+                    dgAreas.Rows[row.Index].Selected = true;
+                    dgAreas.FirstDisplayedScrollingRowIndex = row.Index;
+                //}
+            }
+            
+            // dgAreas.Rows[].Selected = true;
         }
 
+        //трекинг позиции внутри схемы слоя
         private void LayerPicture_MouseMove(object sender, MouseEventArgs e)
         {
             mPosition.Text = String.Format(@"{0}:{1}",e.X.ToString(), e.Y.ToString());
+        }
+
+        private void dgAreas_Click(object sender, EventArgs e)
+        {
+            // LayerPicture.Invalidate();
+            //LayerPicture.Image = null;
+            //LayerPicture.Image = tmpImage;
+            var selarea = dba.Value.FindAreaByName((dgAreas.CurrentRow.DataBoundItem as AreaRect).AreaName);
+            Graphics g = LayerPicture.CreateGraphics();
+            g.Clear(Color.Transparent);
+            LayerPicture.Update();
+            LayerPicture.Image = null;
+            LayerPicture.Image = tmpImage;
+            Pen p = new Pen(Color.Blue, 5);
+            Rectangle r = new Rectangle(selarea.x1, selarea.y1, Math.Abs(selarea.x2 - selarea.x1), Math.Abs(selarea.y2 - selarea.y1));
+            g.DrawRectangle(p, r);
+            //Thread.Sleep(5000);
         }
     }
 }
