@@ -184,7 +184,14 @@ namespace RentKrok
             if (area != null)
             MessageBox.Show(area);
 
-           // dgAreas.Rows[].Selected = true;
+            DataGridViewRow row = dgAreas.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells["Наименование площади"].Value.ToString().Equals(area))
+                .First();
+
+              dgAreas.Rows[row.Index].Selected = true;
+
+            // dgAreas.Rows[].Selected = true;
         }
 
         private void LayerPicture_MouseMove(object sender, MouseEventArgs e)
