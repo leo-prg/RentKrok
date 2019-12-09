@@ -34,8 +34,8 @@ namespace RentKrok.Common
         public static void PointsToDimensions(int x1, int y1, int x2, int y2, out int width, out int height)
         {
 
-            width = Math.Abs(x2 - x1);
-            height = Math.Abs(y2-y1);
+            width = Math.Abs(x1 - x2);
+            height = Math.Abs(y1 - y2);
             
         }
 

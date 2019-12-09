@@ -109,6 +109,16 @@ namespace RentKrok
             dgAreas.DataSource = null;
             if (dgLayers.Rows.Count > 0)
                 dgAreas.DataSource = dba.Value.GetLayerAreas(dgLayers.CurrentRow.DataBoundItem as LayerRect);
+            if (dgAreas.Rows.Count > 0)
+            {
+                dgAreas.Columns[0].HeaderText = "Наименование площади";
+                dgAreas.Columns[0].Width = 100;
+                dgAreas.Columns[1].Visible = false;
+                dgAreas.Columns[2].Visible = false;
+                dgAreas.Columns[3].Visible = false;
+                dgAreas.Columns[4].Visible = false;
+                dgAreas.Rows[0].Selected = true;
+            }
         }
 
         private void dgObjects_Click(object sender, EventArgs e)
@@ -121,6 +131,7 @@ namespace RentKrok
             LayerPicture.Image = null;
             if ((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile != null)
             LayerPicture.Image = Transform.ByteToImage((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile);
+            RefreshAreaList();
         }
 
         private void AddArea_Click(object sender, EventArgs e)
@@ -128,6 +139,8 @@ namespace RentKrok
             this.LayerPicture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseDown);
             this.LayerPicture.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseUp);
             this.LayerPicture.Cursor = System.Windows.Forms.Cursors.Cross;
+            // убираем обработку клика
+            this.LayerPicture.Click -= new System.EventHandler(this.LayerPicture_Click);
         }
 
         private void PlanePic_MouseDown(object sender, MouseEventArgs e)
@@ -138,18 +151,12 @@ namespace RentKrok
 
         private void PlanePic_MouseUp(object sender, MouseEventArgs e)
         {
+            MessageBox.Show(e.Location.X.ToString(), e.Location.Y.ToString());
             // Конечная точка площади
             point2 = e.Location;
-            //  rects.Clear();
             string nameR = Interaction.InputBox("Введите название помещения", "Запрос", "", -1, -1);
 
             AreaRect orx = new AreaRect() { AreaName = nameR, x1 = point1.X, y1 = point1.Y, x2 = point2.X, y2 = point2.Y };
-
-            //MessageBox.Show(@" " + orx.RectName + " " +
-            //    "   " + orx.x1.ToString() +
-            //    " " + orx.y1.ToString() +
-            //    " " + orx.x2.ToString() +
-            //    " " + orx.y2.ToString());
 
             Graphics g = LayerPicture.CreateGraphics();
             Pen p = new Pen(Color.Red, 1);
@@ -157,16 +164,32 @@ namespace RentKrok
             g.DrawRectangle(p, r);
             rects.Add(orx);
 
-            // listBox1.DataSource = null;
-            //listBox1.DataSource = rects;
             // Здесь добавим в базу с привязкой к вбранному слою его площади 
             dba.Value.AddLayerArea(dgLayers.CurrentRow.DataBoundItem as LayerRect, orx);
             RefreshAreaList();
             // Отключаем обработку сообщений
             this.LayerPicture.MouseDown -= new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseDown);
             this.LayerPicture.MouseUp -= new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseUp);
+            // добавляем обработку клика
+            this.LayerPicture.Click += new System.EventHandler(this.LayerPicture_Click);
+
             this.LayerPicture.Cursor = System.Windows.Forms.Cursors.Default;
         }
 
+        private void LayerPicture_Click(object sender, EventArgs e)
+        {
+            string area = dba.Value.FindAreaByPoint(dgLayers.CurrentRow.DataBoundItem as LayerRect,
+                                      Convert.ToInt32(mPosition.Text.Split(':')[0]),
+                                      Convert.ToInt32(mPosition.Text.Split(':')[1]));
+            if (area != null)
+            MessageBox.Show(area);
+
+           // dgAreas.Rows[].Selected = true;
+        }
+
+        private void LayerPicture_MouseMove(object sender, MouseEventArgs e)
+        {
+            mPosition.Text = String.Format(@"{0}:{1}",e.X.ToString(), e.Y.ToString());
+        }
     }
 }

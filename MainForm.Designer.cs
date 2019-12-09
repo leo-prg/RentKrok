@@ -36,11 +36,14 @@
             this.dgLayers = new System.Windows.Forms.DataGridView();
             this.AddArea = new System.Windows.Forms.Button();
             this.dgAreas = new System.Windows.Forms.DataGridView();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.mPosition = new System.Windows.Forms.ToolStripStatusLabel();
             this.LayerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LayerPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgObjects)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLayers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAreas)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // LayerPanel
@@ -64,6 +67,8 @@
             this.LayerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.LayerPicture.TabIndex = 0;
             this.LayerPicture.TabStop = false;
+            this.LayerPicture.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LayerPicture_MouseMove);
+            this.LayerPicture.Click += new System.EventHandler(this.LayerPicture_Click);
             // 
             // addLayer
             // 
@@ -122,11 +127,27 @@
             this.dgAreas.Size = new System.Drawing.Size(378, 117);
             this.dgAreas.TabIndex = 8;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mPosition});
+            this.statusStrip1.Location = new System.Drawing.Point(748, 514);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(405, 22);
+            this.statusStrip1.TabIndex = 9;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // mPosition
+            // 
+            this.mPosition.Name = "mPosition";
+            this.mPosition.Size = new System.Drawing.Size(0, 17);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 536);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dgAreas);
             this.Controls.Add(this.AddArea);
             this.Controls.Add(this.dgLayers);
@@ -143,7 +164,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgObjects)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLayers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAreas)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -156,6 +180,8 @@
         private System.Windows.Forms.DataGridView dgLayers;
         private System.Windows.Forms.Button AddArea;
         private System.Windows.Forms.DataGridView dgAreas;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel mPosition;
     }
 }
 

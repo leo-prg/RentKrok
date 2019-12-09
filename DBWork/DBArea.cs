@@ -16,7 +16,7 @@ namespace RentKrok.DBWork
         {
             var dbl = context.Value.RentLayers.Where(x => x.Name == layer.Name && x.LayerFile == layer.LayerFile).FirstOrDefault();
             Transform.PointsToDimensions(area.x1, area.y1, area.x2, area.y2, out int width, out int height);
-            context.Value.RentAreas.Add(new RentArea() { Layer = dbl, Name = area.AreaName, X = area.x1, Y=area.y1, Width = width , Height  = height });
+            context.Value.RentAreas.Add(new RentArea() { Layer = dbl, Name = area.AreaName, X = area.x1, Y = area.y1, Width = width, Height = height });
             context.Value.SaveChanges();
         }
 
@@ -27,12 +27,18 @@ namespace RentKrok.DBWork
             List<AreaRect> ar = new List<AreaRect>();
 
             ar = context.Value.RentAreas
-                .Where(x => x.Layer.Name.Contains(dbl.Name)&&x.Layer.LayerFileName.Contains(dbl.LayerFileName))
-                .Select(x => new AreaRect() { AreaName = x.Name, x1 = x.X, y1 = x.Y, x2 = Math.Abs(x.Width-x.X), y2 = Math.Abs(x.Height - x.Y)}).ToList();
+                .Where(x => x.Layer.Name.Contains(dbl.Name) && x.Layer.LayerFileName.Contains(dbl.LayerFileName))
+                .Select(x => new AreaRect() { AreaName = x.Name, x1 = x.X, y1 = x.Y, x2 = Math.Abs(x.Width + x.X), y2 = Math.Abs(x.Height + x.Y) }).ToList();
 
             return ar;
         }
 
+        public string FindAreaByPoint(LayerRect layer ,int x, int y)
+        {
+            return context.Value.RentAreas
+                .Where(a => x >= a.X && x <= (a.X + a.Width) && y >= a.Y && y <= (a.Y + a.Height) && a.Layer.Name.Contains(layer.Name))
+                .Select(a => a.Name).FirstOrDefault(); 
+        }
 
     }
 }
