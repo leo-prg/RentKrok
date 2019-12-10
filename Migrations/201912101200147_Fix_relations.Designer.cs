@@ -7,13 +7,13 @@ namespace RentKrok.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class add_file : IMigrationMetadata
+    public sealed partial class Fix_relations : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(add_file));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Fix_relations));
         
         string IMigrationMetadata.Id
         {
-            get { return "201912061128167_add_file"; }
+            get { return "201912101200147_Fix_relations"; }
         }
         
         string IMigrationMetadata.Source

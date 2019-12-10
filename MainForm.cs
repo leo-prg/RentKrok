@@ -26,8 +26,6 @@ namespace RentKrok
         Lazy<DBLayer> dbl = new Lazy<DBLayer>();
         Lazy<DBArea> dba = new Lazy<DBArea>();
 
-        Image tmpImage;
-
         public MainForm()
         {
             InitializeComponent();
@@ -39,8 +37,6 @@ namespace RentKrok
             RefreshObjectList();
             RefreshLayerList();
         }
-
-       
 
         private void addLayer_Click(object sender, EventArgs e)
         {
@@ -59,10 +55,7 @@ namespace RentKrok
             string layerName = Interaction.InputBox("Введите название слоя", "Запрос", "", -1, -1);
 
             dbl.Value.AddObjectLayer(dgObjects.CurrentRow.DataBoundItem as ObjectRect, 
-                
-                
                 new LayerRect() { Name = layerName, FileName = layerFileName, LayerFile = Transform.ImageToByte(LayerPicture.Image) }); ;
-
             RefreshLayerList();
         }
 
@@ -79,6 +72,7 @@ namespace RentKrok
 
         private void RefreshObjectList()
         {
+           
             dgObjects.DataSource = null;
             dgObjects.DataSource = dbo.Value.GetAllObjects();
             
@@ -106,7 +100,6 @@ namespace RentKrok
                 LayerPicture.Image = null;
                 if ((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile != null)
                 LayerPicture.Image = Transform.ByteToImage((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile);
-                tmpImage = LayerPicture.Image;
             }
             RefreshAreaList();
         }
@@ -118,6 +111,7 @@ namespace RentKrok
                 dgAreas.DataSource = dba.Value.GetLayerAreas(dgLayers.CurrentRow.DataBoundItem as LayerRect);
             if (dgAreas.Rows.Count > 0)
             {
+                
                 dgAreas.Columns[0].HeaderText = "Наименование площади";
                 dgAreas.Columns[0].Width = 250;
                 dgAreas.Columns[1].Visible = false;
@@ -158,7 +152,7 @@ namespace RentKrok
 
         private void PlanePic_MouseUp(object sender, MouseEventArgs e)
         {
-            MessageBox.Show(e.Location.X.ToString(), e.Location.Y.ToString());
+           // MessageBox.Show(e.Location.X.ToString(), e.Location.Y.ToString());
             // Конечная точка площади
             point2 = e.Location;
             string nameR = Interaction.InputBox("Введите название помещения", "Запрос", "", -1, -1);
@@ -166,7 +160,6 @@ namespace RentKrok
             AreaRect orx = new AreaRect() { AreaName = nameR, x1 = point1.X, y1 = point1.Y, x2 = point2.X, y2 = point2.Y };
 
             Graphics g = LayerPicture.CreateGraphics();
-            g.Clear(Color.Transparent);
             Pen p = new Pen(Color.Red, 3);
             Rectangle r = new Rectangle(orx.x1, orx.y1, Math.Abs(orx.x2 - orx.x1), Math.Abs(orx.y2 - orx.y1));
             g.DrawRectangle(p, r);
@@ -212,21 +205,19 @@ namespace RentKrok
             mPosition.Text = String.Format(@"{0}:{1}",e.X.ToString(), e.Y.ToString());
         }
 
+        // Подсвечиваем на 3 сек выбранную площадь
         private void dgAreas_Click(object sender, EventArgs e)
         {
-            // LayerPicture.Invalidate();
-            //LayerPicture.Image = null;
-            //LayerPicture.Image = tmpImage;
-            var selarea = dba.Value.FindAreaByName((dgAreas.CurrentRow.DataBoundItem as AreaRect).AreaName);
-            Graphics g = LayerPicture.CreateGraphics();
-            g.Clear(Color.Transparent);
-            LayerPicture.Update();
-            LayerPicture.Image = null;
-            LayerPicture.Image = tmpImage;
-            Pen p = new Pen(Color.Blue, 5);
-            Rectangle r = new Rectangle(selarea.x1, selarea.y1, Math.Abs(selarea.x2 - selarea.x1), Math.Abs(selarea.y2 - selarea.y1));
-            g.DrawRectangle(p, r);
-            //Thread.Sleep(5000);
+            LayerPicture.Invalidate();
+            if (dgAreas.CurrentRow != null)
+            {
+                var selarea = dba.Value.FindAreaByName((dgAreas.CurrentRow.DataBoundItem as AreaRect).AreaName);
+                Graphics g = LayerPicture.CreateGraphics();
+                Pen p = new Pen(Color.Blue, 5);
+                Rectangle r = new Rectangle(selarea.x1, selarea.y1, Math.Abs(selarea.x2 - selarea.x1), Math.Abs(selarea.y2 - selarea.y1));
+                g.DrawRectangle(p, r);
+                Thread.Sleep(3000);
+            }
         }
     }
 }

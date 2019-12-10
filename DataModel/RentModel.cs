@@ -28,12 +28,14 @@
         public virtual DbSet<RentObject> RentObjects { get; set; }
         public virtual DbSet<RentLayer> RentLayers { get; set; }
         public virtual DbSet<RentArea> RentAreas { get; set; }
-
+        public virtual DbSet<Renter> Renters { get; set; }
+           
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<RentObject>().HasMany(c => c.RentLayers).WithRequired(x => x.Object);
             modelBuilder.Entity<RentLayer>().HasMany(c => c.RentAreas).WithRequired(x => x.Layer);
+            modelBuilder.Entity<Renter>().HasMany(c => c.RentAreas).WithOptional(x => x.Renter);
         }
 
     }
@@ -84,6 +86,32 @@
         public int Y { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
+        public virtual Renter Renter { get; set; }
+    }
+
+
+    [Table("Renters")]
+    public class Renter
+    {
+        public int Id { get; set; }
+        [StringLength(200)]
+        public string RenterName { get; set; }
+        [StringLength(20)]
+        public string Contract { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public float Square { get; set; }
+        public float Price { get; set; }
+        public float Cost { get; set; }
+        public string ContactPerson { get; set; }
+        public string ContactPhone { get; set; }
+        public string Annotation { get; set; }
+        public virtual List<RentArea> RentAreas { get; set; }
+
+        public Renter()
+        {
+            RentAreas = new List<RentArea>();
+        }
     }
 
 

@@ -64,8 +64,8 @@
             // 
             this.LayerPicture.Location = new System.Drawing.Point(3, 0);
             this.LayerPicture.Name = "LayerPicture";
-            this.LayerPicture.Size = new System.Drawing.Size(731, 354);
-            this.LayerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.LayerPicture.Size = new System.Drawing.Size(727, 524);
+            this.LayerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.LayerPicture.TabIndex = 0;
             this.LayerPicture.TabStop = false;
             this.LayerPicture.Click += new System.EventHandler(this.LayerPicture_Click);
@@ -73,6 +73,7 @@
             // 
             // addLayer
             // 
+            this.addLayer.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.addLayer.Location = new System.Drawing.Point(763, 166);
             this.addLayer.Name = "addLayer";
             this.addLayer.Size = new System.Drawing.Size(162, 23);
@@ -83,6 +84,7 @@
             // 
             // addObject
             // 
+            this.addObject.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.addObject.Location = new System.Drawing.Point(763, 12);
             this.addObject.Name = "addObject";
             this.addObject.Size = new System.Drawing.Size(162, 23);
@@ -93,9 +95,12 @@
             // 
             // dgObjects
             // 
+            this.dgObjects.AllowUserToAddRows = false;
+            this.dgObjects.AllowUserToDeleteRows = false;
             this.dgObjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgObjects.Location = new System.Drawing.Point(763, 41);
             this.dgObjects.Name = "dgObjects";
+            this.dgObjects.ReadOnly = true;
             this.dgObjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgObjects.Size = new System.Drawing.Size(378, 101);
             this.dgObjects.TabIndex = 5;
@@ -103,15 +108,19 @@
             // 
             // dgLayers
             // 
+            this.dgLayers.AllowUserToAddRows = false;
+            this.dgLayers.AllowUserToDeleteRows = false;
             this.dgLayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgLayers.Location = new System.Drawing.Point(763, 195);
             this.dgLayers.Name = "dgLayers";
+            this.dgLayers.ReadOnly = true;
             this.dgLayers.Size = new System.Drawing.Size(378, 117);
             this.dgLayers.TabIndex = 6;
             this.dgLayers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgLayers_CellClick);
             // 
             // AddArea
             // 
+            this.AddArea.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.AddArea.Location = new System.Drawing.Point(763, 345);
             this.AddArea.Name = "AddArea";
             this.AddArea.Size = new System.Drawing.Size(162, 23);
@@ -122,9 +131,12 @@
             // 
             // dgAreas
             // 
+            this.dgAreas.AllowUserToAddRows = false;
+            this.dgAreas.AllowUserToDeleteRows = false;
             this.dgAreas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgAreas.Location = new System.Drawing.Point(763, 374);
             this.dgAreas.Name = "dgAreas";
+            this.dgAreas.ReadOnly = true;
             this.dgAreas.Size = new System.Drawing.Size(378, 117);
             this.dgAreas.TabIndex = 8;
             this.dgAreas.Click += new System.EventHandler(this.dgAreas_Click);
@@ -157,12 +169,15 @@
             this.Controls.Add(this.addObject);
             this.Controls.Add(this.addLayer);
             this.Controls.Add(this.LayerPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Аренда помещений";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.LayerPanel.ResumeLayout(false);
+            this.LayerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LayerPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgObjects)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLayers)).EndInit();
