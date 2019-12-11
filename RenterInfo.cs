@@ -12,9 +12,6 @@ namespace RentKrok
         public string Contract { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public float Square { get; set; }
-        public float Price { get; set; }
-        public float Cost { get; set; }
         public string ContactPerson { get; set; }
         public string ContactPhone { get; set; }
         public string Annotation { get; set; }

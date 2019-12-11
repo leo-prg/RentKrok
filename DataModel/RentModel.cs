@@ -86,6 +86,9 @@
         public int Y { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
+        public float Square { get; set; }
+        public float Price { get; set; }
+        public float Cost { get; set; }
         public virtual Renter Renter { get; set; }
     }
 
@@ -100,9 +103,6 @@
         public string Contract { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public float Square { get; set; }
-        public float Price { get; set; }
-        public float Cost { get; set; }
         public string ContactPerson { get; set; }
         public string ContactPhone { get; set; }
         public string Annotation { get; set; }

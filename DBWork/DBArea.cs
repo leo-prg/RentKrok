@@ -16,7 +16,9 @@ namespace RentKrok.DBWork
         {
             var dbl = context.Value.RentLayers.Where(x => x.Name == layer.Name && x.LayerFile == layer.LayerFile).FirstOrDefault();
             Transform.PointsToDimensions(area.x1, area.y1, area.x2, area.y2, out int width, out int height);
-            context.Value.RentAreas.Add(new RentArea() { Layer = dbl, Name = area.AreaName, X = area.x1, Y = area.y1, Width = width, Height = height });
+            context.Value.RentAreas.Add(new RentArea() { Layer = dbl, Name = area.AreaName,
+                                                         X = area.x1, Y = area.y1, Width = width, Height = height,
+                                                         Square = area.Square, Price = area.Price, Cost = area.Cost });
             context.Value.SaveChanges();
         }
 
@@ -28,7 +30,9 @@ namespace RentKrok.DBWork
 
             ar = context.Value.RentAreas
                 .Where(x => x.Layer.Name.Contains(dbl.Name) && x.Layer.LayerFileName.Contains(dbl.LayerFileName))
-                .Select(x => new AreaRect() { AreaName = x.Name, x1 = x.X, y1 = x.Y, x2 = Math.Abs(x.Width + x.X), y2 = Math.Abs(x.Height + x.Y) }).ToList();
+                .Select(x => new AreaRect() { AreaName = x.Name, x1 = x.X, y1 = x.Y, x2 = Math.Abs(x.Width + x.X), 
+                                             y2 = Math.Abs(x.Height + x.Y), Square = x.Square, Price = x.Price, Cost = x.Cost })
+                                            .ToList();
 
             return ar;
         }
@@ -44,7 +48,11 @@ namespace RentKrok.DBWork
         {
             return context.Value.RentAreas
                 .Where(a => a.Name == name)
-                .Select(a => new AreaRect() { AreaName = name, x1 = a.X, y1 = a.Y, x2 = (a.X + a.Width), y2 = (a.Y + a.Height) }).FirstOrDefault();
+                .Select(a => new AreaRect() { AreaName = name, x1 = a.X, y1 = a.Y, x2 = (a.X + a.Width), y2 = (a.Y + a.Height),
+                   Square = a.Square,
+                    Price = a.Price,
+                    Cost = a.Cost
+                }).FirstOrDefault();
         }
 
     }

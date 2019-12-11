@@ -13,6 +13,9 @@ namespace RentKrok
         public int y1 { get; set; }
         public int x2 { get; set; }
         public int y2 { get; set; }
+        public float Square { get; set; }
+        public float Price { get; set; }
+        public float Cost { get; set; }
     }
 
     public class ObjectRect

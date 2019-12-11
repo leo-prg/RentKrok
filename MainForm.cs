@@ -112,12 +112,19 @@ namespace RentKrok
             if (dgAreas.Rows.Count > 0)
             {
                 
-                dgAreas.Columns[0].HeaderText = "Наименование площади";
-                dgAreas.Columns[0].Width = 250;
+                dgAreas.Columns[0].HeaderText = "Наименование помешения";
+                dgAreas.Columns[0].Width = 180;
                 dgAreas.Columns[1].Visible = false;
                 dgAreas.Columns[2].Visible = false;
                 dgAreas.Columns[3].Visible = false;
                 dgAreas.Columns[4].Visible = false;
+                dgAreas.Columns[5].HeaderText = "Площадь";
+                dgAreas.Columns[5].Width = 50;
+                dgAreas.Columns[6].HeaderText = "Цена";
+                dgAreas.Columns[6].Width = 50;
+                dgAreas.Columns[7].HeaderText = "Стоимость";
+                dgAreas.Columns[7].Width = 50;
+
                 dgAreas.Rows[0].Selected = true;
             }
         }
@@ -156,8 +163,11 @@ namespace RentKrok
             // Конечная точка площади
             point2 = e.Location;
             string nameR = Interaction.InputBox("Введите название помещения", "Запрос", "", -1, -1);
-
-            AreaRect orx = new AreaRect() { AreaName = nameR, x1 = point1.X, y1 = point1.Y, x2 = point2.X, y2 = point2.Y };
+            // площадь
+            string[] square = Interaction.InputBox("Введите через запятую площадь цену и стоимость аренды", "Запрос", "", -1, -1).Split(',');
+            AreaRect orx = new AreaRect() { AreaName = nameR, x1 = point1.X, y1 = point1.Y, x2 = point2.X, y2 = point2.Y,
+                                            Square = Convert.ToInt32(square[0]), Price = Convert.ToInt32(square[1]), Cost = Convert.ToInt32(square[2])
+            };
 
             Graphics g = LayerPicture.CreateGraphics();
             Pen p = new Pen(Color.Red, 3);
@@ -216,7 +226,7 @@ namespace RentKrok
                 Pen p = new Pen(Color.Blue, 5);
                 Rectangle r = new Rectangle(selarea.x1, selarea.y1, Math.Abs(selarea.x2 - selarea.x1), Math.Abs(selarea.y2 - selarea.y1));
                 g.DrawRectangle(p, r);
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
             }
         }
     }

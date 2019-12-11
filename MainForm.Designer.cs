@@ -39,6 +39,7 @@
             this.dgAreas = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mPosition = new System.Windows.Forms.ToolStripStatusLabel();
+            this.AddAreaInfo = new System.Windows.Forms.Button();
             this.LayerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LayerPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgObjects)).BeginInit();
@@ -121,7 +122,7 @@
             // AddArea
             // 
             this.AddArea.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.AddArea.Location = new System.Drawing.Point(763, 345);
+            this.AddArea.Location = new System.Drawing.Point(763, 334);
             this.AddArea.Name = "AddArea";
             this.AddArea.Size = new System.Drawing.Size(162, 23);
             this.AddArea.TabIndex = 7;
@@ -134,7 +135,7 @@
             this.dgAreas.AllowUserToAddRows = false;
             this.dgAreas.AllowUserToDeleteRows = false;
             this.dgAreas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgAreas.Location = new System.Drawing.Point(763, 374);
+            this.dgAreas.Location = new System.Drawing.Point(763, 363);
             this.dgAreas.Name = "dgAreas";
             this.dgAreas.ReadOnly = true;
             this.dgAreas.Size = new System.Drawing.Size(378, 117);
@@ -156,11 +157,22 @@
             this.mPosition.Name = "mPosition";
             this.mPosition.Size = new System.Drawing.Size(0, 17);
             // 
+            // AddAreaInfo
+            // 
+            this.AddAreaInfo.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.AddAreaInfo.Location = new System.Drawing.Point(763, 486);
+            this.AddAreaInfo.Name = "AddAreaInfo";
+            this.AddAreaInfo.Size = new System.Drawing.Size(206, 23);
+            this.AddAreaInfo.TabIndex = 10;
+            this.AddAreaInfo.Text = "Добавить информацию о площади";
+            this.AddAreaInfo.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 536);
+            this.Controls.Add(this.AddAreaInfo);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dgAreas);
             this.Controls.Add(this.AddArea);
@@ -200,6 +212,7 @@
         private System.Windows.Forms.DataGridView dgAreas;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel mPosition;
+        private System.Windows.Forms.Button AddAreaInfo;
     }
 }
 

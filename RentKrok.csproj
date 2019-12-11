@@ -88,6 +88,10 @@
     <Compile Include="Migrations\201912101200147_Fix_relations.designer.cs">
       <DependentUpon>201912101200147_Fix_relations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912111128317_area_info_change.cs" />
+    <Compile Include="Migrations\201912111128317_area_info_change.designer.cs">
+      <DependentUpon>201912111128317_area_info_change.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912101200147_Fix_relations.resx">
       <DependentUpon>201912101200147_Fix_relations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912111128317_area_info_change.resx">
+      <DependentUpon>201912111128317_area_info_change.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
