@@ -7,13 +7,13 @@ namespace RentKrok.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class area_info_change : IMigrationMetadata
+    public sealed partial class DBWork : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(area_info_change));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DBWork));
         
         string IMigrationMetadata.Id
         {
-            get { return "201912111128317_area_info_change"; }
+            get { return "201912122003416_DBWork"; }
         }
         
         string IMigrationMetadata.Source

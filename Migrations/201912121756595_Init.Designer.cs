@@ -13,7 +13,7 @@ namespace RentKrok.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201912101123040_Init"; }
+            get { return "201912121756595_Init"; }
         }
         
         string IMigrationMetadata.Source

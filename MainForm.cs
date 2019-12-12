@@ -78,12 +78,8 @@ namespace RentKrok
             
             dgObjects.Columns[0].HeaderText = "Наименование объекта";
             dgObjects.Columns[0].Width = 100;
-            //dgObjects.Columns[0].DataPropertyName = "Name";
             dgObjects.Columns[1].HeaderText = "Адрес объекта";
             dgObjects.Columns[1].Width = 200;
-            //dgObjects.Columns[1].DataPropertyName = "Address";
-            //dgObjects.Columns[2].Visible = false;
-            //dgObjects.Rows[0].Selected = true;
         }
 
         private void RefreshLayerList()
@@ -109,24 +105,25 @@ namespace RentKrok
             dgAreas.DataSource = null;
             if (dgLayers.Rows.Count > 0)
                 dgAreas.DataSource = dba.Value.GetLayerAreas(dgLayers.CurrentRow.DataBoundItem as LayerRect);
+
+
             if (dgAreas.Rows.Count > 0)
             {
-                
                 dgAreas.Columns[0].HeaderText = "Наименование помешения";
-                dgAreas.Columns[0].Width = 180;
+                dgAreas.Columns[0].Width = 150;
                 dgAreas.Columns[1].Visible = false;
                 dgAreas.Columns[2].Visible = false;
                 dgAreas.Columns[3].Visible = false;
                 dgAreas.Columns[4].Visible = false;
                 dgAreas.Columns[5].HeaderText = "Площадь";
-                dgAreas.Columns[5].Width = 50;
+                dgAreas.Columns[5].Width = 60;
                 dgAreas.Columns[6].HeaderText = "Цена";
-                dgAreas.Columns[6].Width = 50;
+                dgAreas.Columns[6].Width = 45;
                 dgAreas.Columns[7].HeaderText = "Стоимость";
-                dgAreas.Columns[7].Width = 50;
-
+                dgAreas.Columns[7].Width = 65;
                 dgAreas.Rows[0].Selected = true;
             }
+            else { dgAreas.Columns.Clear(); }
         }
 
         private void dgObjects_Click(object sender, EventArgs e)

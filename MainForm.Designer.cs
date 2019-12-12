@@ -75,7 +75,7 @@
             // addLayer
             // 
             this.addLayer.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.addLayer.Location = new System.Drawing.Point(763, 166);
+            this.addLayer.Location = new System.Drawing.Point(763, 148);
             this.addLayer.Name = "addLayer";
             this.addLayer.Size = new System.Drawing.Size(162, 23);
             this.addLayer.TabIndex = 3;
@@ -112,9 +112,10 @@
             this.dgLayers.AllowUserToAddRows = false;
             this.dgLayers.AllowUserToDeleteRows = false;
             this.dgLayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgLayers.Location = new System.Drawing.Point(763, 195);
+            this.dgLayers.Location = new System.Drawing.Point(763, 177);
             this.dgLayers.Name = "dgLayers";
             this.dgLayers.ReadOnly = true;
+            this.dgLayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgLayers.Size = new System.Drawing.Size(378, 117);
             this.dgLayers.TabIndex = 6;
             this.dgLayers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgLayers_CellClick);
@@ -122,7 +123,7 @@
             // AddArea
             // 
             this.AddArea.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.AddArea.Location = new System.Drawing.Point(763, 334);
+            this.AddArea.Location = new System.Drawing.Point(763, 299);
             this.AddArea.Name = "AddArea";
             this.AddArea.Size = new System.Drawing.Size(162, 23);
             this.AddArea.TabIndex = 7;
@@ -135,12 +136,12 @@
             this.dgAreas.AllowUserToAddRows = false;
             this.dgAreas.AllowUserToDeleteRows = false;
             this.dgAreas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgAreas.Location = new System.Drawing.Point(763, 363);
+            this.dgAreas.Location = new System.Drawing.Point(763, 328);
             this.dgAreas.Name = "dgAreas";
             this.dgAreas.ReadOnly = true;
             this.dgAreas.Size = new System.Drawing.Size(378, 117);
             this.dgAreas.TabIndex = 8;
-            this.dgAreas.Click += new System.EventHandler(this.dgAreas_Click);
+            this.dgAreas.DoubleClick += new System.EventHandler(this.dgAreas_Click);
             // 
             // statusStrip1
             // 
@@ -160,11 +161,11 @@
             // AddAreaInfo
             // 
             this.AddAreaInfo.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.AddAreaInfo.Location = new System.Drawing.Point(763, 486);
+            this.AddAreaInfo.Location = new System.Drawing.Point(763, 451);
             this.AddAreaInfo.Name = "AddAreaInfo";
             this.AddAreaInfo.Size = new System.Drawing.Size(206, 23);
             this.AddAreaInfo.TabIndex = 10;
-            this.AddAreaInfo.Text = "Добавить информацию о площади";
+            this.AddAreaInfo.Text = "Добавить информацию о арендаторе";
             this.AddAreaInfo.UseVisualStyleBackColor = true;
             // 
             // MainForm
