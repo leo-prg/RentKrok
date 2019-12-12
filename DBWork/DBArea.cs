@@ -32,7 +32,7 @@ namespace RentKrok.DBWork
                 .Where(x => x.Layer.Name.Contains(dbl.Name) && x.Layer.LayerFileName.Contains(dbl.LayerFileName))
                 .Select(x => new AreaRect() { AreaName = x.Name, x1 = x.X, y1 = x.Y, x2 = Math.Abs(x.Width + x.X), 
                                              y2 = Math.Abs(x.Height + x.Y), Square = x.Square, Price = x.Price, Cost = x.Cost,
-                                               isRented = x.Renter==null?false:true })
+                                               isRented = x.Renter!=null })
                                             .ToList();
 
             return ar;

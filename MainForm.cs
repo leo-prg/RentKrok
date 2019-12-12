@@ -110,17 +110,20 @@ namespace RentKrok
             if (dgAreas.Rows.Count > 0)
             {
                 dgAreas.Columns[0].HeaderText = "Наименование помешения";
-                dgAreas.Columns[0].Width = 150;
+                dgAreas.Columns[0].Width = 120;
                 dgAreas.Columns[1].Visible = false;
                 dgAreas.Columns[2].Visible = false;
                 dgAreas.Columns[3].Visible = false;
                 dgAreas.Columns[4].Visible = false;
                 dgAreas.Columns[5].HeaderText = "Площадь";
-                dgAreas.Columns[5].Width = 60;
+                dgAreas.Columns[5].Width = 55;
                 dgAreas.Columns[6].HeaderText = "Цена";
-                dgAreas.Columns[6].Width = 45;
+                dgAreas.Columns[6].Width = 40;
                 dgAreas.Columns[7].HeaderText = "Стоимость";
-                dgAreas.Columns[7].Width = 65;
+                dgAreas.Columns[7].Width = 60;
+                dgAreas.Columns[8].HeaderText = "Аренда";
+                dgAreas.Columns[8].Width = 40;
+
                 dgAreas.Rows[0].Selected = true;
             }
             else { dgAreas.Columns.Clear(); }
@@ -167,7 +170,7 @@ namespace RentKrok
             };
 
             Graphics g = LayerPicture.CreateGraphics();
-            Pen p = new Pen(Color.Red, 3);
+            Pen p = new Pen(Color.Blue, 3);
             Rectangle r = new Rectangle(orx.x1, orx.y1, Math.Abs(orx.x2 - orx.x1), Math.Abs(orx.y2 - orx.y1));
             g.DrawRectangle(p, r);
             rects.Add(orx);
@@ -218,12 +221,13 @@ namespace RentKrok
             LayerPicture.Invalidate();
             if (dgAreas.CurrentRow != null)
             {
-                var selarea = dba.Value.FindAreaByName((dgAreas.CurrentRow.DataBoundItem as AreaRect).AreaName);
+                AreaRect ar = dgAreas.CurrentRow.DataBoundItem as AreaRect;
+                var selarea = dba.Value.FindAreaByName(ar.AreaName);
                 Graphics g = LayerPicture.CreateGraphics();
-                Pen p = new Pen(Color.Blue, 5);
+                Pen p = new Pen(ar.isRented?Color.Red:Color.Green, 5);
                 Rectangle r = new Rectangle(selarea.x1, selarea.y1, Math.Abs(selarea.x2 - selarea.x1), Math.Abs(selarea.y2 - selarea.y1));
                 g.DrawRectangle(p, r);
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
             }
         }
     }
