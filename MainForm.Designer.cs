@@ -128,7 +128,7 @@
             this.AddArea.TabIndex = 7;
             this.AddArea.Text = "Добавить площадь в слой";
             this.AddArea.UseVisualStyleBackColor = true;
-            this.AddArea.Click += new System.EventHandler(this.AddArea_Click);
+            this.AddArea.Click += new System.EventHandler(this.addArea_Click);
             // 
             // dgAreas
             // 

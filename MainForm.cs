@@ -12,6 +12,7 @@ using Microsoft.VisualBasic;
 using RentKrok.DBWork;
 using RentKrok.Common;
 using System.Threading;
+using RentKrok.Controls;
 
 namespace RentKrok
 {
@@ -40,36 +41,36 @@ namespace RentKrok
 
         private void addLayer_Click(object sender, EventArgs e)
         {
-            string layerFileName = "";
-            using (OpenFileDialog fd = new OpenFileDialog())
+            InputLayerInfo ili = new InputLayerInfo();
+            ili.ShowDialog();
+            if (ili.DialogResult == DialogResult.OK)
             {
-                fd.Filter = "Файлы сканов JPEG|*.jpg";
-                fd.Title = "Выберите схему слоя объекта";
-
-                if (fd.ShowDialog() == DialogResult.OK)
-                {
-                    layerFileName = fd.FileName;
-                }
-                LayerPicture.Image = Image.FromFile(layerFileName);
+                LayerPicture.Image = Image.FromFile(ili.lrNew.FileName);
+                dbl.Value.AddObjectLayer(dgObjects.CurrentRow.DataBoundItem as ObjectRect, ili.lrNew); ;
             }
-            string layerName = Interaction.InputBox("Введите название слоя", "Запрос", "", -1, -1);
-
-            dbl.Value.AddObjectLayer(dgObjects.CurrentRow.DataBoundItem as ObjectRect, 
-                new LayerRect() { Name = layerName, FileName = layerFileName, LayerFile = Transform.ImageToByte(LayerPicture.Image) }); ;
             RefreshLayerList();
         }
-
         private void addObject_Click(object sender, EventArgs e)
         {
-            string nameO = Interaction.InputBox("Введите название объекта", "Запрос", "", -1, -1);
-            string addressO = Interaction.InputBox("Введите адрес объекта", "Запрос", "", -1, -1);
-            ObjectRect or = new ObjectRect() { Name = nameO, Address = addressO };
+            //string nameO = Interaction.InputBox("Введите название объекта", "Запрос", "", -1, -1);
+            //string addressO = Interaction.InputBox("Введите адрес объекта", "Запрос", "", -1, -1);
+            InputObjectInfo ioi = new InputObjectInfo();
+            ioi.ShowDialog();
+            //ObjectRect or = new ObjectRect() { Name = nameO, Address = addressO };
+            if (ioi.DialogResult == DialogResult.OK) dbo.Value.AddObject(ioi.orNew);
 
-            dbo.Value.AddObject(or);
             RefreshObjectList();
         
         }
-
+        private void addArea_Click(object sender, EventArgs e)
+        {
+            this.LayerPicture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseDown);
+            this.LayerPicture.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseUp);
+            this.LayerPicture.Cursor = System.Windows.Forms.Cursors.Cross;
+            // убираем обработку клика
+            this.LayerPicture.Click -= new System.EventHandler(this.LayerPicture_Click);
+        }
+        
         private void RefreshObjectList()
         {
            
@@ -141,16 +142,6 @@ namespace RentKrok
             LayerPicture.Image = Transform.ByteToImage((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile);
             RefreshAreaList();
         }
-
-        private void AddArea_Click(object sender, EventArgs e)
-        {
-            this.LayerPicture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseDown);
-            this.LayerPicture.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseUp);
-            this.LayerPicture.Cursor = System.Windows.Forms.Cursors.Cross;
-            // убираем обработку клика
-            this.LayerPicture.Click -= new System.EventHandler(this.LayerPicture_Click);
-        }
-
         private void PlanePic_MouseDown(object sender, MouseEventArgs e)
         {
             // Начальная точка площади
@@ -183,7 +174,6 @@ namespace RentKrok
             this.LayerPicture.MouseUp -= new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseUp);
             // добавляем обработку клика
             this.LayerPicture.Click += new System.EventHandler(this.LayerPicture_Click);
-
             this.LayerPicture.Cursor = System.Windows.Forms.Cursors.Default;
         }
 
