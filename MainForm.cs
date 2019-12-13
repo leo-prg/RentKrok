@@ -78,7 +78,7 @@ namespace RentKrok
             dgObjects.DataSource = dbo.Value.GetAllObjects();
             
             dgObjects.Columns[0].HeaderText = "Наименование объекта";
-            dgObjects.Columns[0].Width = 100;
+            dgObjects.Columns[0].Width = 150;
             dgObjects.Columns[1].HeaderText = "Адрес объекта";
             dgObjects.Columns[1].Width = 200;
         }
@@ -89,7 +89,7 @@ namespace RentKrok
             if (dgObjects.Rows.Count > 0) dgLayers.DataSource = dbl.Value.GetLayersOfObject(dgObjects.CurrentRow.DataBoundItem as ObjectRect);
             if (dgLayers.Rows.Count > 0) {
                 dgLayers.Columns[0].HeaderText = "Наименование слоя";
-                dgLayers.Columns[0].Width = 100;
+                dgLayers.Columns[0].Width = 160;
                 dgLayers.Columns[1].HeaderText = "Имя файла";
                 dgLayers.Columns[1].Width = 200;
                 dgLayers.Columns[2].Visible = false;
@@ -110,8 +110,8 @@ namespace RentKrok
 
             if (dgAreas.Rows.Count > 0)
             {
-                dgAreas.Columns[0].HeaderText = "Наименование помешения";
-                dgAreas.Columns[0].Width = 120;
+                dgAreas.Columns[0].HeaderText = "Наименование помещения";
+                dgAreas.Columns[0].Width = 150;
                 dgAreas.Columns[1].Visible = false;
                 dgAreas.Columns[2].Visible = false;
                 dgAreas.Columns[3].Visible = false;
@@ -121,9 +121,9 @@ namespace RentKrok
                 dgAreas.Columns[6].HeaderText = "Цена";
                 dgAreas.Columns[6].Width = 40;
                 dgAreas.Columns[7].HeaderText = "Стоимость";
-                dgAreas.Columns[7].Width = 60;
+                dgAreas.Columns[7].Width = 65;
                 dgAreas.Columns[8].HeaderText = "Аренда";
-                dgAreas.Columns[8].Width = 40;
+                dgAreas.Columns[8].Width = 45;
 
                 dgAreas.Rows[0].Selected = true;
             }
@@ -153,21 +153,31 @@ namespace RentKrok
            // MessageBox.Show(e.Location.X.ToString(), e.Location.Y.ToString());
             // Конечная точка площади
             point2 = e.Location;
-            string nameR = Interaction.InputBox("Введите название помещения", "Запрос", "", -1, -1);
-            // площадь
-            string[] square = Interaction.InputBox("Введите через запятую площадь цену и стоимость аренды", "Запрос", "", -1, -1).Split(',');
-            AreaRect orx = new AreaRect() { AreaName = nameR, x1 = point1.X, y1 = point1.Y, x2 = point2.X, y2 = point2.Y,
-                                            Square = Convert.ToInt32(square[0]), Price = Convert.ToInt32(square[1]), Cost = Convert.ToInt32(square[2])
-            };
+
+            InputAreaInfo iai = new InputAreaInfo();
+            //string nameR = Interaction.InputBox("Введите название помещения", "Запрос", "", -1, -1);
+            //// площадь
+            //string[] square = Interaction.InputBox("Введите через запятую площадь цену и стоимость аренды", "Запрос", "", -1, -1).Split(',');
+            //AreaRect orx = new AreaRect() { AreaName = nameR, x1 = point1.X, y1 = point1.Y, x2 = point2.X, y2 = point2.Y,
+            //                                Square = Convert.ToInt32(square[0]), Price = Convert.ToInt32(square[1]), Cost = Convert.ToInt32(square[2])
+            //};
+            iai.ShowDialog();
+            if (iai.DialogResult == DialogResult.OK)
+            {
+                iai.ar.x1 = point1.X;
+                iai.ar.y1 = point1.Y;
+                iai.ar.x2 = point2.X;
+                iai.ar.y2 = point2.Y;
+            }
 
             Graphics g = LayerPicture.CreateGraphics();
             Pen p = new Pen(Color.Blue, 3);
-            Rectangle r = new Rectangle(orx.x1, orx.y1, Math.Abs(orx.x2 - orx.x1), Math.Abs(orx.y2 - orx.y1));
+            Rectangle r = new Rectangle(iai.ar.x1, iai.ar.y1, Math.Abs(iai.ar.x2 - iai.ar.x1), Math.Abs(iai.ar.y2 - iai.ar.y1));
             g.DrawRectangle(p, r);
-            rects.Add(orx);
+            rects.Add(iai.ar);
 
             // Здесь добавим в базу с привязкой к вбранному слою его площади 
-            dba.Value.AddLayerArea(dgLayers.CurrentRow.DataBoundItem as LayerRect, orx);
+            dba.Value.AddLayerArea(dgLayers.CurrentRow.DataBoundItem as LayerRect, iai.ar);
             RefreshAreaList();
             // Отключаем обработку сообщений
             this.LayerPicture.MouseDown -= new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseDown);

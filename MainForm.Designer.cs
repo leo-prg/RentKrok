@@ -102,6 +102,7 @@
             this.dgObjects.Location = new System.Drawing.Point(763, 41);
             this.dgObjects.Name = "dgObjects";
             this.dgObjects.ReadOnly = true;
+            this.dgObjects.RowHeadersWidth = 10;
             this.dgObjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgObjects.Size = new System.Drawing.Size(378, 101);
             this.dgObjects.TabIndex = 5;
@@ -115,6 +116,7 @@
             this.dgLayers.Location = new System.Drawing.Point(763, 177);
             this.dgLayers.Name = "dgLayers";
             this.dgLayers.ReadOnly = true;
+            this.dgLayers.RowHeadersWidth = 10;
             this.dgLayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgLayers.Size = new System.Drawing.Size(378, 117);
             this.dgLayers.TabIndex = 6;
@@ -139,6 +141,7 @@
             this.dgAreas.Location = new System.Drawing.Point(763, 328);
             this.dgAreas.Name = "dgAreas";
             this.dgAreas.ReadOnly = true;
+            this.dgAreas.RowHeadersWidth = 10;
             this.dgAreas.Size = new System.Drawing.Size(378, 117);
             this.dgAreas.TabIndex = 8;
             this.dgAreas.DoubleClick += new System.EventHandler(this.dgAreas_Click);

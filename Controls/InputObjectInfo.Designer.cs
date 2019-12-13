@@ -104,9 +104,12 @@
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.tbAddress);
             this.Controls.Add(this.tbName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "InputObjectInfo";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Ввод информации";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.InputObjectInfo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
