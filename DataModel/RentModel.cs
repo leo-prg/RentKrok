@@ -89,7 +89,7 @@
         public float Square { get; set; }
         public float Price { get; set; }
         public float Cost { get; set; }
-        public virtual Renter Renter { get; set; }
+        public virtual Renter? Renter { get; set; }
     }
 
 

@@ -17,12 +17,15 @@
                         Y = c.Int(nullable: false),
                         Width = c.Int(nullable: false),
                         Height = c.Int(nullable: false),
+                        Square = c.Single(nullable: false),
+                        Price = c.Single(nullable: false),
+                        Cost = c.Single(nullable: false),
                         Layer_Id = c.Int(nullable: false),
-                        Renter_Id = c.Int(nullable: false),
+                        Renter_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.RentLayers", t => t.Layer_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Renters", t => t.Renter_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Renters", t => t.Renter_Id)
                 .Index(t => t.Layer_Id)
                 .Index(t => t.Renter_Id);
             
@@ -59,9 +62,6 @@
                         Contract = c.String(maxLength: 20),
                         StartDate = c.DateTime(nullable: false),
                         EndDate = c.DateTime(nullable: false),
-                        Square = c.Single(nullable: false),
-                        Price = c.Single(nullable: false),
-                        Cost = c.Single(nullable: false),
                         ContactPerson = c.String(),
                         ContactPhone = c.String(),
                         Annotation = c.String(),

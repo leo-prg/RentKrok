@@ -37,6 +37,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -92,17 +93,13 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AreaRect.cs" />
-    <Compile Include="Migrations\201912101123040_Init.cs" />
-    <Compile Include="Migrations\201912101123040_Init.designer.cs">
-      <DependentUpon>201912101123040_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201912121756595_Init.cs" />
+    <Compile Include="Migrations\201912121756595_Init.designer.cs">
+      <DependentUpon>201912121756595_Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201912101200147_Fix_relations.cs" />
-    <Compile Include="Migrations\201912101200147_Fix_relations.designer.cs">
-      <DependentUpon>201912101200147_Fix_relations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912111128317_area_info_change.cs" />
-    <Compile Include="Migrations\201912111128317_area_info_change.designer.cs">
-      <DependentUpon>201912111128317_area_info_change.cs</DependentUpon>
+    <Compile Include="Migrations\201912122003416_DBWork.cs" />
+    <Compile Include="Migrations\201912122003416_DBWork.designer.cs">
+      <DependentUpon>201912122003416_DBWork.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -120,14 +117,11 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912101123040_Init.resx">
-      <DependentUpon>201912101123040_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912121756595_Init.resx">
+      <DependentUpon>201912121756595_Init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912101200147_Fix_relations.resx">
-      <DependentUpon>201912101200147_Fix_relations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912111128317_area_info_change.resx">
-      <DependentUpon>201912111128317_area_info_change.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912122003416_DBWork.resx">
+      <DependentUpon>201912122003416_DBWork.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
