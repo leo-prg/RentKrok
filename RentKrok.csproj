@@ -96,6 +96,7 @@
     <Compile Include="DBWork\DBArea.cs" />
     <Compile Include="DBWork\DBLayer.cs" />
     <Compile Include="DBWork\DBObject.cs" />
+    <Compile Include="DBWork\DBRenter.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,7 +115,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RenterInfo.cs" />
     <EmbeddedResource Include="Controls\InputAreaInfo.resx">
       <DependentUpon>InputAreaInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,7 +147,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\Renter.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

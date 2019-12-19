@@ -8,15 +8,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace RentKrok.Controls
 {
+
+   
     public partial class InputRenterInfo : Form
     {
+
+        public RenterRect rrNew;
         public InputRenterInfo()
         {
             InitializeComponent();
         }
 
-      
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            rrNew = new RenterRect() { RenterName = tbRenterName.Text, Contract = tbContract.Text,
+                                       StartDate = dtpStart.Value, EndDate = dtpEnd.Value, 
+                                       ContactPerson = tbContacts.Text, ContactPhone = tbPhones.Text, 
+                                       Annotation = tbAnnotation.Text };
+            DialogResult = DialogResult.OK;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
     }
 }

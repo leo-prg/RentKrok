@@ -32,4 +32,15 @@ namespace RentKrok
         public byte[] LayerFile { get; set; }
     }
 
+    public class RenterRect
+    {
+        public string RenterName { get; set; }
+        public string Contract { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string ContactPerson { get; set; }
+        public string ContactPhone { get; set; }
+        public string Annotation { get; set; }
+
+    }
 }

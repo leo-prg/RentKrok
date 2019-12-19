@@ -28,20 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbName = new System.Windows.Forms.Label();
             this.tbRenterName = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbContract = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dtpStart = new System.Windows.Forms.DateTimePicker();
+            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbContacts = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbPhones = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.tbAnnotation = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbName
@@ -63,29 +66,31 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(275, 253);
+            this.btnCancel.Location = new System.Drawing.Point(269, 263);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOk
             // 
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnOk.Location = new System.Drawing.Point(172, 253);
+            this.btnOk.Location = new System.Drawing.Point(166, 263);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 25);
             this.btnOk.TabIndex = 10;
             this.btnOk.Text = "ОК";
             this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // textBox1
+            // tbContract
             // 
-            this.textBox1.Location = new System.Drawing.Point(72, 54);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(88, 20);
-            this.textBox1.TabIndex = 13;
+            this.tbContract.Location = new System.Drawing.Point(72, 54);
+            this.tbContract.Name = "tbContract";
+            this.tbContract.Size = new System.Drawing.Size(88, 20);
+            this.tbContract.TabIndex = 13;
             // 
             // label1
             // 
@@ -105,36 +110,38 @@
             this.label2.TabIndex = 14;
             this.label2.Text = "действует с";
             // 
-            // dateTimePicker1
+            // dtpStart
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(248, 54);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(119, 20);
-            this.dateTimePicker1.TabIndex = 15;
+            this.dtpStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpStart.Location = new System.Drawing.Point(248, 54);
+            this.dtpStart.Name = "dtpStart";
+            this.dtpStart.Size = new System.Drawing.Size(96, 20);
+            this.dtpStart.TabIndex = 15;
             // 
-            // dateTimePicker2
+            // dtpEnd
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(398, 54);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(119, 20);
-            this.dateTimePicker2.TabIndex = 17;
+            this.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEnd.Location = new System.Drawing.Point(375, 54);
+            this.dtpEnd.Name = "dtpEnd";
+            this.dtpEnd.Size = new System.Drawing.Size(96, 20);
+            this.dtpEnd.TabIndex = 17;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(373, 58);
+            this.label3.Location = new System.Drawing.Point(350, 58);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(19, 13);
             this.label3.TabIndex = 16;
             this.label3.Text = "по";
             // 
-            // textBox2
+            // tbContacts
             // 
-            this.textBox2.Location = new System.Drawing.Point(90, 87);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(427, 67);
-            this.textBox2.TabIndex = 19;
+            this.tbContacts.Location = new System.Drawing.Point(90, 87);
+            this.tbContacts.Multiline = true;
+            this.tbContacts.Name = "tbContacts";
+            this.tbContacts.Size = new System.Drawing.Size(427, 67);
+            this.tbContacts.TabIndex = 19;
             // 
             // label4
             // 
@@ -145,13 +152,13 @@
             this.label4.Text = "Контактные лица";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // textBox3
+            // tbPhones
             // 
-            this.textBox3.Location = new System.Drawing.Point(90, 160);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(427, 67);
-            this.textBox3.TabIndex = 21;
+            this.tbPhones.Location = new System.Drawing.Point(90, 160);
+            this.tbPhones.Multiline = true;
+            this.tbPhones.Name = "tbPhones";
+            this.tbPhones.Size = new System.Drawing.Size(427, 67);
+            this.tbPhones.TabIndex = 21;
             // 
             // label5
             // 
@@ -162,6 +169,22 @@
             this.label5.Text = "Телефоны, электронная почта";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // tbAnnotation
+            // 
+            this.tbAnnotation.Location = new System.Drawing.Point(90, 233);
+            this.tbAnnotation.Name = "tbAnnotation";
+            this.tbAnnotation.Size = new System.Drawing.Size(427, 20);
+            this.tbAnnotation.TabIndex = 24;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(15, 236);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(70, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Примечание";
+            // 
             // InputRenterInfo
             // 
             this.AcceptButton = this.btnOk;
@@ -169,15 +192,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(539, 296);
+            this.Controls.Add(this.tbAnnotation);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tbPhones);
+            this.Controls.Add(this.tbContacts);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.dtpEnd);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtpStart);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbContract);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
@@ -199,15 +224,17 @@
         private System.Windows.Forms.TextBox tbRenterName;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbContract;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dtpStart;
+        private System.Windows.Forms.DateTimePicker dtpEnd;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbContacts;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tbPhones;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tbAnnotation;
+        private System.Windows.Forms.Label label6;
     }
 }

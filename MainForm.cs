@@ -26,6 +26,7 @@ namespace RentKrok
         Lazy<DBObject> dbo = new Lazy<DBObject>();
         Lazy<DBLayer> dbl = new Lazy<DBLayer>();
         Lazy<DBArea> dba = new Lazy<DBArea>();
+        Lazy<DBRenter> dbr = new Lazy<DBRenter>();
 
         public MainForm()
         {
@@ -237,6 +238,9 @@ namespace RentKrok
             iri.ShowDialog();
             if (iri.DialogResult == DialogResult.OK)
             {
+             //   List<RentA>
+                dbr.Value.AddRenterToArea(iri.rrNew, null ); // добавляем самого арендатора
+
             }
         }
     }
