@@ -64,7 +64,7 @@
             this.btnCancel.Location = new System.Drawing.Point(163, 142);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 9;
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -75,7 +75,7 @@
             this.btnOk.Location = new System.Drawing.Point(60, 142);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 25);
-            this.btnOk.TabIndex = 8;
+            this.btnOk.TabIndex = 3;
             this.btnOk.Text = "ОК";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -85,7 +85,7 @@
             this.tbSquare.Location = new System.Drawing.Point(12, 65);
             this.tbSquare.Name = "tbSquare";
             this.tbSquare.Size = new System.Drawing.Size(125, 20);
-            this.tbSquare.TabIndex = 7;
+            this.tbSquare.TabIndex = 1;
             this.tbSquare.TextChanged += new System.EventHandler(this.tbSquare_TextChanged);
             // 
             // tbName
@@ -93,7 +93,7 @@
             this.tbName.Location = new System.Drawing.Point(12, 25);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(237, 20);
-            this.tbName.TabIndex = 6;
+            this.tbName.TabIndex = 0;
             // 
             // label3
             // 
@@ -109,7 +109,7 @@
             this.tbPrice.Location = new System.Drawing.Point(146, 65);
             this.tbPrice.Name = "tbPrice";
             this.tbPrice.Size = new System.Drawing.Size(103, 20);
-            this.tbPrice.TabIndex = 12;
+            this.tbPrice.TabIndex = 2;
             this.tbPrice.TextChanged += new System.EventHandler(this.tbPrice_TextChanged);
             // 
             // label4
@@ -125,8 +125,10 @@
             // 
             this.tbCost.Location = new System.Drawing.Point(12, 104);
             this.tbCost.Name = "tbCost";
+            this.tbCost.ReadOnly = true;
             this.tbCost.Size = new System.Drawing.Size(125, 20);
             this.tbCost.TabIndex = 14;
+            this.tbCost.TextChanged += new System.EventHandler(this.tbCost_TextChanged);
             // 
             // InputAreaInfo
             // 

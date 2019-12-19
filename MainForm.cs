@@ -167,9 +167,8 @@ namespace RentKrok
                 iai.ar.x1 = point1.X;
                 iai.ar.y1 = point1.Y;
                 iai.ar.x2 = point2.X;
-                iai.ar.y2 = point2.Y;
-            }
-
+                iai.ar.y2 = point2.Y; 
+                
             Graphics g = LayerPicture.CreateGraphics();
             Pen p = new Pen(Color.Blue, 3);
             Rectangle r = new Rectangle(iai.ar.x1, iai.ar.y1, Math.Abs(iai.ar.x2 - iai.ar.x1), Math.Abs(iai.ar.y2 - iai.ar.y1));
@@ -179,6 +178,9 @@ namespace RentKrok
             // Здесь добавим в базу с привязкой к вбранному слою его площади 
             dba.Value.AddLayerArea(dgLayers.CurrentRow.DataBoundItem as LayerRect, iai.ar);
             RefreshAreaList();
+            }
+
+          
             // Отключаем обработку сообщений
             this.LayerPicture.MouseDown -= new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseDown);
             this.LayerPicture.MouseUp -= new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseUp);

@@ -20,9 +20,10 @@ namespace RentKrok.Controls
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            ar = new AreaRect() { AreaName = tbName.Text, Square = Convert.ToInt32(tbSquare.Text), 
-                                  Price = Convert.ToInt32(tbPrice.Text), 
-                                  Cost = Convert.ToInt32(tbCost.Text) };
+            ar = new AreaRect() { AreaName = tbName.Text, Square = float.TryParse(tbSquare.Text, out float s) ? s : 0, 
+                                  Price = float.TryParse(tbPrice.Text, out float p) ? p : 0, 
+                                  Cost = float.TryParse(tbCost.Text, out float c) ? c : 0
+            };
             DialogResult = DialogResult.OK;
         }
 
@@ -33,18 +34,22 @@ namespace RentKrok.Controls
 
         private void tbSquare_TextChanged(object sender, EventArgs e)
         {
-            float square = Convert.ToInt32(tbSquare.Text);
-            float price = Convert.ToInt32(tbPrice.Text);
+         
+            float square = float.TryParse(tbSquare.Text, out float s) ? s : 0;
+            float price = float.TryParse(tbPrice.Text, out float p) ? p : 0;
 
             tbCost.Text = Math.Round(square * price, 2).ToString() ;
         }
 
         private void tbPrice_TextChanged(object sender, EventArgs e)
         {
-            float square = Convert.ToInt32(tbSquare.Text);
-            float price = Convert.ToInt32(tbPrice.Text);
+            
+            float square = float.TryParse(tbSquare.Text, out float s) ? s : 0;
+            float price = float.TryParse(tbPrice.Text, out float p) ? p : 0;
 
             tbCost.Text = Math.Round(square * price, 2).ToString();
         }
+
+       
     }
 }
