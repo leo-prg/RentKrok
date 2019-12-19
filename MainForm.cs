@@ -230,5 +230,14 @@ namespace RentKrok
                 Thread.Sleep(2000);
             }
         }
+
+        private void AddAreaInfo_Click(object sender, EventArgs e)
+        {
+            InputRenterInfo iri = new InputRenterInfo();
+            iri.ShowDialog();
+            if (iri.DialogResult == DialogResult.OK)
+            {
+            }
+        }
     }
 }

@@ -170,6 +170,7 @@
             this.AddAreaInfo.TabIndex = 10;
             this.AddAreaInfo.Text = "Добавить информацию о арендаторе";
             this.AddAreaInfo.UseVisualStyleBackColor = true;
+            this.AddAreaInfo.Click += new System.EventHandler(this.AddAreaInfo_Click);
             // 
             // MainForm
             // 
