@@ -26,6 +26,7 @@ namespace RentKrok
         Lazy<DBObject> dbo = new Lazy<DBObject>();
         Lazy<DBLayer> dbl = new Lazy<DBLayer>();
         Lazy<DBArea> dba = new Lazy<DBArea>();
+        Lazy<DBRenter> dbr = new Lazy<DBRenter>();
 
         public MainForm()
         {
@@ -230,6 +231,18 @@ namespace RentKrok
                 Rectangle r = new Rectangle(selarea.x1, selarea.y1, Math.Abs(selarea.x2 - selarea.x1), Math.Abs(selarea.y2 - selarea.y1));
                 g.DrawRectangle(p, r);
                 Thread.Sleep(2000);
+            }
+        }
+
+        private void AddAreaInfo_Click(object sender, EventArgs e)
+        {
+            InputRenterInfo iri = new InputRenterInfo();
+            iri.ShowDialog();
+            if (iri.DialogResult == DialogResult.OK)
+            {
+             //   List<RentA>
+                dbr.Value.AddRenterToArea(iri.rrNew, null ); // добавляем самого арендатора
+
             }
         }
     }
