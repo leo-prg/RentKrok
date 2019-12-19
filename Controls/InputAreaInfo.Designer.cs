@@ -128,7 +128,6 @@
             this.tbCost.ReadOnly = true;
             this.tbCost.Size = new System.Drawing.Size(125, 20);
             this.tbCost.TabIndex = 14;
-            this.tbCost.TextChanged += new System.EventHandler(this.tbCost_TextChanged);
             // 
             // InputAreaInfo
             // 

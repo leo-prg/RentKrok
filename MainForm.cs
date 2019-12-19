@@ -240,9 +240,10 @@ namespace RentKrok
             iri.ShowDialog();
             if (iri.DialogResult == DialogResult.OK)
             {
-             //   List<RentA>
-                dbr.Value.AddRenterToArea(iri.rrNew, null ); // добавляем самого арендатора
-
+                // добавляем самого арендатора
+                dbr.Value.AddRenter(iri.rrNew); 
+                // добавим к текущей площади арендатора
+                dba.Value.AddRenterToArea(dgAreas.CurrentRow.DataBoundItem as AreaRect, iri.rrNew);
             }
         }
     }

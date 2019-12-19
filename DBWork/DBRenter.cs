@@ -11,7 +11,7 @@ namespace RentKrok.DBWork
     {
         Lazy<RentModel> context = new Lazy<RentModel>();
 
-        public void AddRenterToArea(RenterRect renter, List<RentArea> r_area)
+        public void AddRenter(RenterRect renter)
         {
             context.Value.Renters.Add(new Renter()
             {
@@ -21,8 +21,7 @@ namespace RentKrok.DBWork
                 EndDate = renter.EndDate,
                 ContactPerson = renter.ContactPerson,
                 ContactPhone = renter.ContactPhone,
-                Annotation = renter.Annotation, 
-                RentAreas = r_area
+                Annotation = renter.Annotation                
             });
             context.Value.SaveChanges();
         }

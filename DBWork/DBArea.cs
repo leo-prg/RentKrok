@@ -56,5 +56,14 @@ namespace RentKrok.DBWork
                 }).FirstOrDefault();
         }
 
+        public void AddRenterToArea(AreaRect area, RenterRect renter)
+        {
+            var ar = context.Value.RentAreas.Where(a => a.Name == area.AreaName).Select(c => c).FirstOrDefault();
+            var rent = context.Value.Renters.Where(r => r.RenterName == renter.RenterName).Select(c => c).FirstOrDefault();
+            ar.Renter = rent;
+            context.Value.SaveChanges();
+        }
+
+
     }
 }
