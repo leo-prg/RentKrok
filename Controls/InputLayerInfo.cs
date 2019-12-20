@@ -45,5 +45,15 @@ namespace RentKrok.Controls
                 }
             }
         }
+
+        private void InputLayerInfo_Load(object sender, EventArgs e)
+        {
+            if (lrNew != null)
+            {
+                tbName.Text = lrNew.Name;
+                tbFileName.Text = lrNew.FileName;
+            }
+
+        }
     }
 }

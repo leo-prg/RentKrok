@@ -21,7 +21,11 @@ namespace RentKrok.Controls
 
         private void InputObjectInfo_Load(object sender, EventArgs e)
         {
-
+            if (orNew != null)
+            {
+                tbName.Text = orNew.Name;
+                tbAddress.Text = orNew.Address;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

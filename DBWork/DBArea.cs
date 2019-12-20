@@ -64,6 +64,23 @@ namespace RentKrok.DBWork
             context.Value.SaveChanges();
         }
 
+        public RenterRect GetAreaRenter(AreaRect area)
+        {
+            var r = context.Value.RentAreas
+                .Where(a => a.Name == area.AreaName)
+                .Select(r => new RenterRect()
+                {
+                    RenterName = r.Renter.RenterName,
+                    Contract = r.Renter.Contract,
+                    StartDate = r.Renter.StartDate,
+                    EndDate = r.Renter.EndDate,
+                    ContactPerson = r.Renter.ContactPerson,
+                    ContactPhone = r.Renter.ContactPhone,
+                    Annotation = r.Renter.Annotation
+                }).FirstOrDefault();
+            return r;
+        }
+
 
     }
 }

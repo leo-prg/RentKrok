@@ -17,7 +17,7 @@
         // Если требуется выбрать другую базу данных или поставщик базы данных, измените строку подключения "RentModel" 
         // в файле конфигурации приложения.
         public RentModel()
-            : base("name=RentModel")
+            : base("name=RentKrok")
         {
             
         }
@@ -40,79 +40,12 @@
 
     }
 
-    [Table("RentObjects")]
-    public class RentObject
-    {
-        [Key]
-        public int Id { get; set; }
-        [StringLength(50)]
-        public string Name { get; set; }
-        [StringLength(150)]
-        public string Address { get; set; }
 
-        public virtual List<RentLayer> RentLayers { get; set; }
+  
 
-        public RentObject()
-        {
-            RentLayers = new List<RentLayer>();
-        }
-}
-    [Table("RentLayers")]
-    public class RentLayer
-    {
-        [Key]
-        public int Id { get; set; }
-        public RentObject Object { get; set; }
-        [StringLength(50)]
-        public string Name { get; set; }
-        [StringLength(255)]
-        public string LayerFileName { get; set; }
-        public byte[] LayerFile { get; set; }
-        public virtual List<RentArea> RentAreas { get; set; }
-        public RentLayer()
-        {
-            RentAreas = new List<RentArea>();
-        }
-    }
+   
 
-    [Table("RentAreas")]
-    public class RentArea
-    {
-        public int Id { get; set; }
-        public RentLayer Layer { get; set; }
-        [StringLength(50)]
-        public string Name { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
-        public float Square { get; set; }
-        public float Price { get; set; }
-        public float Cost { get; set; }
-        public virtual Renter? Renter { get; set; }
-    }
-
-
-    [Table("Renters")]
-    public class Renter
-    {
-        public int Id { get; set; }
-        [StringLength(200)]
-        public string RenterName { get; set; }
-        [StringLength(20)]
-        public string Contract { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public string ContactPerson { get; set; }
-        public string ContactPhone { get; set; }
-        public string Annotation { get; set; }
-        public virtual List<RentArea> RentAreas { get; set; }
-
-        public Renter()
-        {
-            RentAreas = new List<RentArea>();
-        }
-    }
+  
 
 
   

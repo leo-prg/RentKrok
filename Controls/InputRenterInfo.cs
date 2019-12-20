@@ -35,5 +35,19 @@ namespace RentKrok.Controls
         {
             DialogResult = DialogResult.Cancel;
         }
+
+        private void InputRenterInfo_Load(object sender, EventArgs e)
+        {
+            if (rrNew != null)
+            {
+                tbRenterName.Text = rrNew.RenterName;
+                tbContract.Text = rrNew.Contract;
+                dtpStart.Value = rrNew.StartDate;
+                dtpEnd.Value = rrNew.EndDate;
+                tbContacts.Text = rrNew.ContactPerson;
+                tbPhones.Text = rrNew.ContactPhone;
+                tbAnnotation.Text = rrNew.Annotation;
+            }
+        }
     }
 }

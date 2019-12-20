@@ -88,7 +88,11 @@
     <Compile Include="Controls\InputRenterInfo.Designer.cs">
       <DependentUpon>InputRenterInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataModel\RentArea.cs" />
+    <Compile Include="DataModel\Renter.cs" />
+    <Compile Include="DataModel\RentLayer.cs" />
     <Compile Include="DataModel\RentModel.cs" />
+    <Compile Include="DataModel\RentObject.cs" />
     <Compile Include="DBWork\DBArea.cs" />
     <Compile Include="DBWork\DBLayer.cs" />
     <Compile Include="DBWork\DBObject.cs" />
@@ -151,6 +155,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="RentKrok.cd" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

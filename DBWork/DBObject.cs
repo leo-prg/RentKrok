@@ -19,6 +19,19 @@ namespace RentKrok.DBWork
             return true;
         }
 
+        public bool UpdateObject(ObjectRect oldO, ObjectRect newO)
+        {
+
+            var ro = context.Value.RentObjects.Where(r=>r.Name == oldO.Name).Select(ro=>ro).FirstOrDefault();
+            ro.Name = newO.Name;
+            ro.Address = newO.Address;
+            context.Value.SaveChanges();
+
+            return true;
+        }
+
+
+
         //public List<RentObject> GetAllObjects()
         public List<ObjectRect> GetAllObjects()
         {

@@ -151,7 +151,7 @@
             this.Name = "InputAreaInfo";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Ввод информации";
+            this.Text = "Информация о площади";
             this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();

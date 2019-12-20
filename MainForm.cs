@@ -20,26 +20,28 @@ namespace RentKrok
     {
 
         List<AreaRect> rects = new List<AreaRect>();
+      
         Point point1;
         Point point2;
 
-        Lazy<DBObject> dbo = new Lazy<DBObject>();
-        Lazy<DBLayer> dbl = new Lazy<DBLayer>();
-        Lazy<DBArea> dba = new Lazy<DBArea>();
-        Lazy<DBRenter> dbr = new Lazy<DBRenter>();
+        Lazy<DBObject> dbo = new Lazy<DBObject>(); // объект
+        Lazy<DBLayer> dbl = new Lazy<DBLayer>(); // слой
+        Lazy<DBArea> dba = new Lazy<DBArea>(); // площадь
+        Lazy<DBRenter> dbr = new Lazy<DBRenter>(); // арендатор
 
         public MainForm()
         {
             InitializeComponent();
         }
 
-    
+        // открытие формы
         private void Form1_Load(object sender, EventArgs e)
         {
+            
             RefreshObjectList();
             RefreshLayerList();
         }
-
+        //добавление слоя
         private void addLayer_Click(object sender, EventArgs e)
         {
             InputLayerInfo ili = new InputLayerInfo();
@@ -51,6 +53,7 @@ namespace RentKrok
             }
             RefreshLayerList();
         }
+        // добавление объекта
         private void addObject_Click(object sender, EventArgs e)
         {
             //string nameO = Interaction.InputBox("Введите название объекта", "Запрос", "", -1, -1);
@@ -63,6 +66,7 @@ namespace RentKrok
             RefreshObjectList();
         
         }
+        // добавление площади 
         private void addArea_Click(object sender, EventArgs e)
         {
             this.LayerPicture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseDown);
@@ -72,6 +76,7 @@ namespace RentKrok
             this.LayerPicture.Click -= new System.EventHandler(this.LayerPicture_Click);
         }
         
+        // обновление списка объектов
         private void RefreshObjectList()
         {
            
@@ -84,6 +89,7 @@ namespace RentKrok
             dgObjects.Columns[1].Width = 200;
         }
 
+        // обновление списка слоев
         private void RefreshLayerList()
         {
             dgLayers.DataSource = null;
@@ -99,9 +105,11 @@ namespace RentKrok
                 if ((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile != null)
                 LayerPicture.Image = Transform.ByteToImage((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile);
             }
+            else { dgLayers.Columns.Clear(); }
             RefreshAreaList();
         }
 
+        // обновление списка площадей
         private void RefreshAreaList()
         {
             dgAreas.DataSource = null;
@@ -131,11 +139,13 @@ namespace RentKrok
             else { dgAreas.Columns.Clear(); }
         }
 
+        // клик на объекте
         private void dgObjects_Click(object sender, EventArgs e)
         {
             RefreshLayerList();
         }
 
+        // клик на списке слоев объекта
         private void dgLayers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             LayerPicture.Image = null;
@@ -143,12 +153,14 @@ namespace RentKrok
             LayerPicture.Image = Transform.ByteToImage((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile);
             RefreshAreaList();
         }
+        // начало выделения области площади
         private void PlanePic_MouseDown(object sender, MouseEventArgs e)
         {
             // Начальная точка площади
             point1 = e.Location;
         }
 
+        // отпускание кнопки мыши - завершение выделения области
         private void PlanePic_MouseUp(object sender, MouseEventArgs e)
         {
            // MessageBox.Show(e.Location.X.ToString(), e.Location.Y.ToString());
@@ -190,6 +202,7 @@ namespace RentKrok
             this.LayerPicture.Cursor = System.Windows.Forms.Cursors.Default;
         }
 
+        // выделяет в списке площадей кликнутую
         private void LayerPicture_Click(object sender, EventArgs e)
         {
             string area = dba.Value.FindAreaByPoint(dgLayers.CurrentRow.DataBoundItem as LayerRect,
@@ -218,7 +231,7 @@ namespace RentKrok
             mPosition.Text = String.Format(@"{0}:{1}",e.X.ToString(), e.Y.ToString());
         }
 
-        // Подсвечиваем на 3 сек выбранную площадь
+        // Подсвечиваем на 3 сек выбранную площадь и выводит информацию об арендаторе если она есть
         private void dgAreas_Click(object sender, EventArgs e)
         {
             LayerPicture.Invalidate();
@@ -227,11 +240,15 @@ namespace RentKrok
                 AreaRect ar = dgAreas.CurrentRow.DataBoundItem as AreaRect;
                 var selarea = dba.Value.FindAreaByName(ar.AreaName);
                 Graphics g = LayerPicture.CreateGraphics();
-                Pen p = new Pen(ar.isRented?Color.Red:Color.Green, 5);
+                Pen p = new Pen(ar.isRented ? Color.Red : Color.Green, 5);
                 Rectangle r = new Rectangle(selarea.x1, selarea.y1, Math.Abs(selarea.x2 - selarea.x1), Math.Abs(selarea.y2 - selarea.y1));
                 g.DrawRectangle(p, r);
-                Thread.Sleep(2000);
+                Thread.Sleep(3000);
+                InputRenterInfo iri = new InputRenterInfo();
+                iri.rrNew = dba.Value.GetAreaRenter(ar);
+                iri.ShowDialog();
             }
+
         }
 
         private void AddAreaInfo_Click(object sender, EventArgs e)
@@ -245,6 +262,30 @@ namespace RentKrok
                 // добавим к текущей площади арендатора
                 dba.Value.AddRenterToArea(dgAreas.CurrentRow.DataBoundItem as AreaRect, iri.rrNew);
             }
+        }
+        // редактирование объекта
+        private void editObject_Click(object sender, EventArgs e)
+        {
+            InputObjectInfo ioi = new InputObjectInfo() { orNew = dgObjects.CurrentRow.DataBoundItem as ObjectRect };
+            ObjectRect old = dgObjects.CurrentRow.DataBoundItem as ObjectRect;
+            ioi.ShowDialog();
+            if (ioi.DialogResult == DialogResult.OK)
+            {
+                dbo.Value.UpdateObject(old, ioi.orNew);
+            }
+            RefreshObjectList();
+        }
+        // редактирование слоя
+        private void editLayer_Click(object sender, EventArgs e)
+        {
+            InputLayerInfo ili = new InputLayerInfo() { lrNew = dgLayers.CurrentRow.DataBoundItem as LayerRect };
+            var old = dgLayers.CurrentRow.DataBoundItem as LayerRect;
+            ili.ShowDialog();
+            if (ili.DialogResult == DialogResult.OK)
+            {
+                dbl.Value.UpdateObjectLayer(old, ili.lrNew);
+            }
+            RefreshLayerList();
         }
     }
 }

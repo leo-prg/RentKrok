@@ -108,7 +108,7 @@
             this.Name = "InputObjectInfo";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Ввод информации";
+            this.Text = "Информация об объекте";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.InputObjectInfo_Load);
             this.ResumeLayout(false);

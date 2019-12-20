@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.lbName = new System.Windows.Forms.Label();
             this.tbRenterName = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -212,8 +211,9 @@
             this.Name = "InputRenterInfo";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Ввод информации";
+            this.Text = "Информация об арендаторе";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.InputRenterInfo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

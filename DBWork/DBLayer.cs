@@ -21,6 +21,22 @@ namespace RentKrok.DBWork
 
         }
 
+        public void UpdateObjectLayer(LayerRect oldL, LayerRect newL)
+        {
+            // найдем объект в базе с таким адресом и названием и в него будем добавлять введенный пользователем слой;
+
+            var old_layer = context.Value.RentLayers.Where(x => x.Name == oldL.Name).FirstOrDefault();
+
+            old_layer.Name = newL.Name;
+            old_layer.LayerFileName = newL.FileName;
+            
+            // нужно удалить все связанные площади при замене файла слоя ????
+                        
+
+            context.Value.SaveChanges();
+
+        }
+
         public List<LayerRect> GetLayersOfObject(ObjectRect oRect)
         {
             var dbo = context.Value.RentObjects.Where(x => x.Name == oRect.Name && x.Address == oRect.Address).FirstOrDefault();

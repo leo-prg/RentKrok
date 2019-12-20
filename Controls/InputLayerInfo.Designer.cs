@@ -118,8 +118,9 @@
             this.Name = "InputLayerInfo";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Ввод информации";
+            this.Text = "Информация о слое";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.InputLayerInfo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

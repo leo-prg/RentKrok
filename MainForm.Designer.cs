@@ -40,6 +40,9 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mPosition = new System.Windows.Forms.ToolStripStatusLabel();
             this.AddAreaInfo = new System.Windows.Forms.Button();
+            this.editObject = new System.Windows.Forms.Button();
+            this.editLayer = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.LayerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LayerPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgObjects)).BeginInit();
@@ -166,17 +169,52 @@
             this.AddAreaInfo.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.AddAreaInfo.Location = new System.Drawing.Point(763, 451);
             this.AddAreaInfo.Name = "AddAreaInfo";
-            this.AddAreaInfo.Size = new System.Drawing.Size(206, 23);
+            this.AddAreaInfo.Size = new System.Drawing.Size(378, 23);
             this.AddAreaInfo.TabIndex = 10;
             this.AddAreaInfo.Text = "Добавить информацию о арендаторе";
             this.AddAreaInfo.UseVisualStyleBackColor = true;
             this.AddAreaInfo.Click += new System.EventHandler(this.AddAreaInfo_Click);
+            // 
+            // editObject
+            // 
+            this.editObject.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.editObject.Location = new System.Drawing.Point(979, 12);
+            this.editObject.Name = "editObject";
+            this.editObject.Size = new System.Drawing.Size(162, 23);
+            this.editObject.TabIndex = 11;
+            this.editObject.Text = "Изменить объект";
+            this.editObject.UseVisualStyleBackColor = true;
+            this.editObject.Click += new System.EventHandler(this.editObject_Click);
+            // 
+            // editLayer
+            // 
+            this.editLayer.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.editLayer.Location = new System.Drawing.Point(979, 148);
+            this.editLayer.Name = "editLayer";
+            this.editLayer.Size = new System.Drawing.Size(162, 23);
+            this.editLayer.TabIndex = 12;
+            this.editLayer.Text = "Изменить слой объекта";
+            this.editLayer.UseVisualStyleBackColor = true;
+            this.editLayer.Click += new System.EventHandler(this.editLayer_Click);
+            // 
+            // button2
+            // 
+            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button2.Location = new System.Drawing.Point(979, 300);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(162, 23);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "Изменить площадь в слое";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 536);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.editLayer);
+            this.Controls.Add(this.editObject);
             this.Controls.Add(this.AddAreaInfo);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dgAreas);
@@ -190,7 +228,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Аренда помещений";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.LayerPanel.ResumeLayout(false);
@@ -218,6 +256,9 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel mPosition;
         private System.Windows.Forms.Button AddAreaInfo;
+        private System.Windows.Forms.Button editObject;
+        private System.Windows.Forms.Button editLayer;
+        private System.Windows.Forms.Button button2;
     }
 }
 
