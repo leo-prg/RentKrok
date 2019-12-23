@@ -37,7 +37,6 @@ namespace RentKrok
         // открытие формы
         private void Form1_Load(object sender, EventArgs e)
         {
-            
             RefreshObjectList();
             RefreshLayerList();
         }
@@ -82,29 +81,33 @@ namespace RentKrok
            
             dgObjects.DataSource = null;
             dgObjects.DataSource = dbo.Value.GetAllObjects();
-            //dgObjects.Columns[0].Visible = false;
+            dgObjects.Columns[0].Visible = false;
             dgObjects.Columns[1].HeaderText = "Наименование объекта";
             dgObjects.Columns[1].Width = 150;
             dgObjects.Columns[2].HeaderText = "Адрес объекта";
             dgObjects.Columns[2].Width = 200;
-            MessageBox.Show(dgObjects.CurrentRow.Cells[0].Value.ToString());
+            dgObjects.ClearSelection();
+            dgObjects.CurrentCell = dgObjects.Rows[0].Cells[1];
         }
 
         // обновление списка слоев
         private void RefreshLayerList()
         {
             dgLayers.DataSource = null;
-            
-            if (dgObjects.Rows.Count > 0) dgLayers.DataSource = dbl.Value.GetLayersOfObject(dgObjects.CurrentRow.DataBoundItem as ObjectRect);
+
+            if (dgObjects.CurrentRow != null)
+            {
+                dgLayers.DataSource = dbl.Value.GetLayersOfObject(dgObjects.CurrentRow.DataBoundItem as ObjectRect);
+            }
 
             if (dgLayers.Rows.Count > 0) {
-               // dgLayers.Columns[0].Visible = false;
+                dgLayers.Columns[0].Visible = false;
                 dgLayers.Columns[1].HeaderText = "Наименование слоя";
                 dgLayers.Columns[1].Width = 160;
                 dgLayers.Columns[2].HeaderText = "Имя файла";
                 dgLayers.Columns[2].Width = 200;
                 dgLayers.Columns[3].Visible = false;
-                dgLayers.Rows[0].Selected = true;
+                dgLayers.CurrentCell = dgLayers.Rows[0].Cells[1]; 
                 LayerPicture.Image = null;
                 if ((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile != null)
                 LayerPicture.Image = Transform.ByteToImage((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile);
@@ -123,7 +126,7 @@ namespace RentKrok
 
             if (dgAreas.Rows.Count > 0)
             {
-                dgAreas.Columns[1].Visible = false;
+                dgAreas.Columns[0].Visible = false;
                 dgAreas.Columns[1].HeaderText = "Наименование помещения";
                 dgAreas.Columns[1].Width = 150;
                 dgAreas.Columns[2].Visible = false;
@@ -138,7 +141,7 @@ namespace RentKrok
                 dgAreas.Columns[8].Width = 65;
                 dgAreas.Columns[9].HeaderText = "Аренда";
                 dgAreas.Columns[9].Width = 45;
-                dgAreas.Rows[0].Selected = true;
+                dgAreas.CurrentCell = dgAreas.Rows[0].Cells[1]; 
             }
             else { dgAreas.Columns.Clear(); }
         }
@@ -152,7 +155,6 @@ namespace RentKrok
         // клик на списке слоев объекта
         private void dgLayers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show((dgLayers.CurrentRow.DataBoundItem as LayerRect).Id.ToString());
             LayerPicture.Image = null;
             if ((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile != null)
             LayerPicture.Image = Transform.ByteToImage((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile);
@@ -270,6 +272,7 @@ namespace RentKrok
                 dbr.Value.AddRenter(iri.rrNew); 
                 // добавим к текущей площади арендатора
                 dba.Value.AddRenterToArea(dgAreas.CurrentRow.DataBoundItem as AreaRect, iri.rrNew);
+                RefreshAreaList();
             }
         }
         // редактирование объекта

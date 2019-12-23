@@ -37,6 +37,8 @@ namespace RentKrok.DBWork
 
         public List<LayerRect> GetLayersOfObject(ObjectRect oRect)
         {
+
+
             var dbo = context.Value.RentObjects.Where(x => x.Id == oRect.Id).FirstOrDefault();
 
             List<LayerRect> lr = new List<LayerRect>();
