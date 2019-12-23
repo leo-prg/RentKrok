@@ -8,6 +8,7 @@ namespace RentKrok
 {
     public class AreaRect
     {
+        public int Id { get; set; }
         public string AreaName { get; set; }
         public int x1 { get; set; }
         public int y1 { get; set; }
@@ -21,12 +22,14 @@ namespace RentKrok
 
     public class ObjectRect
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
     }
 
     public class LayerRect
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string FileName { get; set; }
         public byte[] LayerFile { get; set; }
@@ -34,6 +37,7 @@ namespace RentKrok
 
     public class RenterRect
     {
+        public int Id { get; set; }
         public string RenterName { get; set; }
         public string Contract { get; set; }
         public DateTime StartDate { get; set; }

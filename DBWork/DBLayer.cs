@@ -15,7 +15,7 @@ namespace RentKrok.DBWork
         {
             // найдем объект в базе с таким адресом и названием и в него будем добавлять введенный пользователем слой;
 
-            var dbo = context.Value.RentObjects.Where(x => x.Name == oRect.Name && x.Address== oRect.Address).FirstOrDefault();
+            var dbo = context.Value.RentObjects.Where(x => x.Id == oRect.Id).FirstOrDefault();
             context.Value.RentLayers.Add(new RentLayer() { Name = lRect.Name, LayerFileName = lRect.FileName,  Object = dbo, LayerFile = lRect.LayerFile });
             context.Value.SaveChanges();
 
@@ -25,27 +25,25 @@ namespace RentKrok.DBWork
         {
             // найдем объект в базе с таким адресом и названием и в него будем добавлять введенный пользователем слой;
 
-            var old_layer = context.Value.RentLayers.Where(x => x.Name == oldL.Name).FirstOrDefault();
+            var old_layer = context.Value.RentLayers.Where(x => x.Id == oldL.Id).FirstOrDefault();
 
             old_layer.Name = newL.Name;
             old_layer.LayerFileName = newL.FileName;
             
             // нужно удалить все связанные площади при замене файла слоя ????
-                        
-
             context.Value.SaveChanges();
 
         }
 
         public List<LayerRect> GetLayersOfObject(ObjectRect oRect)
         {
-            var dbo = context.Value.RentObjects.Where(x => x.Name == oRect.Name && x.Address == oRect.Address).FirstOrDefault();
+            var dbo = context.Value.RentObjects.Where(x => x.Id == oRect.Id).FirstOrDefault();
 
             List<LayerRect> lr = new List<LayerRect>();
 
             lr = context.Value.RentLayers
-                .Where(x=> x.Object.Name.Contains(dbo.Name)&& x.Object.Address.Contains(dbo.Address))
-                .Select(x => new LayerRect() { Name = x.Name, FileName = x.LayerFileName, LayerFile = x.LayerFile}).ToList();
+                .Where(x=> x.Object.Id == dbo.Id)
+                .Select(x => new LayerRect() { Id = x.Id, Name = x.Name, FileName = x.LayerFileName, LayerFile = x.LayerFile}).ToList();
 
             return lr;
         }

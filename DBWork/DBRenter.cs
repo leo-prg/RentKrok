@@ -26,5 +26,11 @@ namespace RentKrok.DBWork
             context.Value.SaveChanges();
         }
 
+        //public RenterRect GetAreaRenter(AreaRect area)
+        //{
+        //    context.Value.Renters.Where().se
+        //    return null;
+        //}
+
     }
 }

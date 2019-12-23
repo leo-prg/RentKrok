@@ -22,7 +22,7 @@ namespace RentKrok.DBWork
         public bool UpdateObject(ObjectRect oldO, ObjectRect newO)
         {
 
-            var ro = context.Value.RentObjects.Where(r=>r.Name == oldO.Name).Select(ro=>ro).FirstOrDefault();
+            var ro = context.Value.RentObjects.Where(r=>r.Id == oldO.Id).Select(ro=>ro).FirstOrDefault();
             ro.Name = newO.Name;
             ro.Address = newO.Address;
             context.Value.SaveChanges();
@@ -37,7 +37,7 @@ namespace RentKrok.DBWork
         {
             List<ObjectRect> or = new List<ObjectRect>();
 
-            or = context.Value.RentObjects.Select(x => new ObjectRect() { Name = x.Name, Address = x.Address }).ToList();
+            or = context.Value.RentObjects.Select(x => new ObjectRect() { Id = x.Id, Name = x.Name, Address = x.Address }).ToList();
 
             //foreach (var o in context.Value.RentObjects)
             //{
