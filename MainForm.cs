@@ -39,7 +39,7 @@ namespace RentKrok
         {
             
             RefreshObjectList();
-          //  RefreshLayerList();
+            RefreshLayerList();
         }
         //добавление слоя
         private void addLayer_Click(object sender, EventArgs e)
@@ -82,11 +82,12 @@ namespace RentKrok
            
             dgObjects.DataSource = null;
             dgObjects.DataSource = dbo.Value.GetAllObjects();
-            dgObjects.Columns[0].Visible = false;
+            //dgObjects.Columns[0].Visible = false;
             dgObjects.Columns[1].HeaderText = "Наименование объекта";
             dgObjects.Columns[1].Width = 150;
             dgObjects.Columns[2].HeaderText = "Адрес объекта";
             dgObjects.Columns[2].Width = 200;
+            MessageBox.Show(dgObjects.CurrentRow.Cells[0].Value.ToString());
         }
 
         // обновление списка слоев
@@ -151,9 +152,11 @@ namespace RentKrok
         // клик на списке слоев объекта
         private void dgLayers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            MessageBox.Show((dgLayers.CurrentRow.DataBoundItem as LayerRect).Id.ToString());
             LayerPicture.Image = null;
             if ((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile != null)
             LayerPicture.Image = Transform.ByteToImage((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile);
+
             RefreshAreaList();
         }
         // начало выделения области площади
@@ -247,9 +250,12 @@ namespace RentKrok
                 Rectangle r = new Rectangle(selarea.x1, selarea.y1, Math.Abs(selarea.x2 - selarea.x1), Math.Abs(selarea.y2 - selarea.y1));
                 g.DrawRectangle(p, r);
                 Thread.Sleep(3000);
-                InputRenterInfo iri = new InputRenterInfo();
-                iri.rrNew = dba.Value.GetAreaRenter(ar);
-                iri.ShowDialog();
+                if (ar.isRented)
+                {
+                    InputRenterInfo iri = new InputRenterInfo();
+                    iri.rrNew = dba.Value.GetAreaRenter(ar);
+                    iri.ShowDialog();
+                }
             }
 
         }
