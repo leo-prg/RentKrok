@@ -40,11 +40,6 @@
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v19.1.Core, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Sparkline.v19.1.Core, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -98,6 +93,12 @@
     <Compile Include="Controls\InputRenterInfo.Designer.cs">
       <DependentUpon>InputRenterInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\RenterList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\RenterList.Designer.cs">
+      <DependentUpon>RenterList.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataModel\RentArea.cs" />
     <Compile Include="DataModel\Renter.cs" />
     <Compile Include="DataModel\RentLayer.cs" />
@@ -136,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\InputRenterInfo.resx">
       <DependentUpon>InputRenterInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RenterList.resx">
+      <DependentUpon>RenterList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

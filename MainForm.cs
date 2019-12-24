@@ -199,6 +199,7 @@ namespace RentKrok
             // Здесь добавим в базу с привязкой к вбранному слою его площади 
             dba.Value.AddLayerArea(dgLayers.CurrentRow.DataBoundItem as LayerRect, iai.ar);
             RefreshAreaList();
+              
             }
 
           
@@ -264,16 +265,28 @@ namespace RentKrok
 
         private void AddAreaInfo_Click(object sender, EventArgs e)
         {
-            InputRenterInfo iri = new InputRenterInfo();
-            iri.ShowDialog();
-            if (iri.DialogResult == DialogResult.OK)
+            DialogResult result = MessageBox.Show("Ввести нового арендатора?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
             {
-                // добавляем самого арендатора
-                dbr.Value.AddRenter(iri.rrNew); 
-                // добавим к текущей площади арендатора
-                dba.Value.AddRenterToArea(dgAreas.CurrentRow.DataBoundItem as AreaRect, iri.rrNew);
-                RefreshAreaList();
+                InputRenterInfo iri = new InputRenterInfo();
+                iri.ShowDialog();
+                if (iri.DialogResult == DialogResult.OK)
+                {
+                    // добавляем самого арендатора?? а если существует уже в базе запрос на создание нового 
+                    dbr.Value.AddRenter(iri.rrNew);
+                    // добавим к текущей площади арендатора
+                    dba.Value.AddRenterToArea(dgAreas.CurrentRow.DataBoundItem as AreaRect, iri.rrNew);
+                }
             }
+            else 
+            {
+                // форма выбора существующего арендатора
+                RenterList rl = new RenterList();
+                rl.ShowDialog();
+                dba.Value.AddRenterToArea(dgAreas.CurrentRow.DataBoundItem as AreaRect, rl.renterOut); 
+            }
+            RefreshAreaList();
         }
         // редактирование объекта
         private void editObject_Click(object sender, EventArgs e)

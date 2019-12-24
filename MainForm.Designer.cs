@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.LayerPanel = new System.Windows.Forms.Panel();
             this.LayerPicture = new System.Windows.Forms.PictureBox();
@@ -61,12 +64,12 @@
             this.LayerPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LayerPanel.Location = new System.Drawing.Point(0, 0);
             this.LayerPanel.Name = "LayerPanel";
-            this.LayerPanel.Size = new System.Drawing.Size(748, 536);
+            this.LayerPanel.Size = new System.Drawing.Size(748, 511);
             this.LayerPanel.TabIndex = 2;
             // 
             // LayerPicture
             // 
-            this.LayerPicture.Location = new System.Drawing.Point(3, 0);
+            this.LayerPicture.Location = new System.Drawing.Point(3, 3);
             this.LayerPicture.Name = "LayerPicture";
             this.LayerPicture.Size = new System.Drawing.Size(727, 524);
             this.LayerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -102,6 +105,14 @@
             this.dgObjects.AllowUserToAddRows = false;
             this.dgObjects.AllowUserToDeleteRows = false;
             this.dgObjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgObjects.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgObjects.Location = new System.Drawing.Point(763, 41);
             this.dgObjects.Name = "dgObjects";
             this.dgObjects.ReadOnly = true;
@@ -116,6 +127,14 @@
             this.dgLayers.AllowUserToAddRows = false;
             this.dgLayers.AllowUserToDeleteRows = false;
             this.dgLayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgLayers.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgLayers.Location = new System.Drawing.Point(763, 177);
             this.dgLayers.Name = "dgLayers";
             this.dgLayers.ReadOnly = true;
@@ -141,10 +160,19 @@
             this.dgAreas.AllowUserToAddRows = false;
             this.dgAreas.AllowUserToDeleteRows = false;
             this.dgAreas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgAreas.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgAreas.Location = new System.Drawing.Point(763, 328);
             this.dgAreas.Name = "dgAreas";
             this.dgAreas.ReadOnly = true;
             this.dgAreas.RowHeadersWidth = 10;
+            this.dgAreas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgAreas.Size = new System.Drawing.Size(378, 117);
             this.dgAreas.TabIndex = 8;
             this.dgAreas.DoubleClick += new System.EventHandler(this.dgAreas_Click);
@@ -153,7 +181,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mPosition});
-            this.statusStrip1.Location = new System.Drawing.Point(748, 514);
+            this.statusStrip1.Location = new System.Drawing.Point(748, 489);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(405, 22);
             this.statusStrip1.TabIndex = 9;
@@ -211,7 +239,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1153, 536);
+            this.ClientSize = new System.Drawing.Size(1153, 511);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.editLayer);
             this.Controls.Add(this.editObject);

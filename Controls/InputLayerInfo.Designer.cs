@@ -40,9 +40,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 46);
+            this.label2.Location = new System.Drawing.Point(12, 47);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 13);
+            this.label2.Size = new System.Drawing.Size(95, 13);
             this.label2.TabIndex = 11;
             this.label2.Text = "Файл схемы слоя";
             // 
@@ -51,7 +51,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 13);
+            this.label1.Size = new System.Drawing.Size(115, 13);
             this.label1.TabIndex = 10;
             this.label1.Text = "Наименование слоя";
             // 
@@ -81,14 +81,14 @@
             // 
             this.tbFileName.Location = new System.Drawing.Point(12, 62);
             this.tbFileName.Name = "tbFileName";
-            this.tbFileName.Size = new System.Drawing.Size(212, 20);
+            this.tbFileName.Size = new System.Drawing.Size(212, 22);
             this.tbFileName.TabIndex = 7;
             // 
             // tbName
             // 
             this.tbName.Location = new System.Drawing.Point(12, 25);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(237, 20);
+            this.tbName.Size = new System.Drawing.Size(237, 22);
             this.tbName.TabIndex = 6;
             // 
             // btnFileSelect
@@ -105,7 +105,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(269, 141);
+            this.ClientSize = new System.Drawing.Size(265, 137);
             this.ControlBox = false;
             this.Controls.Add(this.btnFileSelect);
             this.Controls.Add(this.label2);

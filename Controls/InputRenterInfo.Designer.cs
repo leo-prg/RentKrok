@@ -51,7 +51,7 @@
             this.lbName.AutoSize = true;
             this.lbName.Location = new System.Drawing.Point(15, 19);
             this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(145, 13);
+            this.lbName.Size = new System.Drawing.Size(154, 13);
             this.lbName.TabIndex = 0;
             this.lbName.Text = "Наименование арендатора";
             // 
@@ -59,7 +59,7 @@
             // 
             this.tbRenterName.Location = new System.Drawing.Point(166, 15);
             this.tbRenterName.Name = "tbRenterName";
-            this.tbRenterName.Size = new System.Drawing.Size(351, 20);
+            this.tbRenterName.Size = new System.Drawing.Size(351, 22);
             this.tbRenterName.TabIndex = 1;
             // 
             // btnCancel
@@ -88,7 +88,7 @@
             // 
             this.tbContract.Location = new System.Drawing.Point(72, 54);
             this.tbContract.Name = "tbContract";
-            this.tbContract.Size = new System.Drawing.Size(88, 20);
+            this.tbContract.Size = new System.Drawing.Size(88, 22);
             this.tbContract.TabIndex = 13;
             // 
             // label1
@@ -96,7 +96,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(15, 58);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 12;
             this.label1.Text = "Договор";
             // 
@@ -105,7 +105,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(175, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 14;
             this.label2.Text = "действует с";
             // 
@@ -114,7 +114,7 @@
             this.dtpStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpStart.Location = new System.Drawing.Point(248, 54);
             this.dtpStart.Name = "dtpStart";
-            this.dtpStart.Size = new System.Drawing.Size(96, 20);
+            this.dtpStart.Size = new System.Drawing.Size(96, 22);
             this.dtpStart.TabIndex = 15;
             // 
             // dtpEnd
@@ -122,7 +122,7 @@
             this.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpEnd.Location = new System.Drawing.Point(375, 54);
             this.dtpEnd.Name = "dtpEnd";
-            this.dtpEnd.Size = new System.Drawing.Size(96, 20);
+            this.dtpEnd.Size = new System.Drawing.Size(96, 22);
             this.dtpEnd.TabIndex = 17;
             // 
             // label3
@@ -130,7 +130,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(350, 58);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(19, 13);
+            this.label3.Size = new System.Drawing.Size(21, 13);
             this.label3.TabIndex = 16;
             this.label3.Text = "по";
             // 
@@ -161,9 +161,9 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(11, 160);
+            this.label5.Location = new System.Drawing.Point(4, 160);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 67);
+            this.label5.Size = new System.Drawing.Size(79, 67);
             this.label5.TabIndex = 22;
             this.label5.Text = "Телефоны, электронная почта";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -172,7 +172,7 @@
             // 
             this.tbAnnotation.Location = new System.Drawing.Point(90, 233);
             this.tbAnnotation.Name = "tbAnnotation";
-            this.tbAnnotation.Size = new System.Drawing.Size(427, 20);
+            this.tbAnnotation.Size = new System.Drawing.Size(427, 22);
             this.tbAnnotation.TabIndex = 24;
             // 
             // label6
@@ -180,7 +180,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(15, 236);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(70, 13);
+            this.label6.Size = new System.Drawing.Size(76, 13);
             this.label6.TabIndex = 23;
             this.label6.Text = "Примечание";
             // 

@@ -26,11 +26,27 @@ namespace RentKrok.DBWork
             context.Value.SaveChanges();
         }
 
-        //public RenterRect GetAreaRenter(AreaRect area)
-        //{
-        //    context.Value.Renters.Where().se
-        //    return null;
-        //}
+        public List<RenterRect> GetAllRenters()
+        {
+            return context.Value.Renters.Select(r => new RenterRect() 
+                            { Id = r.Id, RenterName = r.RenterName, Contract = r.Contract, 
+                              StartDate = r.StartDate, EndDate = r.EndDate, 
+                              ContactPerson = r.ContactPerson, ContactPhone = r.ContactPhone, Annotation = r.Annotation
+                            }).ToList();
+        }
+
+        public void UpdateRenter(RenterRect oldR, RenterRect newR)
+        {
+            var rU = context.Value.Renters.Where(r => r.Id == oldR.Id).FirstOrDefault();
+            rU.RenterName = newR.RenterName;
+            rU.Contract = newR.Contract;
+            rU.StartDate = newR.StartDate;
+            rU.EndDate = newR.EndDate;
+            rU.ContactPerson = newR.ContactPerson;
+            rU.ContactPhone = newR.ContactPhone;
+            rU.Annotation = newR.Annotation;
+            context.Value.SaveChanges();
+        }
 
     }
 }

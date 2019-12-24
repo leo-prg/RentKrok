@@ -40,14 +40,14 @@
             // 
             this.tbName.Location = new System.Drawing.Point(12, 34);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(237, 20);
+            this.tbName.Size = new System.Drawing.Size(237, 22);
             this.tbName.TabIndex = 0;
             // 
             // tbAddress
             // 
             this.tbAddress.Location = new System.Drawing.Point(12, 71);
             this.tbAddress.Name = "tbAddress";
-            this.tbAddress.Size = new System.Drawing.Size(237, 20);
+            this.tbAddress.Size = new System.Drawing.Size(237, 22);
             this.tbAddress.TabIndex = 1;
             // 
             // btnOk
@@ -77,16 +77,16 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 13);
+            this.label1.Size = new System.Drawing.Size(135, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Наименование объекта";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 55);
+            this.label2.Location = new System.Drawing.Point(12, 56);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 13);
+            this.label2.Size = new System.Drawing.Size(85, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Адрес объекта";
             // 
@@ -96,7 +96,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(264, 145);
+            this.ClientSize = new System.Drawing.Size(260, 141);
             this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
