@@ -34,33 +34,70 @@ namespace RentKrok.Controls
             dgRenters.Columns[2].HeaderText = "Договор";
             dgRenters.Columns[2].Width = 100;
             dgRenters.Columns[3].HeaderText = "Начало";
-            dgRenters.Columns[3].Width = 70;
+            dgRenters.Columns[3].Width = 150;
             dgRenters.Columns[3].DefaultCellStyle.Format = "dd.MM.yyyy";
             dgRenters.Columns[4].HeaderText = "Окончание";
-            dgRenters.Columns[4].Width = 70;
+            dgRenters.Columns[4].Width = 150;
             dgRenters.Columns[4].DefaultCellStyle.Format = "dd.MM.yyyy";
             dgRenters.Columns[5].Visible = false;
             dgRenters.Columns[6].Visible = false; 
             dgRenters.Columns[7].Visible = false;
             dgRenters.CurrentCell = dgRenters.Rows[0].Cells[1];
+            rentStrip.Text = String.Format(@"Количество арендаторов: {0}",dgRenters.Rows.Count.ToString());
         }
 
         private void dgRenters_DoubleClick(object sender, EventArgs e)
         {
-            var oldR = dgRenters.CurrentRow.DataBoundItem as RenterRect;
-            InputRenterInfo iri = new InputRenterInfo() { rrNew = oldR };
-            
-            iri.ShowDialog();
-            if (iri.DialogResult == DialogResult.OK)
-            {
-                dbr.Value.UpdateRenter(oldR, iri.rrNew);
-            }
-            RefreshRentersList();
+            //var oldR = dgRenters.CurrentRow.DataBoundItem as RenterRect;
+            //using (InputRenterInfo iri = new InputRenterInfo() { rrNew = oldR })
+            //{
+            //    iri.ShowDialog();
+            //    if (iri.DialogResult == DialogResult.OK)
+            //    {
+            //        dbr.Value.UpdateRenter(oldR, iri.rrNew);
+            //    }
+            //}
+            //RefreshRentersList();
         }
 
         private void RenterList_FormClosed(object sender, FormClosedEventArgs e)
         {
             renterOut = dgRenters.CurrentRow.DataBoundItem as RenterRect;
+        }
+
+        private void addNewRenter_Click(object sender, EventArgs e)
+        {
+            using InputRenterInfo iri = new InputRenterInfo();
+            iri.ShowDialog();
+            if (iri.DialogResult == DialogResult.OK)
+            {
+                // добавляем самого арендатора?? а если существует уже в базе запрос на создание нового 
+                dbr.Value.AddRenter(iri.rrNew);
+            }
+        }
+
+        private void editRenter_Click(object sender, EventArgs e)
+        {
+            var oldR = dgRenters.CurrentRow.DataBoundItem as RenterRect;
+            using (InputRenterInfo iri = new InputRenterInfo() { rrNew = oldR })
+            {
+                iri.ShowDialog();
+                if (iri.DialogResult == DialogResult.OK)
+                {
+                    dbr.Value.UpdateRenter(oldR, iri.rrNew);
+                }
+            }
+            RefreshRentersList();
+        }
+
+        private void delRenter_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Удалить арендатора?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                dbr.Value.DropRenter(dgRenters.CurrentRow.DataBoundItem as RenterRect);
+            }
         }
     }
 }

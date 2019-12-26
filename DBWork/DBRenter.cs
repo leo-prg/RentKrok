@@ -48,5 +48,12 @@ namespace RentKrok.DBWork
             context.Value.SaveChanges();
         }
 
+
+        public void DropRenter(RenterRect renter)
+        {
+                context.Value.Renters.Remove(context.Value.Renters.Find(renter.Id));
+                context.Value.SaveChanges();
+        }
+
     }
 }

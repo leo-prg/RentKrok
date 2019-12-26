@@ -117,4 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="addNewRenter.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACuSURBVDhPY8AFDt+f8f/Yo2lgDGJDhYkH8+7K/p90RQqM
+        QWyoMPEApKnlpAQYgwyBChMPqGJA0wlx8gxo2eAB1gRzQdc5yf8gMag0KgCFMMg2GAZpRNaMbMj0G9Jw
+        DFILiiEGEIFNAyEMMvD08+lUMADkhZYzIv8rDgmgYHQN6PIgfPIJjgQGCjCQAmTNOAMRF0A3ACpMPBgc
+        BjQeFwNjsgzYeXPif2QMFUYDDAwAwKEkUfQjRbEAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="editRenter.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFJSURBVDhPYxgQ8PKgz/9ja4r+Q7mkgQ/HZP7/v8nwf+NU
+        uf+X1yaRZsjLPbZgzf8fMfz/d4nh/+n1Nf8ZEuLi/oNwgL///3nz5v3fuHEjBgbJ759hCtYENuAYw/+L
+        cx0htqMb8PLlSzCura39X1RU9H/r1q3/l7Za/P93jhFiAFDz8yXqCKeDNMfFxv738/X939bWhmHAha3l
+        cM0g+s0KcVR/wwwAYZAmkJNBtq5ater/9lVT/387zAExAIg/rubBDDSYF5ANguHDK2vAGkHOfrOU9f+m
+        hT3YDQApBtGNjY1gV8Dwi6Od///cqPr/coPh/xRfQ0zNIACzHeT0nz9/wsPg6dOn/7csavq/e1nT//S4
+        YHAgQ7WgApgLQH6GaUTHMDVQLagA2QBsmkGYKgaAMFQLJgBJgsLg6tWrcHzx4kU4m6AB5AMGBgDD+Yqi
+        LfBPlQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="delRenter.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAExSURBVDhPjVIxS8NgEM1Wmk4ZbGndpFuRBpHQDuqiRbCD
+        v6FQaIvQWQTprxLaZlGoIDi4Nwo2S/7F+b1LvvRrvgv44A3Ju/dyuTvHxObumsLFE2WPFqBthjey/nl2
+        Sonv067fo3A+sYrWD2PWkm6XUJu9TqHNv5UKxZ5H8eUFLaejvEiboaEGtXkI2o47HRY0d67LBhjZ3Aty
+        syY88Dqr50cKa1WKDBFEyE/7hMmBiqYOD7zcBdqVQsqI2pfZ/hcZ/w0RzRoI+arKRnCraA7XAsTvVlM0
+        g1GjXh4AwVyVRB5kcG7fiWkuTrtI3oiqzUOwCqRKX35TAwOlFXMnOHs+JMGsp43upO0g5P3+Nu3i4/jo
+        QCyuSgqBJ5NT6JCyPZshllnjdXC1P08B0FCTPSo4zh9CgYHjKHVirAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <metadata name="rentStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>122, 17</value>
+  </metadata>
+  <metadata name="rentStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>122, 17</value>
+  </metadata>
 </root>
