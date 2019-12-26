@@ -35,7 +35,7 @@
             this.addNewRenter = new System.Windows.Forms.ToolStripButton();
             this.editRenter = new System.Windows.Forms.ToolStripButton();
             this.delRenter = new System.Windows.Forms.ToolStripButton();
-            this.rentStrip = new System.Windows.Forms.StatusStrip();
+            this.lCount = new System.Windows.Forms.ToolStripLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgRenters)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -43,10 +43,14 @@
             // 
             // dgRenters
             // 
+            this.dgRenters.AllowUserToAddRows = false;
+            this.dgRenters.AllowUserToDeleteRows = false;
             this.dgRenters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgRenters.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgRenters.Location = new System.Drawing.Point(0, 0);
+            this.dgRenters.MultiSelect = false;
             this.dgRenters.Name = "dgRenters";
+            this.dgRenters.ReadOnly = true;
             this.dgRenters.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgRenters.Size = new System.Drawing.Size(706, 418);
             this.dgRenters.TabIndex = 0;
@@ -57,7 +61,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addNewRenter,
             this.editRenter,
-            this.delRenter});
+            this.delRenter,
+            this.lCount});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(706, 25);
@@ -66,7 +71,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.rentStrip);
             this.panel1.Controls.Add(this.dgRenters);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 25);
@@ -104,13 +108,11 @@
             this.delRenter.Text = "Удалить арендатора";
             this.delRenter.Click += new System.EventHandler(this.delRenter_Click);
             // 
-            // rentStrip
+            // lCount
             // 
-            this.rentStrip.Location = new System.Drawing.Point(0, 396);
-            this.rentStrip.Name = "rentStrip";
-            this.rentStrip.Size = new System.Drawing.Size(706, 22);
-            this.rentStrip.TabIndex = 1;
-            this.rentStrip.Text = "ыаыфваыфва";
+            this.lCount.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.lCount.Name = "lCount";
+            this.lCount.Size = new System.Drawing.Size(0, 22);
             // 
             // RenterList
             // 
@@ -135,7 +137,6 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,6 +150,6 @@
         private System.Windows.Forms.ToolStripButton editRenter;
         private System.Windows.Forms.ToolStripButton delRenter;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.StatusStrip rentStrip;
+        private System.Windows.Forms.ToolStripLabel lCount;
     }
 }

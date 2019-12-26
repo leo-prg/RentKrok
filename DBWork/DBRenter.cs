@@ -11,6 +11,7 @@ namespace RentKrok.DBWork
     {
         Lazy<RentModel> context = new Lazy<RentModel>();
 
+
         public void AddRenter(RenterRect renter)
         {
             context.Value.Renters.Add(new Renter()
@@ -51,6 +52,16 @@ namespace RentKrok.DBWork
 
         public void DropRenter(RenterRect renter)
         {
+            // найти все площади в которых айди арендатора удаляется -  и очистить
+            var areasOfRenter = context.Value.RentAreas.Where(r => r.Renter.Id == renter.Id).Select(s => s);
+
+            foreach (var area in areasOfRenter)
+            {
+                area.Renter = null;
+                context.Value.SaveChanges();
+            }
+
+            // затем уже удалить 
                 context.Value.Renters.Remove(context.Value.Renters.Find(renter.Id));
                 context.Value.SaveChanges();
         }

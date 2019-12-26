@@ -43,7 +43,7 @@ namespace RentKrok.Controls
             dgRenters.Columns[6].Visible = false; 
             dgRenters.Columns[7].Visible = false;
             dgRenters.CurrentCell = dgRenters.Rows[0].Cells[1];
-            rentStrip.Text = String.Format(@"Количество арендаторов: {0}",dgRenters.Rows.Count.ToString());
+            lCount.Text = string.Format(@"Количество арендаторов: {0}", dgRenters.Rows.Count.ToString());
         }
 
         private void dgRenters_DoubleClick(object sender, EventArgs e)
@@ -74,6 +74,7 @@ namespace RentKrok.Controls
                 // добавляем самого арендатора?? а если существует уже в базе запрос на создание нового 
                 dbr.Value.AddRenter(iri.rrNew);
             }
+            RefreshRentersList();
         }
 
         private void editRenter_Click(object sender, EventArgs e)
@@ -98,6 +99,7 @@ namespace RentKrok.Controls
             {
                 dbr.Value.DropRenter(dgRenters.CurrentRow.DataBoundItem as RenterRect);
             }
+            RefreshRentersList();
         }
     }
 }
