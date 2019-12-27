@@ -35,6 +35,16 @@ namespace RentKrok.Controls
 
         private void gMapControl_Load(object sender, EventArgs e)
         {
+       
+        }
+
+        private void MapControl_Load(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void MapControl_Enter(object sender, EventArgs e)
+        {
             //Настройки для компонента GMap.
             gMapControl.Bearing = 0;
             //CanDragMap - Если параметр установлен в True,
@@ -50,7 +60,7 @@ namespace RentKrok.Controls
             //любые маркеры, заданные вручную будет показаны.
             //Если нет, они не появятся.
             gMapControl.MarkersEnabled = true;
-            gMapControl.MouseWheelZoomType =  GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            gMapControl.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
             //Отказываемся от негативного режима.
             gMapControl.NegativeMode = false;
             //Разрешаем полигоны.
@@ -69,13 +79,13 @@ namespace RentKrok.Controls
             //соответствующим образом.
             gMapControl.Dock = DockStyle.Fill;
             //Указываем что будем использовать карты Google.
-            gMapControl.MapProvider =   GMap.NET.MapProviders.GMapProviders.OpenStreetMap;
+            gMapControl.MapProvider = GMap.NET.MapProviders.GMapProviders.OpenStreetMap;
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
 
             Lazy<DBObject> dbo = new Lazy<DBObject>(); // объект 
 
             var map_obj = dbo.Value.GetAllObjects();
-            
+
             GMapOverlay markersOverlay = new GMapOverlay("markers");
 
             foreach (var mo in map_obj)
@@ -85,7 +95,7 @@ namespace RentKrok.Controls
                 {
                     MessageBox.Show("Geocoder can't find this fucking place!", "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                
+
                 GMarkerGoogle marker = new GMarkerGoogle(gMapControl.Position, GMarkerGoogleType.green);
                 marker.ToolTip = new GMapToolTip(marker);
                 marker.ToolTipMode = MarkerTooltipMode.Always;

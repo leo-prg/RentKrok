@@ -68,6 +68,8 @@
             this.Controls.Add(this.gMapControl);
             this.Name = "MapControl";
             this.Size = new System.Drawing.Size(921, 535);
+            this.Load += new System.EventHandler(this.MapControl_Load);
+            this.Enter += new System.EventHandler(this.MapControl_Enter);
             this.ResumeLayout(false);
 
         }
