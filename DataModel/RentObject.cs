@@ -17,6 +17,8 @@ namespace RentKrok.DataModel
         public string Name { get; set; }
         [StringLength(150)]
         public string Address { get; set; }
+        [StringLength(50)]
+        public string CNo { get; set; }
 
         public virtual List<RentLayer> RentLayers { get; set; }
 

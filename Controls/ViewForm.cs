@@ -87,9 +87,11 @@ namespace RentKrok
             dgObjects.DataSource = dbo.Value.GetAllObjects();
             dgObjects.Columns[0].Visible = false;
             dgObjects.Columns[1].HeaderText = "Наименование объекта";
-            dgObjects.Columns[1].Width = 200;
+            dgObjects.Columns[1].Width = 180;
             dgObjects.Columns[2].HeaderText = "Адрес объекта";
             dgObjects.Columns[2].Width = 220;
+            dgObjects.Columns[2].HeaderText = "Кадастровый номер";
+            dgObjects.Columns[2].Width = 180;
             dgObjects.ClearSelection();
             dgObjects.CurrentCell = dgObjects.Rows[0].Cells[1];
         }

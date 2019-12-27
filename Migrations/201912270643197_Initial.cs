@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -50,6 +50,7 @@
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 50),
                         Address = c.String(maxLength: 150),
+                        CNo = c.String(maxLength: 50),
                     })
                 .PrimaryKey(t => t.Id);
             

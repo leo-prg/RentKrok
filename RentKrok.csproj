@@ -114,6 +114,12 @@
     <Compile Include="Controls\InputRenterInfo.Designer.cs">
       <DependentUpon>InputRenterInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MapControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MapControl.Designer.cs">
+      <DependentUpon>MapControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\RenterList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,13 +148,9 @@
       <DependentUpon>ViewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AreaRect.cs" />
-    <Compile Include="Migrations\201912121756595_Init.cs" />
-    <Compile Include="Migrations\201912121756595_Init.designer.cs">
-      <DependentUpon>201912121756595_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912122003416_DBWork.cs" />
-    <Compile Include="Migrations\201912122003416_DBWork.designer.cs">
-      <DependentUpon>201912122003416_DBWork.cs</DependentUpon>
+    <Compile Include="Migrations\201912270643197_Initial.cs" />
+    <Compile Include="Migrations\201912270643197_Initial.designer.cs">
+      <DependentUpon>201912270643197_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -165,6 +167,9 @@
     <EmbeddedResource Include="Controls\InputRenterInfo.resx">
       <DependentUpon>InputRenterInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MapControl.resx">
+      <DependentUpon>MapControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\RenterList.resx">
       <DependentUpon>RenterList.cs</DependentUpon>
     </EmbeddedResource>
@@ -174,11 +179,8 @@
     <EmbeddedResource Include="Controls\ViewForm.resx">
       <DependentUpon>ViewForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912121756595_Init.resx">
-      <DependentUpon>201912121756595_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912122003416_DBWork.resx">
-      <DependentUpon>201912122003416_DBWork.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912270643197_Initial.resx">
+      <DependentUpon>201912270643197_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -12,13 +12,14 @@ namespace RentKrok.DBWork
         Lazy<RentModel> context = new Lazy<RentModel>();
         public void AddObject(ObjectRect obj)
         {
-            context.Value.RentObjects.Add(new RentObject(){ Name = obj.Name, Address = obj.Address });
+            context.Value.RentObjects.Add(new RentObject(){ Name = obj.Name, Address = obj.Address, CNo = obj.CNo });
             context.Value.SaveChanges();
         }
 
         public void UpdateObject(ObjectRect oldO, ObjectRect newO)
         {
-            var ro = context.Value.RentObjects.Where(r=>r.Id == oldO.Id).Select(ro=>ro).FirstOrDefault();
+            // var ro = context.Value.RentObjects.Where(r=>r.Id == oldO.Id).Select(ro=>ro).FirstOrDefault();
+            var ro = context.Value.RentObjects.Find(oldO.Id);
             ro.Name = newO.Name;
             ro.Address = newO.Address;
             context.Value.SaveChanges();
@@ -26,7 +27,7 @@ namespace RentKrok.DBWork
 
         public List<ObjectRect> GetAllObjects()
         {
-            return context.Value.RentObjects.Select(x => new ObjectRect() { Id = x.Id, Name = x.Name, Address = x.Address }).ToList();
+            return context.Value.RentObjects.Select(x => new ObjectRect() { Id = x.Id, Name = x.Name, Address = x.Address, CNo = x.CNo }).ToList();
         }
 
     }

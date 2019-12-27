@@ -25,6 +25,11 @@ namespace RentKrok
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
+        public string CNo { get; set; } // кадастровый номер здания
+        // Географическое положение объекта для отображения на карте ?? на карте можно найти по адресу
+
+        //public int Lat { get; set; } // широта
+        //public int Lon { get; set; } // долгота
     }
 
     public class LayerRect

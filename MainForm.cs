@@ -35,5 +35,14 @@ namespace RentKrok
             frmR.Value.Dock = DockStyle.Fill;
             tabControlView.TabPages[1].Controls.Add(frmR.Value);
         }
+
+        private void tabPageMap_Enter(object sender, EventArgs e)
+        {
+            // выберем все обхъекты на карте  
+            MapControl map = MapControl.GetInstance();
+            map.Dock = DockStyle.Fill;
+            tabControlView.TabPages[2].Controls.Add(map);
+
+        }
     }
 }
