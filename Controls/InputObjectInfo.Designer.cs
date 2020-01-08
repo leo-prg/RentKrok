@@ -34,18 +34,20 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.cdNumber = new System.Windows.Forms.Label();
+            this.tbCdNumber = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // tbName
             // 
-            this.tbName.Location = new System.Drawing.Point(14, 39);
+            this.tbName.Location = new System.Drawing.Point(14, 32);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(276, 23);
             this.tbName.TabIndex = 0;
             // 
             // tbAddress
             // 
-            this.tbAddress.Location = new System.Drawing.Point(14, 82);
+            this.tbAddress.Location = new System.Drawing.Point(14, 75);
             this.tbAddress.Name = "tbAddress";
             this.tbAddress.Size = new System.Drawing.Size(276, 23);
             this.tbAddress.TabIndex = 1;
@@ -53,7 +55,7 @@
             // btnOk
             // 
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnOk.Location = new System.Drawing.Point(54, 125);
+            this.btnOk.Location = new System.Drawing.Point(54, 160);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(87, 29);
             this.btnOk.TabIndex = 2;
@@ -64,7 +66,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(174, 125);
+            this.btnCancel.Location = new System.Drawing.Point(174, 160);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(87, 29);
             this.btnCancel.TabIndex = 3;
@@ -75,7 +77,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 21);
+            this.label1.Location = new System.Drawing.Point(14, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(137, 15);
             this.label1.TabIndex = 4;
@@ -84,11 +86,27 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 65);
+            this.label2.Location = new System.Drawing.Point(14, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 15);
             this.label2.TabIndex = 5;
             this.label2.Text = "Адрес объекта";
+            // 
+            // cdNumber
+            // 
+            this.cdNumber.AutoSize = true;
+            this.cdNumber.Location = new System.Drawing.Point(14, 103);
+            this.cdNumber.Name = "cdNumber";
+            this.cdNumber.Size = new System.Drawing.Size(118, 15);
+            this.cdNumber.TabIndex = 7;
+            this.cdNumber.Text = "Кадастровый номер";
+            // 
+            // tbCdNumber
+            // 
+            this.tbCdNumber.Location = new System.Drawing.Point(14, 120);
+            this.tbCdNumber.Name = "tbCdNumber";
+            this.tbCdNumber.Size = new System.Drawing.Size(276, 23);
+            this.tbCdNumber.TabIndex = 6;
             // 
             // InputObjectInfo
             // 
@@ -96,8 +114,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(303, 163);
+            this.ClientSize = new System.Drawing.Size(303, 201);
             this.ControlBox = false;
+            this.Controls.Add(this.cdNumber);
+            this.Controls.Add(this.tbCdNumber);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
@@ -125,5 +145,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label cdNumber;
+        private System.Windows.Forms.TextBox tbCdNumber;
     }
 }

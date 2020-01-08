@@ -7,7 +7,8 @@ using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using RentKrok.DBWork;
+using RentDB;
+using RentLibrary;
 
 namespace RentKrok.Controls
 {
@@ -99,6 +100,11 @@ namespace RentKrok.Controls
             {
                 dbr.Value.DropRenter(dgRenters.CurrentRow.DataBoundItem as RenterRect);
             }
+            RefreshRentersList();
+        }
+
+        private void refresgRenter_Click(object sender, EventArgs e)
+        {
             RefreshRentersList();
         }
     }

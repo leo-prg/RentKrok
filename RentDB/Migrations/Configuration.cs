@@ -5,14 +5,14 @@
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<RentKrok.DataModel.RentModel>
+    internal sealed class Configuration : DbMigrationsConfiguration<RentDB.RentModel>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(RentKrok.DataModel.RentModel context)
+        protected override void Seed(RentDB.RentModel context)
         {
             //  This method will be called after migrating to the latest version.
 

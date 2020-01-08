@@ -9,10 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
-using RentKrok.DBWork;
-using RentKrok.Common;
+using RentDB;
+using RentCommon;
 using System.Threading;
 using RentKrok.Controls;
+using RentLibrary;
 
 namespace RentKrok
 {
@@ -89,9 +90,9 @@ namespace RentKrok
             dgObjects.Columns[1].HeaderText = "Наименование объекта";
             dgObjects.Columns[1].Width = 180;
             dgObjects.Columns[2].HeaderText = "Адрес объекта";
-            dgObjects.Columns[2].Width = 220;
-            dgObjects.Columns[2].HeaderText = "Кадастровый номер";
             dgObjects.Columns[2].Width = 180;
+            dgObjects.Columns[3].HeaderText = "Кадастровый номер";
+            dgObjects.Columns[3].Width = 150;
             dgObjects.ClearSelection();
             dgObjects.CurrentCell = dgObjects.Rows[0].Cells[1];
         }
@@ -322,6 +323,30 @@ namespace RentKrok
                 if (ili.DialogResult == DialogResult.OK)
                 {
                     dbl.Value.UpdateObjectLayer(old, ili.lrNew);
+                }
+            }
+            RefreshLayerList();
+        }
+
+        private void removeObject_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Удалить выбранный объект?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                dbo.Value.RemoveObject(dgObjects.CurrentRow.DataBoundItem as ObjectRect);
+            }
+            RefreshObjectList();
+        }
+
+        private void editArea_Click(object sender, EventArgs e)
+        {
+            using (InputAreaInfo iai = new InputAreaInfo() { ar = dgAreas.CurrentRow.DataBoundItem as AreaRect })
+            {
+                var old = dgAreas.CurrentRow.DataBoundItem as AreaRect;
+                iai.ShowDialog();
+                if (iai.DialogResult == DialogResult.OK)
+                {
+                    dba.Value.UpdateAreaData(old, iai.ar);
                 }
             }
             RefreshLayerList();

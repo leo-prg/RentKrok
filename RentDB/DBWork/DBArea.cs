@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RentKrok.DataModel;
-using RentKrok.Common;
+using RentCommon;
+using RentLibrary;
 
-namespace RentKrok.DBWork
+namespace RentDB
 {
     public class DBArea
     {
-        Lazy<RentModel> context = new Lazy<RentModel>();
+        readonly Lazy<RentModel> context = new Lazy<RentModel>();
 
         public void AddLayerArea(LayerRect layer, AreaRect area)
         {
@@ -83,5 +83,17 @@ namespace RentKrok.DBWork
                     Annotation = r.Renter.Annotation
                 }).FirstOrDefault();
         }
+
+        public void UpdateAreaData(AreaRect old, AreaRect _new)
+        {
+            // найдем объект в базе с таким ид 
+            var _old = context.Value.RentAreas.Where(x => x.Id == old.Id).FirstOrDefault();
+            _old.Name = _new.AreaName;
+            _old.Price = _new.Price;
+            _old.Square = _new.Square;
+            _old.Cost = _new.Cost;
+            context.Value.SaveChanges();
+        }
+
     }
 }

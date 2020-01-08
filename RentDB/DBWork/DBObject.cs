@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RentKrok.DataModel;
+using RentLibrary;
 
-namespace RentKrok.DBWork
+namespace RentDB
 {
     public class DBObject
     {
@@ -16,12 +16,20 @@ namespace RentKrok.DBWork
             context.Value.SaveChanges();
         }
 
+        public void RemoveObject(ObjectRect obj)
+        {
+            var to_del = context.Value.RentObjects.Find(obj.Id);
+            context.Value.RentObjects.Remove(to_del);
+            context.Value.SaveChanges();
+        }
+
         public void UpdateObject(ObjectRect oldO, ObjectRect newO)
         {
             // var ro = context.Value.RentObjects.Where(r=>r.Id == oldO.Id).Select(ro=>ro).FirstOrDefault();
             var ro = context.Value.RentObjects.Find(oldO.Id);
             ro.Name = newO.Name;
             ro.Address = newO.Address;
+            ro.CNo = newO.CNo;
             context.Value.SaveChanges();
         }
 

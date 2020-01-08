@@ -45,7 +45,8 @@
             this.AddAreaInfo = new System.Windows.Forms.Button();
             this.editObject = new System.Windows.Forms.Button();
             this.editLayer = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.editArea = new System.Windows.Forms.Button();
+            this.removeObject = new System.Windows.Forms.Button();
             this.LayerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LayerPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgObjects)).BeginInit();
@@ -98,7 +99,7 @@
             this.addObject.Location = new System.Drawing.Point(890, 14);
             this.addObject.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.addObject.Name = "addObject";
-            this.addObject.Size = new System.Drawing.Size(189, 26);
+            this.addObject.Size = new System.Drawing.Size(126, 26);
             this.addObject.TabIndex = 4;
             this.addObject.Text = "Добавить объект";
             this.addObject.UseVisualStyleBackColor = true;
@@ -216,10 +217,10 @@
             // editObject
             // 
             this.editObject.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.editObject.Location = new System.Drawing.Point(1142, 14);
+            this.editObject.Location = new System.Drawing.Point(1058, 13);
             this.editObject.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.editObject.Name = "editObject";
-            this.editObject.Size = new System.Drawing.Size(189, 26);
+            this.editObject.Size = new System.Drawing.Size(122, 26);
             this.editObject.TabIndex = 11;
             this.editObject.Text = "Изменить объект";
             this.editObject.UseVisualStyleBackColor = true;
@@ -237,23 +238,37 @@
             this.editLayer.UseVisualStyleBackColor = true;
             this.editLayer.Click += new System.EventHandler(this.editLayer_Click);
             // 
-            // button2
+            // editArea
             // 
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(1142, 346);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(189, 26);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Изменить площадь в слое";
-            this.button2.UseVisualStyleBackColor = true;
+            this.editArea.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.editArea.Location = new System.Drawing.Point(1142, 346);
+            this.editArea.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.editArea.Name = "editArea";
+            this.editArea.Size = new System.Drawing.Size(189, 26);
+            this.editArea.TabIndex = 13;
+            this.editArea.Text = "Изменить площадь в слое";
+            this.editArea.UseVisualStyleBackColor = true;
+            this.editArea.Click += new System.EventHandler(this.editArea_Click);
+            // 
+            // removeObject
+            // 
+            this.removeObject.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.removeObject.Location = new System.Drawing.Point(1209, 13);
+            this.removeObject.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.removeObject.Name = "removeObject";
+            this.removeObject.Size = new System.Drawing.Size(122, 26);
+            this.removeObject.TabIndex = 14;
+            this.removeObject.Text = "Удалить объект";
+            this.removeObject.UseVisualStyleBackColor = true;
+            this.removeObject.Click += new System.EventHandler(this.removeObject_Click);
             // 
             // ViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1345, 589);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.removeObject);
+            this.Controls.Add(this.editArea);
             this.Controls.Add(this.editLayer);
             this.Controls.Add(this.editObject);
             this.Controls.Add(this.AddAreaInfo);
@@ -301,7 +316,8 @@
         private System.Windows.Forms.Button AddAreaInfo;
         private System.Windows.Forms.Button editObject;
         private System.Windows.Forms.Button editLayer;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button editArea;
+        private System.Windows.Forms.Button removeObject;
     }
 }
 

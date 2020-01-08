@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RentKrok.DataModel;
+using RentLibrary;
 
-namespace RentKrok.DBWork
+namespace RentDB
 {
     public class DBRenter
     {
-        Lazy<RentModel> context = new Lazy<RentModel>();
+        readonly Lazy<RentModel> context = new Lazy<RentModel>();
 
 
         public void AddRenter(RenterRect renter)

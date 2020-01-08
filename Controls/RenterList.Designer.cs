@@ -31,11 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RenterList));
             this.dgRenters = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.addNewRenter = new System.Windows.Forms.ToolStripButton();
             this.editRenter = new System.Windows.Forms.ToolStripButton();
             this.delRenter = new System.Windows.Forms.ToolStripButton();
             this.lCount = new System.Windows.Forms.ToolStripLabel();
+            this.refresgRenter = new System.Windows.Forms.ToolStripButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgRenters)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -62,21 +63,13 @@
             this.addNewRenter,
             this.editRenter,
             this.delRenter,
-            this.lCount});
+            this.lCount,
+            this.refresgRenter});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(706, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.dgRenters);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(706, 418);
-            this.panel1.TabIndex = 2;
             // 
             // addNewRenter
             // 
@@ -113,6 +106,25 @@
             this.lCount.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.lCount.Name = "lCount";
             this.lCount.Size = new System.Drawing.Size(0, 22);
+            // 
+            // refresgRenter
+            // 
+            this.refresgRenter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.refresgRenter.Image = ((System.Drawing.Image)(resources.GetObject("refresgRenter.Image")));
+            this.refresgRenter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.refresgRenter.Name = "refresgRenter";
+            this.refresgRenter.Size = new System.Drawing.Size(23, 22);
+            this.refresgRenter.Text = "Обновить список";
+            this.refresgRenter.Click += new System.EventHandler(this.refresgRenter_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dgRenters);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(706, 418);
+            this.panel1.TabIndex = 2;
             // 
             // RenterList
             // 
@@ -151,5 +163,6 @@
         private System.Windows.Forms.ToolStripButton delRenter;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripLabel lCount;
+        private System.Windows.Forms.ToolStripButton refresgRenter;
     }
 }

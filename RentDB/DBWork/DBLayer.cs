@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RentKrok.DataModel;
+using RentLibrary;
 
-namespace RentKrok.DBWork
+namespace RentDB
 {
     public class DBLayer
     {
-        Lazy<RentModel> context = new Lazy<RentModel>();
+        readonly Lazy<RentModel> context = new Lazy<RentModel>();
         public void AddObjectLayer(ObjectRect oRect, LayerRect lRect)
         {
             // найдем объект в базе с таким адресом и названием и в него будем добавлять введенный пользователем слой;
@@ -37,6 +37,12 @@ namespace RentKrok.DBWork
                 .Select(x => new LayerRect() { Id = x.Id, Name = x.Name, FileName = x.LayerFileName, LayerFile = x.LayerFile }).ToList(); ;
         }
 
+        public List<LayerRect> GetLayersOfObject(int id)
+        {
+            var dbo = context.Value.RentObjects.Where(x => x.Id == id).FirstOrDefault();
+            return context.Value.RentLayers
+                .Where(x => x.Object.Id == dbo.Id)
+                .Select(x => new LayerRect() { Id = x.Id, Name = x.Name, FileName = x.LayerFileName, LayerFile = x.LayerFile }).ToList();         }
 
     }
 }

@@ -13,7 +13,7 @@ using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms.ToolTips;
 using GMap.NET.WindowsForms.Markers;
 using System.Net;
-using RentKrok.DBWork;
+using RentDB;
 
 namespace RentKrok.Controls
 {
@@ -93,7 +93,7 @@ namespace RentKrok.Controls
                 var status = gMapControl.SetPositionByKeywords(mo.Address);
                 if (status != GeoCoderStatusCode.OK)
                 {
-                    MessageBox.Show("Geocoder can't find this fucking place!", "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Geocoder can't find selected place!", "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
                 GMarkerGoogle marker = new GMarkerGoogle(gMapControl.Position, GMarkerGoogleType.green);

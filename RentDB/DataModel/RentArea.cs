@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using RentLibrary;
+using RentDB;
 
-namespace RentKrok.DataModel
+namespace RentDB
 {
     [Table("RentAreas")]
     public class RentArea

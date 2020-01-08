@@ -154,6 +154,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Информация о площади";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.InputAreaInfo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

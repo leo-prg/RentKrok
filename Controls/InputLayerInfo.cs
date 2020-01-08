@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using RentKrok.Common;
+using RentCommon;
+using RentLibrary;
 
 namespace RentKrok.Controls
 {
