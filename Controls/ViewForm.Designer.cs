@@ -78,7 +78,6 @@
             this.LayerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.LayerPicture.TabIndex = 0;
             this.LayerPicture.TabStop = false;
-            this.LayerPicture.Click += new System.EventHandler(this.LayerPicture_Click);
             this.LayerPicture.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LayerPicture_MouseMove);
             // 
             // addLayer
@@ -194,6 +193,7 @@
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
             this.statusStrip1.Size = new System.Drawing.Size(472, 22);
+            this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
             // 

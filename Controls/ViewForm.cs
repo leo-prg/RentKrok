@@ -19,11 +19,15 @@ namespace RentKrok
 {
     public partial class ViewForm : Form
     {
+        private bool moving = false;
 
         List<AreaRect> rects = new List<AreaRect>();
       
         Point point1;
         Point point2;
+
+        Bitmap _old;
+        Bitmap _new;
 
         Lazy<DBObject> dbo = new Lazy<DBObject>(); // объект
         Lazy<DBLayer> dbl = new Lazy<DBLayer>(); // слой
@@ -173,6 +177,9 @@ namespace RentKrok
         {
             // Начальная точка площади
             point1 = e.Location;
+            moving = true;
+          // _old = new Bitmap(LayerPicture.Width, LayerPicture.Height);
+            _old = new Bitmap(LayerPicture.Image);
         }
 
         // отпускание кнопки мыши - завершение выделения области
@@ -207,8 +214,11 @@ namespace RentKrok
                     // Здесь добавим в базу с привязкой к вбранному слою его площади 
                     dba.Value.AddLayerArea(dgLayers.CurrentRow.DataBoundItem as LayerRect, iai.ar);
                     RefreshAreaList();
-
+                    g.Clear(Color.White);
                 }
+                moving = false;
+                LayerPicture.Image = _old;
+                
             }
 
 
@@ -246,7 +256,22 @@ namespace RentKrok
         //трекинг позиции внутри схемы слоя
         private void LayerPicture_MouseMove(object sender, MouseEventArgs e)
         {
-            mPosition.Text = String.Format(@"{0}:{1}",e.X.ToString(), e.Y.ToString());
+            if (!moving)
+            {
+                mPosition.Text = String.Format(@"{0}:{1}", e.X.ToString(), e.Y.ToString());
+            }
+            else
+            {
+                Graphics g = LayerPicture.CreateGraphics();
+                _new = new Bitmap(_old);
+                LayerPicture.Image = _new;
+                Pen p = new Pen(Color.Blue, 3);
+                Rectangle r = new Rectangle(point1.X, point1.Y, Math.Abs(e.X - point1.X), Math.Abs(e.Y - point1.Y));
+                g = Graphics.FromImage(_new);
+                g.DrawRectangle(p, r);
+                g.Dispose();
+                LayerPicture.Invalidate();
+            }
         }
 
         // Подсвечиваем на 3 сек выбранную площадь и выводит информацию об арендаторе если она есть
