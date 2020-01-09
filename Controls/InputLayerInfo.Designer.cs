@@ -40,27 +40,27 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 47);
+            this.label2.Location = new System.Drawing.Point(14, 54);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 13);
+            this.label2.Size = new System.Drawing.Size(103, 15);
             this.label2.TabIndex = 11;
             this.label2.Text = "Файл схемы слоя";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(14, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 13);
+            this.label1.Size = new System.Drawing.Size(119, 15);
             this.label1.TabIndex = 10;
             this.label1.Text = "Наименование слоя";
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(149, 99);
+            this.btnCancel.Location = new System.Drawing.Point(174, 114);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 25);
+            this.btnCancel.Size = new System.Drawing.Size(87, 29);
             this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -69,9 +69,9 @@
             // btnOk
             // 
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnOk.Location = new System.Drawing.Point(46, 99);
+            this.btnOk.Location = new System.Drawing.Point(54, 114);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 25);
+            this.btnOk.Size = new System.Drawing.Size(87, 29);
             this.btnOk.TabIndex = 8;
             this.btnOk.Text = "ОК";
             this.btnOk.UseVisualStyleBackColor = true;
@@ -79,23 +79,23 @@
             // 
             // tbFileName
             // 
-            this.tbFileName.Location = new System.Drawing.Point(12, 62);
+            this.tbFileName.Location = new System.Drawing.Point(14, 72);
             this.tbFileName.Name = "tbFileName";
-            this.tbFileName.Size = new System.Drawing.Size(212, 22);
+            this.tbFileName.Size = new System.Drawing.Size(247, 23);
             this.tbFileName.TabIndex = 7;
             // 
             // tbName
             // 
-            this.tbName.Location = new System.Drawing.Point(12, 25);
+            this.tbName.Location = new System.Drawing.Point(14, 29);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(237, 22);
+            this.tbName.Size = new System.Drawing.Size(276, 23);
             this.tbName.TabIndex = 6;
             // 
             // btnFileSelect
             // 
-            this.btnFileSelect.Location = new System.Drawing.Point(230, 62);
+            this.btnFileSelect.Location = new System.Drawing.Point(268, 72);
             this.btnFileSelect.Name = "btnFileSelect";
-            this.btnFileSelect.Size = new System.Drawing.Size(25, 20);
+            this.btnFileSelect.Size = new System.Drawing.Size(29, 23);
             this.btnFileSelect.TabIndex = 12;
             this.btnFileSelect.Text = "...";
             this.btnFileSelect.UseVisualStyleBackColor = true;
@@ -103,9 +103,9 @@
             // 
             // InputLayerInfo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(265, 137);
+            this.ClientSize = new System.Drawing.Size(309, 158);
             this.ControlBox = false;
             this.Controls.Add(this.btnFileSelect);
             this.Controls.Add(this.label2);
@@ -114,6 +114,7 @@
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.tbFileName);
             this.Controls.Add(this.tbName);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "InputLayerInfo";
             this.ShowInTaskbar = false;

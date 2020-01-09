@@ -1,4 +1,4 @@
-﻿namespace RentKrok.DataModel
+﻿namespace RentDB
 {
     using System;
     using System.Collections;

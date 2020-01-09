@@ -7,9 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+
 // Вспомогательные функции
 
-namespace RentKrok.Common
+namespace RentCommon
 {
     public class Transform
     {

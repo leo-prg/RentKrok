@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using RentLibrary;
+
 namespace RentKrok.Controls
 {
     public partial class InputAreaInfo : Form
@@ -50,6 +52,15 @@ namespace RentKrok.Controls
             tbCost.Text = Math.Round(square * price, 2).ToString();
         }
 
-       
+        private void InputAreaInfo_Load(object sender, EventArgs e)
+        {
+            if (ar != null)
+            {
+                tbName.Text = ar.AreaName;
+                tbPrice.Text = ar.Price.ToString();
+                tbSquare.Text = ar.Square.ToString();
+                tbCost.Text = ar.Cost.ToString();
+            }
+        }
     }
 }

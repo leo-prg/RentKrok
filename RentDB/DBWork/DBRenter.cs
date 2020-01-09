@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RentKrok.DataModel;
+using RentLibrary;
 
-namespace RentKrok.DBWork
+namespace RentDB
 {
     public class DBRenter
     {
-        Lazy<RentModel> context = new Lazy<RentModel>();
+        readonly Lazy<RentModel> context = new Lazy<RentModel>();
+
 
         public void AddRenter(RenterRect renter)
         {
@@ -46,6 +47,23 @@ namespace RentKrok.DBWork
             rU.ContactPhone = newR.ContactPhone;
             rU.Annotation = newR.Annotation;
             context.Value.SaveChanges();
+        }
+
+
+        public void DropRenter(RenterRect renter)
+        {
+            // найти все площади в которых айди арендатора удаляется -  и очистить
+            var areasOfRenter = context.Value.RentAreas.Where(r => r.Renter.Id == renter.Id).Select(s => s);
+
+            foreach (var area in areasOfRenter)
+            {
+                area.Renter = null;
+                context.Value.SaveChanges();
+            }
+
+            // затем уже удалить 
+                context.Value.Renters.Remove(context.Value.Renters.Find(renter.Id));
+                context.Value.SaveChanges();
         }
 
     }

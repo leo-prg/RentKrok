@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RentLibrary;
 
 namespace RentKrok.Controls
 {
@@ -25,6 +26,7 @@ namespace RentKrok.Controls
             {
                 tbName.Text = orNew.Name;
                 tbAddress.Text = orNew.Address;
+                tbCdNumber.Text = orNew.CNo;
             }
         }
 
@@ -36,12 +38,11 @@ namespace RentKrok.Controls
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            ObjectRect or = new ObjectRect() { Name = this.tbName.Text, Address = this.tbAddress.Text };
+            ObjectRect or = new ObjectRect() { Name = this.tbName.Text, Address = this.tbAddress.Text, CNo = this.tbCdNumber.Text };
             orNew = or;
             DialogResult = DialogResult.OK;
         }
 
-
-
+       
     }
 }

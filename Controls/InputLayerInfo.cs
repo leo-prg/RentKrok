@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using RentKrok.Common;
+using RentCommon;
+using RentLibrary;
 
 namespace RentKrok.Controls
 {
@@ -34,15 +35,15 @@ namespace RentKrok.Controls
 
         private void btnFileSelect_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog fd = new OpenFileDialog())
+            using OpenFileDialog fd = new OpenFileDialog
             {
-                fd.Filter = "Файлы сканов JPEG|*.jpg";
-                fd.Title = "Выберите схему слоя объекта";
+                Filter = "Файлы сканов JPEG|*.jpg",
+                Title = "Выберите схему слоя объекта"
+            };
 
-                if (fd.ShowDialog() == DialogResult.OK)
-                {
-                    tbFileName.Text = fd.FileName;
-                }
+            if (fd.ShowDialog() == DialogResult.OK)
+            {
+                tbFileName.Text = fd.FileName;
             }
         }
 

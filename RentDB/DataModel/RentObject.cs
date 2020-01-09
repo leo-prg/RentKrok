@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RentKrok.DataModel
+namespace RentDB
 {
     [Table("RentObjects")]
     public class RentObject
@@ -17,6 +17,8 @@ namespace RentKrok.DataModel
         public string Name { get; set; }
         [StringLength(150)]
         public string Address { get; set; }
+        [StringLength(50)]
+        public string CNo { get; set; }
 
         public virtual List<RentLayer> RentLayers { get; set; }
 
