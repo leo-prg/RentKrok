@@ -1,0 +1,54 @@
+﻿@page "/orent"
+@using RentLibrary
+@inject HttpClient Http
+
+<h1>Объекты аренды</h1>
+
+<p>Список объектов недвижимости в собственности</p>
+
+@if (objects == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <select>
+            @foreach (var obj in objects)
+            {
+                <option value="@obj.Id">@obj.Name</option>
+            }
+    </select>
+    <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Наименование объекта</th>
+                <th>Адрес объекта</th>
+                <th>Кадастровый номер</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in objects)
+            {
+                <tr>
+                    <td>@obj.Id</td>
+                    <td>@obj.Name</td>
+                    <td>@obj.Address</td>
+                    <td>@obj.CNo</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private ObjectRect[] objects;
+
+    protected override async Task OnInitializedAsync()
+    {
+        objects = await Http.GetJsonAsync<ObjectRect[]>("http://localhost:21475/api/Objects");
+    }
+
+
+}
