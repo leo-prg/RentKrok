@@ -36,6 +36,23 @@ namespace RentDB
                             }).ToList();
         }
 
+        public RenterRect GetRenterById(int id)
+        {
+            return context.Value.Renters.Where(r => r.Id == id).Select(
+                x => new RenterRect()
+                {
+                    Id = x.Id,
+                    RenterName = x.RenterName,
+                    Contract = x.Contract,
+                    StartDate = x.StartDate,
+                    EndDate = x.EndDate,
+                    ContactPerson = x.ContactPerson,
+                    ContactPhone = x.ContactPhone,
+                    Annotation = x.Annotation
+                }).FirstOrDefault();
+        }
+
+
         public void UpdateRenter(RenterRect oldR, RenterRect newR)
         {
             var rU = context.Value.Renters.Where(r => r.Id == oldR.Id).FirstOrDefault();

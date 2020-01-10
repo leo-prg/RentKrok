@@ -9,34 +9,37 @@ using RentLibrary;
 
 namespace RentAPI.Controllers
 {
-    public class ObjectsController : ApiController
-    {
-        Lazy<DBObject> dbo = new Lazy<DBObject>();
+    
 
-        // GET: api/Objects
-        public IEnumerable<ObjectRect> Get()
+    public class RentersController : ApiController
+    {
+        Lazy<DBRenter> dbr = new Lazy<DBRenter>();
+        // GET: api/Renters
+        public IEnumerable<RenterRect> Get()
         {
             //return new string[] { "value1", "value2" };
-            return dbo.Value.GetAllObjects();
+            return dbr.Value.GetAllRenters();
         }
 
-        // GET: api/Objects/5
-        public string Get(int id)
+        // GET: api/Renters/5
+        public RenterRect Get(int id)
         {
-            return "value";
+            //return "value";
+            return dbr.Value.GetRenterById(id);
+
         }
 
-        // POST: api/Objects
+        // POST: api/Renters
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT: api/Objects/5
+        // PUT: api/Renters/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE: api/Objects/5
+        // DELETE: api/Renters/5
         public void Delete(int id)
         {
         }

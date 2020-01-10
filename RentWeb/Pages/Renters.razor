@@ -1,0 +1,63 @@
+﻿@page "/renterdetails/{id}"
+
+@using System.Diagnostics
+@using RentLibrary
+@inject HttpClient Http
+@inject IJSRuntime JsRuntime
+
+<h3>Арендаторы</h3>
+
+
+@if (renters == null)
+{
+    <p><em>Загрузка данных...</em></p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Наименование арендатора</th>
+                <th>Договор аренды</th>
+                <th>Дата начала</th>
+                <th>Дата окончания</th>
+                <th>Примечание</th>
+                <th>Контакты</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var r in renters)
+            {
+            <tr>
+                <td>@r.Id</td>
+                <td>@r.RenterName</td>
+                <td>@r.Contract</td>
+                <td>@r.StartDate.ToString("dd.MM.yyyy")</td>
+                <td>@r.EndDate.ToString("dd.MM.yyyy")</td>
+                <td>@r.Annotation</td>
+                <td><a href="/renterdetails/@r.Id" class="btn btn-default">Показать</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private RenterRect[] renters;
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        renters = await Http.GetJsonAsync<RenterRect[]>("http://10.3.1.220:21475/api/Renters");
+    }
+
+    async Task OnLineClick(int id)
+    {
+        Debug.WriteLine(id.ToString());
+        await JsRuntime.InvokeVoidAsync("ShowAlert", "You clicked a line");
+    }
+
+
+}

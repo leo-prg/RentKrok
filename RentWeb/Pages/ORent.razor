@@ -8,7 +8,7 @@
 
 @if (objects == null)
 {
-    <p><em>Loading...</em></p>
+    <p><em>Загрузка данных...</em></p>
 }
 else
 {
@@ -47,7 +47,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        objects = await Http.GetJsonAsync<ObjectRect[]>("http://localhost:21475/api/Objects");
+        objects = await Http.GetJsonAsync<ObjectRect[]>("http://10.3.1.220:21475/api/Objects");
     }
 
 
