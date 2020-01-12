@@ -1,11 +1,11 @@
-﻿@page "/renterdetails/{id}"
+﻿@page "/renters"
 
 @using System.Diagnostics
 @using RentLibrary
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
 
-<h3>Арендаторы</h3>
+@*<h3>Арендаторы</h3>*@
 
 
 @if (renters == null)
@@ -36,7 +36,7 @@ else
                 <td>@r.StartDate.ToString("dd.MM.yyyy")</td>
                 <td>@r.EndDate.ToString("dd.MM.yyyy")</td>
                 <td>@r.Annotation</td>
-                <td><a href="/renterdetails/@r.Id" class="btn btn-default">Показать</a></td>
+                <td><a href="/renterdetails/@r.Id.ToString()" class="btn btn-link">Показать</a></td>
             </tr>
             }
         </tbody>
@@ -50,7 +50,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        renters = await Http.GetJsonAsync<RenterRect[]>("http://10.3.1.220:21475/api/Renters");
+        renters = await Http.GetJsonAsync<RenterRect[]>("http://localhost:21475/api/Renters");
     }
 
     async Task OnLineClick(int id)

@@ -1,0 +1,94 @@
+﻿@page "/areas"
+
+@using System.Diagnostics
+@using RentLibrary
+@inject HttpClient Http
+@inject IJSRuntime JsRuntime
+@*<h3>Арендаторы</h3>*@
+
+
+@if (objects == null)
+{
+    <p><em>Загрузка данных...</em></p>
+}
+else
+{
+
+    <label for="objects">
+        Объект
+        <select @onchange="OnChange">
+            <option></option>
+            @foreach (var obj in objects)
+            {
+                <option value="@obj.Id">@obj.Name</option>
+            }
+        </select>
+    </label>
+
+    <label class="ml-3" for="objects">
+        Размещение
+        <select @onchange="OnChange">
+            <option></option>
+            @foreach (var obj in objects)
+            {
+                <option value="@obj.Id">@obj.Name</option>
+            }
+        </select>
+    </label>
+
+
+
+    <hr />
+
+    @*<table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Наименование арендатора</th>
+                    <th>Договор аренды</th>
+                    <th>Дата начала</th>
+                    <th>Дата окончания</th>
+                    <th>Примечание</th>
+                    <th>Контакты</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var r in renters)
+                {
+                    <tr>
+                        <td>@r.Id</td>
+                        <td>@r.RenterName</td>
+                        <td>@r.Contract</td>
+                        <td>@r.StartDate.ToString("dd.MM.yyyy")</td>
+                        <td>@r.EndDate.ToString("dd.MM.yyyy")</td>
+                        <td>@r.Annotation</td>
+                        <td><a href="/renterdetails/@r.Id.ToString()" class="btn btn-link">Показать</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>*@
+}
+
+@code {
+    private ObjectRect[] objects;
+
+    private LayerRect[] layers;
+
+    private AreaRect[] areas;
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        objects = await Http.GetJsonAsync<ObjectRect[]>("http://localhost:21475/api/Objects");
+        // renters = await Http.GetJsonAsync<RenterRect[]>("http://localhost:21475/api/Renters");
+    }
+
+    async Task OnChange(ChangeEventArgs e)
+    {
+        Debug.WriteLine(e.Value);
+        // await JsRuntime.InvokeVoidAsync("ShowAlert", "You clicked a line");
+    }
+
+
+}
