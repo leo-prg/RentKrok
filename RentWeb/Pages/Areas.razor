@@ -16,7 +16,7 @@ else
 
     <label for="objects">
         Объект
-        <select @onchange="OnChange">
+        <select @onchange="OnChangeObject">
             <option></option>
             @foreach (var obj in objects)
             {
@@ -24,71 +24,110 @@ else
             }
         </select>
     </label>
-
-    <label class="ml-3" for="objects">
+}
+@if (layers != null)
+{
+    <label for="objects">
         Размещение
-        <select @onchange="OnChange">
+        <select @onchange="OnChangeLayer">
             <option></option>
-            @foreach (var obj in objects)
+            @foreach (var obj in layers)
             {
                 <option value="@obj.Id">@obj.Name</option>
             }
         </select>
     </label>
-
-
-
-    <hr />
-
-    @*<table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Наименование арендатора</th>
-                    <th>Договор аренды</th>
-                    <th>Дата начала</th>
-                    <th>Дата окончания</th>
-                    <th>Примечание</th>
-                    <th>Контакты</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var r in renters)
-                {
-                    <tr>
-                        <td>@r.Id</td>
-                        <td>@r.RenterName</td>
-                        <td>@r.Contract</td>
-                        <td>@r.StartDate.ToString("dd.MM.yyyy")</td>
-                        <td>@r.EndDate.ToString("dd.MM.yyyy")</td>
-                        <td>@r.Annotation</td>
-                        <td><a href="/renterdetails/@r.Id.ToString()" class="btn btn-link">Показать</a></td>
-                    </tr>
-                }
-            </tbody>
-        </table>*@
+}
+<hr />
+<p>(@x,@y)</p> 
+@if (areaName != null)
+{
+<p>@areaName.AreaName</p>
 }
 
+<svg xmlns="http://www.w3.org/2000/svg" version="2.0" @onmousemove="OnMoveSVG" @ref="svgMain" @onclick="OnClick">
+    @if (img_code.Length != 0)
+    {
+        <image x="0" y="0" href=@img_code></image>
+    }
+
+</svg>
+
+<style>
+
+    svg {
+        width: 100%;
+        height: 100vh;
+        border: dashed;
+        pointer-events: none;
+    }
+
+    image {
+        pointer-events: all;
+    }
+</style>
+
+
 @code {
-    private ObjectRect[] objects;
+    private IEnumerable<ObjectRect> objects;
 
     private LayerRect[] layers;
 
     private AreaRect[] areas;
 
+    string img_code = "";
 
+    public string id_layer;
+    int x;
+    int y;
+    AreaRect areaName = null;
+
+    ElementReference svgMain;
 
     protected override async Task OnInitializedAsync()
     {
         objects = await Http.GetJsonAsync<ObjectRect[]>("http://localhost:21475/api/Objects");
-        // renters = await Http.GetJsonAsync<RenterRect[]>("http://localhost:21475/api/Renters");
     }
 
-    async Task OnChange(ChangeEventArgs e)
+    async Task OnChangeObject(ChangeEventArgs e)
     {
         Debug.WriteLine(e.Value);
+        if (e.Value.ToString().Length > 0)
+        {
+            layers = await Http.GetJsonAsync<LayerRect[]>("http://localhost:21475/api/Layers/" + e.Value.ToString());
+        }
+        else
+        {
+            layers = null;
+        }
         // await JsRuntime.InvokeVoidAsync("ShowAlert", "You clicked a line");
     }
+
+
+    void OnChangeLayer(ChangeEventArgs e)
+    {
+
+        img_code = "data:image/png;base64," + Convert.ToBase64String(layers.First(l => l.Id.ToString() == e.Value.ToString()).LayerFile);
+        //Debug.WriteLine(img_code);
+        id_layer =e.Value.ToString();
+    }
+
+
+    async Task OnMoveSVG(MouseEventArgs e)
+    {
+        int[] pt = await JsRuntime.InvokeAsync<int[]>("GetRelativePos", svgMain, e);
+
+        x = pt[0];
+        y = pt[1];
+    }
+
+    async Task OnClick()
+    {
+        Debug.WriteLine("http://localhost:21475/api/Areas?id=" + id_layer + "&x=" + x.ToString() + "&y=" + y.ToString());
+        areaName =
+        await Http.GetJsonAsync<AreaRect>("http://localhost:21475/api/Areas?id="+id_layer+"&x="+x.ToString()+"&y="+y.ToString());
+    }
+
 
 
 }

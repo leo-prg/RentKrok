@@ -49,6 +49,25 @@ namespace RentDB
                 .Select(a => a.Name).FirstOrDefault(); 
         }
 
+        public AreaRect FindAreaInfoByPoint(int id, int x, int y)
+        {
+            return context.Value.RentAreas
+                .Where(a => x >= a.X && x <= (a.X + a.Width) && y >= a.Y && y <= (a.Y + a.Height) && a.Layer.Id == id)
+                .Select(a => new AreaRect()
+                {
+                    Id = a.Id,
+                    AreaName = a.Name,
+                    x1 = a.X,
+                    y1 = a.Y,
+                    x2 = (a.X + a.Width),
+                    y2 = (a.Y + a.Height),
+                    Square = a.Square,
+                    Price = a.Price,
+                    Cost = a.Cost
+                }).FirstOrDefault();
+        }
+
+
         public AreaRect FindAreaByName(string name)
         {
             return context.Value.RentAreas
