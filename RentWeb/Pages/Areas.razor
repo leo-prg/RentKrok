@@ -27,7 +27,7 @@ else
 }
 @if (layers != null)
 {
-    <label for="objects">
+    <label class ="ml-3" for="layers">
         Размещение
         <select @onchange="OnChangeLayer">
             <option></option>
@@ -39,12 +39,48 @@ else
     </label>
 }
 <hr />
-<p>(@x,@y)</p> 
+@*<p>(@x,@y)</p>*@
 
-@if (areaName != null)
+@if (area != null)
 {
-<p>@areaName.AreaName</p>
+    <table class="table table-info table-sm">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Наименование</th>
+                <th>Площадь,  м<sup>2</sup></th>
+                <th>Цена за м<sup>2</sup>, EUR</th>
+                <th>Стоимость, EUR</th>
+                <th>Арендуется</th>
+                <th>Дополнительно</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr valign="top">
+                <td>@area.Id</td>
+                <td>@area.AreaName</td>
+                <td>@area.Square</td>
+                <td>@area.Price</td>
+                <td>@area.Cost</td>
+                @if (area.isRented)
+                {
+                    <td>Да</td>
+                    <td><a href="/renterdetails/@renter.Id.ToString()">Арендатор</a></td>
+                }
+                else
+                {
+                    <td>Да</td>
+                    <td></td>
+                }
+
+            </tr>
+
+        </tbody>
+    </table>
 }
+
 
 <svg xmlns="http://www.w3.org/2000/svg" version="2.0" @onmousemove="OnMoveSVG" @ref="svgMain" @onclick="OnClick">
     @if (img_code.Length != 0)
@@ -64,7 +100,7 @@ else
     }
 
     image {
-        cursor:pointer;
+        cursor: pointer;
         pointer-events: all;
     }
 </style>
@@ -82,7 +118,8 @@ else
     public string id_layer;
     int x;
     int y;
-    AreaRect areaName = null;
+    AreaRect area = null;
+    RenterRect renter = null;
 
     ElementReference svgMain;
 
@@ -111,7 +148,7 @@ else
 
         img_code = "data:image/png;base64," + Convert.ToBase64String(layers.First(l => l.Id.ToString() == e.Value.ToString()).LayerFile);
         //Debug.WriteLine(img_code);
-        id_layer =e.Value.ToString();
+        id_layer = e.Value.ToString();
     }
 
 
@@ -126,8 +163,9 @@ else
     async Task OnClick()
     {
         Debug.WriteLine("http://localhost:21475/api/Areas?id=" + id_layer + "&x=" + x.ToString() + "&y=" + y.ToString());
-        areaName =
-        await Http.GetJsonAsync<AreaRect>("http://localhost:21475/api/Areas?id="+id_layer+"&x="+x.ToString()+"&y="+y.ToString());
+        area =
+        await Http.GetJsonAsync<AreaRect>("http://localhost:21475/api/Areas?id=" + id_layer + "&x=" + x.ToString() + "&y=" + y.ToString());
+        renter =  await Http.GetJsonAsync<RenterRect>("http://localhost:21475/api/Areas?id=" + area.Id.ToString());
     }
 
 

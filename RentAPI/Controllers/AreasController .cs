@@ -15,20 +15,22 @@ namespace RentAPI.Controllers
     public class AreasController : ApiController
     {
         Lazy<DBArea> dba = new Lazy<DBArea>();
-        // GET: api/Фкуфы
+        // GET: api/Areas
         public AreaRect Get(int id, int x, int y)
         {
             //return new string[] { "value1", "value2" };
             return dba.Value.FindAreaInfoByPoint(id, x, y);
         }
 
-        // GET: api/Renters/5
-        //public RenterRect Get(int id)
-        //{
-        //    //return "value";
-        //    //return dbr.Value.GetRenterById(id);
 
-        //}
+
+        // GET: api/Areas/5
+        public RenterRect Get(int id)
+        {
+            //return "value";
+            return dba.Value.GetAreaRenter(id);
+
+        }
 
         // POST: api/Renters
         public void Post([FromBody]string value)

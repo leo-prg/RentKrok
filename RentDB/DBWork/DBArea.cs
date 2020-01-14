@@ -63,7 +63,9 @@ namespace RentDB
                     y2 = (a.Y + a.Height),
                     Square = a.Square,
                     Price = a.Price,
-                    Cost = a.Cost
+                    Cost = a.Cost, 
+                    isRented = (a.Renter!=null)
+
                 }).FirstOrDefault();
         }
 
@@ -102,6 +104,24 @@ namespace RentDB
                     Annotation = r.Renter.Annotation
                 }).FirstOrDefault();
         }
+
+
+        public RenterRect GetAreaRenter(int id)
+        {
+            return context.Value.RentAreas
+                .Where(a => a.Id == id)
+                .Select(r => new RenterRect()
+                {
+                    RenterName = r.Renter.RenterName,
+                    Contract = r.Renter.Contract,
+                    StartDate = r.Renter.StartDate,
+                    EndDate = r.Renter.EndDate,
+                    ContactPerson = r.Renter.ContactPerson,
+                    ContactPhone = r.Renter.ContactPhone,
+                    Annotation = r.Renter.Annotation
+                }).FirstOrDefault();
+        }
+
 
         public void UpdateAreaData(AreaRect old, AreaRect _new)
         {
