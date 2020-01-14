@@ -78,6 +78,7 @@
             this.LayerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.LayerPicture.TabIndex = 0;
             this.LayerPicture.TabStop = false;
+            this.LayerPicture.Click += new System.EventHandler(this.LayerPicture_Click);
             this.LayerPicture.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LayerPicture_MouseMove);
             // 
             // addLayer

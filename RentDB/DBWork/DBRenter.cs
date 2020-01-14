@@ -33,7 +33,7 @@ namespace RentDB
                             { Id = r.Id, RenterName = r.RenterName, Contract = r.Contract, 
                               StartDate = r.StartDate, EndDate = r.EndDate, 
                               ContactPerson = r.ContactPerson, ContactPhone = r.ContactPhone, Annotation = r.Annotation
-                            }).ToList();
+                            }).OrderBy(s=>s.Id).ToList();
         }
 
         public RenterRect GetRenterById(int id)

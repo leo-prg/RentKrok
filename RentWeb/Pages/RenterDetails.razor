@@ -5,7 +5,7 @@
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
 
-<h3>Контакты</h3>
+@*<h3>Контакты</h3>*@
 
 @if (renter == null)
 {
@@ -15,7 +15,7 @@ else
 {
 
     <div>
-        <h4>Арендатор</h4>
+        <h3>Арендатор</h3>
         <hr />
         <dl class="dl-horizontal">
             <dt>
@@ -25,6 +25,31 @@ else
             <dd>
                 @renter.RenterName
             </dd>
+
+            <dt>
+                Договор №
+            </dt>
+
+            <dd>
+                @renter.Contract
+            </dd>
+
+            <dt>
+                Дата начала действия
+            </dt>
+
+            <dd>
+                @renter.StartDate.ToString("dd.MM.yyyy")
+            </dd>
+
+            <dt>
+                Дата окончания действия
+            </dt>
+
+            <dd>
+                @renter.EndDate.ToString("dd.MM.yyyy")
+            </dd>
+
 
             <dt>
                 Контактное лицо
@@ -45,7 +70,8 @@ else
     </div>
     <hr />
     <p>
-        <a href="/renters" class="btn btn-outline-primary">Назад к списку</a>
+        <a href="/renters" class="btn btn-outline-primary">К выбору арендаторов</a>
+        <a href="/areas" class="btn btn-outline-primary">К выбору площадей</a>
     </p>
 }
 

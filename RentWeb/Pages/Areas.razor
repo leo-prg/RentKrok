@@ -67,11 +67,11 @@ else
                 @if (area.isRented)
                 {
                     <td>Да</td>
-                    <td><a href="/renterdetails/@renter.Id.ToString()">Арендатор</a></td>
+                    <td><a href="/renterdetails/@renter.Id">@renter.RenterName</a></td>
                 }
                 else
                 {
-                    <td>Да</td>
+                    <td>Нет</td>
                     <td></td>
                 }
 
@@ -162,10 +162,11 @@ else
 
     async Task OnClick()
     {
-        Debug.WriteLine("http://localhost:21475/api/Areas?id=" + id_layer + "&x=" + x.ToString() + "&y=" + y.ToString());
-        area =
-        await Http.GetJsonAsync<AreaRect>("http://localhost:21475/api/Areas?id=" + id_layer + "&x=" + x.ToString() + "&y=" + y.ToString());
-        renter =  await Http.GetJsonAsync<RenterRect>("http://localhost:21475/api/Areas?id=" + area.Id.ToString());
+        area = await Http.GetJsonAsync<AreaRect>("http://localhost:21475/api/Areas?id=" + id_layer + "&x=" + x.ToString() + "&y=" + y.ToString());
+        if (area!=null && area.isRented)
+        {
+            renter = await Http.GetJsonAsync<RenterRect>("http://localhost:21475/api/Areas/" + area.Id.ToString());
+        }
     }
 
 
