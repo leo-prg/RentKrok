@@ -87,7 +87,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        renter = await Http.GetJsonAsync<RenterRect>("http://localhost:21475/api/Renters/" + id);
+        renter = await Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri+"/api/Renters/" + id);
     }
 
 

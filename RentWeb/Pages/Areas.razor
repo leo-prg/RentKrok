@@ -27,7 +27,7 @@ else
 }
 @if (layers != null)
 {
-    <label class ="ml-3" for="layers">
+    <label class="ml-3" for="layers">
         Размещение
         <select @onchange="OnChangeLayer">
             <option></option>
@@ -125,7 +125,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        objects = await Http.GetJsonAsync<ObjectRect[]>("http://localhost:21475/api/Objects");
+        objects = await Http.GetJsonAsync<ObjectRect[]>(ConnectAPI.apiUri + "/api/Objects");
     }
 
     async Task OnChangeObject(ChangeEventArgs e)
@@ -133,7 +133,7 @@ else
         Debug.WriteLine(e.Value);
         if (e.Value.ToString().Length > 0)
         {
-            layers = await Http.GetJsonAsync<LayerRect[]>("http://localhost:21475/api/Layers/" + e.Value.ToString());
+            layers = await Http.GetJsonAsync<LayerRect[]>(ConnectAPI.apiUri +"/api/Layers/" + e.Value.ToString());
         }
         else
         {
@@ -162,10 +162,10 @@ else
 
     async Task OnClick()
     {
-        area = await Http.GetJsonAsync<AreaRect>("http://localhost:21475/api/Areas?id=" + id_layer + "&x=" + x.ToString() + "&y=" + y.ToString());
-        if (area!=null && area.isRented)
+        area = await Http.GetJsonAsync<AreaRect>(ConnectAPI.apiUri +"/api/Areas?id=" + id_layer + "&x=" + x.ToString() + "&y=" + y.ToString());
+        if (area != null && area.isRented)
         {
-            renter = await Http.GetJsonAsync<RenterRect>("http://localhost:21475/api/Areas/" + area.Id.ToString());
+            renter = await Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri +"/api/Areas/" + area.Id.ToString());
         }
     }
 

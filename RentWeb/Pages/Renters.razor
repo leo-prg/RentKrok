@@ -50,7 +50,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        renters = await Http.GetJsonAsync<RenterRect[]>("http://localhost:21475/api/Renters");
+        renters = await Http.GetJsonAsync<RenterRect[]>(ConnectAPI.apiUri+"/api/Renters");
     }
 
     async Task OnLineClick(int id)

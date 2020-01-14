@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace RentWeb.Shared
 {
-   public class ConnectAPI
+
+   public static class ConnectAPI
     {
-        public string apiUri = "";
+        public static string apiUri = "http://server:8078";
     }
     
 }

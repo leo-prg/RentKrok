@@ -41,7 +41,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        objects = await Http.GetJsonAsync<ObjectRect[]>("http://localhost:21475/api/Objects");
+        objects = await Http.GetJsonAsync<ObjectRect[]>(ConnectAPI.apiUri+"/api/Objects");
     }
 
 
