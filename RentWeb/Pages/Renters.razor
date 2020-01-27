@@ -52,12 +52,4 @@ else
     {
         renters = await Http.GetJsonAsync<RenterRect[]>(ConnectAPI.apiUri+"/api/Renters");
     }
-
-    async Task OnLineClick(int id)
-    {
-        Debug.WriteLine(id.ToString());
-        await JsRuntime.InvokeVoidAsync("ShowAlert", "You clicked a line");
-    }
-
-
 }
