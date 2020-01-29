@@ -22,6 +22,10 @@ namespace RentDB
 
         public virtual List<RentLayer> RentLayers { get; set; }
 
+        public string Lat { get; set; } // широта
+        public string Lon { get; set; } // долгота
+
+
         public RentObject()
         {
             RentLayers = new List<RentLayer>();

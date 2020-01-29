@@ -14,7 +14,7 @@ namespace RentLibrary
         public string CNo { get; set; } // кадастровый номер здания
         // Географическое положение объекта для отображения на карте ?? на карте можно найти по адресу
 
-        //public int Lat { get; set; } // широта
-        //public int Lon { get; set; } // долгота
+        public string Lat { get; set; } // широта
+        public string Lon { get; set; } // долгота
     }
 }

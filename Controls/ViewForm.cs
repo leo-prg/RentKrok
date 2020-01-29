@@ -97,8 +97,14 @@ namespace RentKrok
             dgObjects.Columns[2].Width = 180;
             dgObjects.Columns[3].HeaderText = "Кадастровый номер";
             dgObjects.Columns[3].Width = 150;
+            dgObjects.Columns[4].Visible = false;
+            dgObjects.Columns[5].Visible = false;
             dgObjects.ClearSelection();
-            dgObjects.CurrentCell = dgObjects.Rows[0].Cells[1];
+            if (dgObjects.Rows.Count != 0)
+            {
+                dgObjects.CurrentCell = dgObjects.Rows[0].Cells[1];
+            }
+            
         }
 
         // обновление списка слоев

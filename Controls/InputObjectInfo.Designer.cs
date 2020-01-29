@@ -36,6 +36,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cdNumber = new System.Windows.Forms.Label();
             this.tbCdNumber = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbLat = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbLon = new System.Windows.Forms.TextBox();
+            this.btnGetGeolocation = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbName
@@ -49,13 +54,13 @@
             // 
             this.tbAddress.Location = new System.Drawing.Point(14, 75);
             this.tbAddress.Name = "tbAddress";
-            this.tbAddress.Size = new System.Drawing.Size(276, 23);
+            this.tbAddress.Size = new System.Drawing.Size(238, 23);
             this.tbAddress.TabIndex = 1;
             // 
             // btnOk
             // 
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnOk.Location = new System.Drawing.Point(54, 160);
+            this.btnOk.Location = new System.Drawing.Point(45, 203);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(87, 29);
             this.btnOk.TabIndex = 2;
@@ -66,7 +71,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(174, 160);
+            this.btnCancel.Location = new System.Drawing.Point(165, 203);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(87, 29);
             this.btnCancel.TabIndex = 3;
@@ -108,14 +113,61 @@
             this.tbCdNumber.Size = new System.Drawing.Size(276, 23);
             this.tbCdNumber.TabIndex = 6;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 146);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(50, 15);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Широта";
+            // 
+            // tbLat
+            // 
+            this.tbLat.Location = new System.Drawing.Point(14, 163);
+            this.tbLat.Name = "tbLat";
+            this.tbLat.Size = new System.Drawing.Size(130, 23);
+            this.tbLat.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(160, 146);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 15);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Долгота";
+            // 
+            // tbLon
+            // 
+            this.tbLon.Location = new System.Drawing.Point(160, 163);
+            this.tbLon.Name = "tbLon";
+            this.tbLon.Size = new System.Drawing.Size(130, 23);
+            this.tbLon.TabIndex = 10;
+            // 
+            // btnGetGeolocation
+            // 
+            this.btnGetGeolocation.Image = global::RentKrok.Properties.Resources.GMap;
+            this.btnGetGeolocation.Location = new System.Drawing.Point(258, 65);
+            this.btnGetGeolocation.Name = "btnGetGeolocation";
+            this.btnGetGeolocation.Size = new System.Drawing.Size(35, 41);
+            this.btnGetGeolocation.TabIndex = 12;
+            this.btnGetGeolocation.UseVisualStyleBackColor = true;
+            this.btnGetGeolocation.Click += new System.EventHandler(this.btnGetGeolocation_Click);
+            // 
             // InputObjectInfo
             // 
             this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(303, 201);
+            this.ClientSize = new System.Drawing.Size(303, 244);
             this.ControlBox = false;
+            this.Controls.Add(this.btnGetGeolocation);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.tbLon);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.tbLat);
             this.Controls.Add(this.cdNumber);
             this.Controls.Add(this.tbCdNumber);
             this.Controls.Add(this.label2);
@@ -147,5 +199,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label cdNumber;
         private System.Windows.Forms.TextBox tbCdNumber;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbLat;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbLon;
+        private System.Windows.Forms.Button btnGetGeolocation;
     }
 }
