@@ -42,7 +42,9 @@ namespace RentKrok.Controls
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            ObjectRect or = new ObjectRect() { Name = this.tbName.Text, Address = this.tbAddress.Text, CNo = this.tbCdNumber.Text, Lat = this.tbLat.Text, Lon = tbLon.Text };
+            ObjectRect or = new ObjectRect() 
+            { Name = this.tbName.Text, Address = this.tbAddress.Text,
+              CNo = this.tbCdNumber.Text, Lat = this.tbLat.Text, Lon = this.tbLon.Text };
             orNew = or;
             DialogResult = DialogResult.OK;
         }
