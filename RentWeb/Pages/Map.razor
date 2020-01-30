@@ -1,4 +1,6 @@
 ﻿@page "/map"
+@using RentLibrary
+@inject HttpClient Http
 
 @using GoogleMapsComponents
 @using GoogleMapsComponents.Maps
@@ -14,23 +16,73 @@
 {
     private GoogleMap map1;
     private MapOptions mapOptions;
-     private Stack<Marker> markers = new Stack<Marker>();
-     private List<String> _events = new List<String>();
+    private Stack<Marker> markers = new Stack<Marker>();
+    private List<String> _events = new List<String>();
+
+    private ObjectRect[] objects;
+
 
     private async Task addMarker()
-    { 
-       var marker = await Marker.CreateAsync(map1.JsRuntime, new MarkerOptions()
+    {
+        LatLngLiteral place;
+        var objects = await Http.GetJsonAsync<ObjectRect[]>(ConnectAPI.apiUri+"/api/Objects");
+
+        //LatLngLiteral place;
+
+
+        if (objects != null)
         {
-            Position = await map1.InteropObject.GetCenter(),
-            Map = map1.InteropObject,
-            Label = $"Test {markers.Count()}"
-          
-        });
+            foreach (var o in objects)
+            {
+                place = null;
+                Double.TryParse(o.Lat, out double _lat);
+                Double.TryParse(o.Lon, out double _lon);
 
-        
-        markers.Push(marker);
+                //Console.WriteLine(o.Name);
+                //Console.WriteLine("{0} : {1}", _lat, _lon);
+                place.Lat = _lat; place.Lng = _lon;
 
-    
+                var marker = await Marker.CreateAsync(map1.JsRuntime, new MarkerOptions()
+                {
+                    Position = place, //await map1.InteropObject.GetCenter(),
+                    Map = map1.InteropObject,
+                    Label = "ЯЯЯЯ"
+                }); ;
+                markers.Push(marker);
+            }
+        }
+
+
+
+        //var marker = await Marker.CreateAsync(map1.JsRuntime, new MarkerOptions()
+        //{
+        //    Position = await map1.InteropObject.GetCenter(),
+        //    Map = map1.InteropObject,
+        //    Label = "ВВВВ"
+        //});
+        //markers.Push(marker);
+
+        //    place = null;
+        //    Console.WriteLine(o.Lat);
+        //    Console.WriteLine(o.Lon);
+        //    double _lat, _lng;
+        //    Double.TryParse(o.Lat, out _lat);
+        //    Double.TryParse(o.Lon, out _lng);
+        //    place.Lat = _lat;
+        //    place.Lng = _lng;
+        //    var marker = await Marker.CreateAsync(map1.JsRuntime, new MarkerOptions()
+        //    {
+        //        Position = await map1.InteropObject.GetCenter(),
+        //        Map = map1.InteropObject,
+        //        Label = o.Name
+        //    }); ;
+
+        //    markers.Push(marker);
+
+
+
+
+
     }
 
     protected override void OnInitialized()

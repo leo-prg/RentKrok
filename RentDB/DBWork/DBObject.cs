@@ -37,7 +37,9 @@ namespace RentDB
 
         public List<ObjectRect> GetAllObjects()
         {
-            return context.Value.RentObjects.Select(x => new ObjectRect() { Id = x.Id, Name = x.Name, Address = x.Address, CNo = x.CNo, Lat = x.Lat, Lon = x.Lon }).ToList();
+            return context.Value.RentObjects.Select(x => new ObjectRect()
+            { Id = x.Id, Name = x.Name, Address = x.Address, 
+              CNo = x.CNo, Lat = x.Lat, Lon = x.Lon }).ToList();
         }
 
     }
