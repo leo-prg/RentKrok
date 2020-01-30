@@ -1,2 +1,51 @@
 ﻿@page "/map"
 
+@using GoogleMapsComponents
+@using GoogleMapsComponents.Maps
+
+<h1>Гуугле мап</h1>
+
+<button @onclick="addMarker">Показать объект</button>
+
+<GoogleMap @ref="@map1" Id="map1" Options="@mapOptions" Height="800"></GoogleMap>
+
+
+@code
+{
+    private GoogleMap map1;
+    private MapOptions mapOptions;
+     private Stack<Marker> markers = new Stack<Marker>();
+     private List<String> _events = new List<String>();
+
+    private async Task addMarker()
+    { 
+       var marker = await Marker.CreateAsync(map1.JsRuntime, new MarkerOptions()
+        {
+            Position = await map1.InteropObject.GetCenter(),
+            Map = map1.InteropObject,
+            Label = $"Test {markers.Count()}"
+          
+        });
+
+        
+        markers.Push(marker);
+
+    
+    }
+
+    protected override void OnInitialized()
+    {
+        mapOptions = new MapOptions()
+        {
+            Zoom = 11,
+            Center = new LatLngLiteral()
+            {
+                Lat = 52.1040418,
+                Lng = 23.689813
+            },
+            MapTypeId = MapTypeId.Hybrid
+        };
+    }
+
+}
+
