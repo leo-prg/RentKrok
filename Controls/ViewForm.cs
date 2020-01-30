@@ -77,6 +77,7 @@ namespace RentKrok
         // добавление площади 
         private void addArea_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Выделите необходимую площадь на изображении с помощью мыши.");
             this.LayerPicture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseDown);
             this.LayerPicture.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseUp);
             this.LayerPicture.Cursor = System.Windows.Forms.Cursors.Cross;

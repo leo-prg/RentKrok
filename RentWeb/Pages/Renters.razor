@@ -23,7 +23,6 @@ else
                 <th>Дата начала</th>
                 <th>Дата окончания</th>
                 <th>Примечание</th>
-                <th>Подробнее</th>
             </tr>
         </thead>
         <tbody>
@@ -31,12 +30,11 @@ else
             {
             <tr>
                 <td>@r.Id</td>
-                <td>@r.RenterName</td>
+                <td><a href="/renterdetails/@r.Id.ToString()">@r.RenterName</a></td>
                 <td>@r.Contract</td>
                 <td>@r.StartDate.ToString("dd.MM.yyyy")</td>
                 <td>@r.EndDate.ToString("dd.MM.yyyy")</td>
                 <td>@r.Annotation</td>
-                <td><a href="/renterdetails/@r.Id.ToString()" class="btn btn-link">Показать</a></td>
             </tr>
             }
         </tbody>

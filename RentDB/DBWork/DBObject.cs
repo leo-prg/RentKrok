@@ -31,7 +31,7 @@ namespace RentDB
             ro.Address = newO.Address;
             ro.CNo = newO.CNo;
             ro.Lat = newO.Lat;
-            ro.Lon = newO.Lon;
+            ro.Lon = newO.Lon; 
             context.Value.SaveChanges();
         }
 
