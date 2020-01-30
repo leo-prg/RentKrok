@@ -1,9 +1,9 @@
-﻿namespace RentKrok.Migrations
+﻿namespace RentDB.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -51,6 +51,8 @@
                         Name = c.String(maxLength: 50),
                         Address = c.String(maxLength: 150),
                         CNo = c.String(maxLength: 50),
+                        Lat = c.String(),
+                        Lon = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             

@@ -60,17 +60,12 @@
     <Compile Include="DBWork\DBLayer.cs" />
     <Compile Include="DBWork\DBObject.cs" />
     <Compile Include="DBWork\DBRenter.cs" />
-    <Compile Include="Migrations\201912270643197_Initial.cs" />
-    <Compile Include="Migrations\201912270643197_Initial.Designer.cs">
-      <DependentUpon>201912270643197_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202001291908197_Init.cs" />
+    <Compile Include="Migrations\202001291908197_Init.designer.cs">
+      <DependentUpon>202001291908197_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201912270643197_Initial.resx">
-      <DependentUpon>201912270643197_Initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RentCommon\RentCommon.csproj">
@@ -85,6 +80,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202001291908197_Init.resx">
+      <DependentUpon>202001291908197_Init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

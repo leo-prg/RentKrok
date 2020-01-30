@@ -1,4 +1,4 @@
-﻿namespace RentKrok.Migrations
+﻿namespace RentDB.Migrations
 {
     using System;
     using System.Data.Entity;

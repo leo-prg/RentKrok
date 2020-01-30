@@ -22,8 +22,8 @@ namespace RentDB
 
         public virtual List<RentLayer> RentLayers { get; set; }
 
-        public int Lat { get; set; }
-        public int Lon { get; set; }
+        public string Lat { get; set; } // широта
+        public string Lon { get; set; } // долгота
 
 
         public RentObject()

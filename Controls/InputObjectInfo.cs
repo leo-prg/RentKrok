@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RentLibrary;
+using GMap.NET.WindowsForms;
+using GMap.NET;
 
 namespace RentKrok.Controls
 {
@@ -27,6 +29,8 @@ namespace RentKrok.Controls
                 tbName.Text = orNew.Name;
                 tbAddress.Text = orNew.Address;
                 tbCdNumber.Text = orNew.CNo;
+                tbLat.Text = orNew.Lat;
+                tbLon.Text = orNew.Lon;
             }
         }
 
@@ -38,11 +42,27 @@ namespace RentKrok.Controls
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            ObjectRect or = new ObjectRect() { Name = this.tbName.Text, Address = this.tbAddress.Text, CNo = this.tbCdNumber.Text };
+            ObjectRect or = new ObjectRect() 
+            { Name = this.tbName.Text, Address = this.tbAddress.Text,
+              CNo = this.tbCdNumber.Text, Lat = this.tbLat.Text, Lon = this.tbLon.Text };
             orNew = or;
             DialogResult = DialogResult.OK;
         }
 
-       
+        private void btnGetGeolocation_Click(object sender, EventArgs e)
+        {
+            using (var gMapControl = new GMapControl())
+            {
+
+                var status = gMapControl.SetPositionByKeywords(tbAddress.Text);
+                if (status != GeoCoderStatusCode.OK)
+                {
+                    MessageBox.Show("Geocoder can't find selected place!", "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+                this.tbLat.Text = gMapControl.Position.Lat.ToString();
+                this.tbLon.Text = gMapControl.Position.Lng.ToString(); ;
+            }
+    }
     }
 }

@@ -12,7 +12,7 @@ namespace RentDB
         Lazy<RentModel> context = new Lazy<RentModel>();
         public void AddObject(ObjectRect obj)
         {
-            context.Value.RentObjects.Add(new RentObject(){ Name = obj.Name, Address = obj.Address, CNo = obj.CNo });
+            context.Value.RentObjects.Add(new RentObject() { Name = obj.Name, Address = obj.Address, CNo = obj.CNo, Lat = obj.Lat, Lon = obj.Lon }); ;
             context.Value.SaveChanges();
         }
 
@@ -30,12 +30,14 @@ namespace RentDB
             ro.Name = newO.Name;
             ro.Address = newO.Address;
             ro.CNo = newO.CNo;
+            ro.Lat = newO.Lat;
+            ro.Lon = newO.Lon;
             context.Value.SaveChanges();
         }
 
         public List<ObjectRect> GetAllObjects()
         {
-            return context.Value.RentObjects.Select(x => new ObjectRect() { Id = x.Id, Name = x.Name, Address = x.Address, CNo = x.CNo }).ToList();
+            return context.Value.RentObjects.Select(x => new ObjectRect() { Id = x.Id, Name = x.Name, Address = x.Address, CNo = x.CNo, Lat = x.Lat, Lon = x.Lon }).ToList();
         }
 
     }
