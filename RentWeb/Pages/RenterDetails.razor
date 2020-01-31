@@ -5,6 +5,8 @@
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
 
+@inject NavigationManager NavigationManager
+
 @*<h3>Контакты</h3>*@
 
 @if (renter == null)
@@ -70,8 +72,9 @@ else
     </div>
     <hr />
     <p>
-        <a href="/renters" class="btn btn-outline-primary">К выбору арендаторов</a>
-        <a href="/areas" class="btn btn-outline-primary">К выбору площадей</a>
+        <button type="button" class="btn btn-outline-primary" onclick="window.history.go(-1)">Назад</button>
+        @*<a href="/renters" class="btn btn-outline-primary">К выбору арендаторов</a>
+        <a href="/areas" class="btn btn-outline-primary">К выбору площадей</a>*@
     </p>
 }
 
@@ -87,9 +90,10 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        renter = await Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri+"/api/Renters/" + id);
+        renter = await Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri + "/api/Renters/" + id);
     }
 
+   
 
 
 

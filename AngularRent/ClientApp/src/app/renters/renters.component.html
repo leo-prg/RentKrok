@@ -1,0 +1,20 @@
+<h1 id="tableLabel">Renters forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!renters"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="renters">
+  <thead>
+    <tr>
+      <th>Наименование</th>
+      <th>Договор</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of renters">
+      <td>{{ r.RenterName }}</td>
+      <td>{{ r.Contract }}</td>
+    </tr>
+  </tbody>
+</table>
