@@ -7,14 +7,20 @@
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="renters">
   <thead>
     <tr>
-      <th>Наименование</th>
-      <th>Договор</th>
+      <th>Наименование арендатора</th>
+      <th>№ договора</th>
+      <th>Начало действия</th>
+      <th>Окончание действия</th>
+      <th>Примечание</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let r of renters">
-      <td>{{ r.RenterName }}</td>
+      <td><a href="/renterdetails"> {{ r.RenterName }}</a></td>
       <td>{{ r.Contract }}</td>
+      <td>{{ r.StartDate | date:"dd.MM.yyyy" }}</td>
+      <td>{{ r.EndDate | date:"dd.MM.yyyy" }}</td>
+      <td>{{ r.Annotation }}</td>
     </tr>
   </tbody>
 </table>
