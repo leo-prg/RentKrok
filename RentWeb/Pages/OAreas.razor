@@ -36,14 +36,17 @@ else
                     <td>@area.Cost</td>
                     @if (area.isRented)
                     {
-                        renter = GetAreaRenter(area);
+                        
+                        renter = GetAreaRenter(area.Id).Result;
+
                         <td>Да</td>
-                        <td><a href="/renterdetails/@renter.Id">@renter.Id</a></td>
+                        
+                        <td><a href="/renterdetails/@renter.Id">ХХХ</a></td>
                     }
                     else
                     {
                         <td>Нет</td>
-                        <td></td>
+                        <td>-</td>
                     }
                 </tr>
             }
@@ -67,7 +70,7 @@ else
 
     private AreaRect[] areas;
 
-    Task<RenterRect> renter = null;
+    RenterRect renter = null;
 
 
     protected override async Task OnInitializedAsync()
@@ -76,13 +79,10 @@ else
         areas = await Http.GetJsonAsync<AreaRect[]>(ConnectAPI.apiUri + "/api/Objects/" + id);
     }
 
-    async Task<RenterRect> GetAreaRenter(AreaRect ar)
+    public async Task<RenterRect> GetAreaRenter(int id)
     {
-        return await Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri + "/api/Areas/" + ar);
+        var res = await Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri + "/api/Areas/" + id);
+        return res;
     }
-
-
-
-
 
 }
