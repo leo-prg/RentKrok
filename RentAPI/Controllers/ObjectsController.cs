@@ -15,6 +15,7 @@ namespace RentAPI.Controllers
     public class ObjectsController : ApiController
     {
         Lazy<DBObject> dbo = new Lazy<DBObject>();
+        Lazy<DBArea> dba = new Lazy<DBArea>();
 
         // GET: api/Objects
         public IEnumerable<ObjectRect> Get()
@@ -24,9 +25,10 @@ namespace RentAPI.Controllers
         }
 
         // GET: api/Objects/5
-        public string Get(int id)
+        public List<AreaRect> Get(int id)
         {
-            return "value";
+            // GetObjectAreas
+            return dba.Value.GetObjectAreas(id);
         }
 
         // POST: api/Objects

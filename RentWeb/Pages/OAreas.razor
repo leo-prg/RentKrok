@@ -1,0 +1,88 @@
+﻿@page "/oareas/{id}"
+
+@using System.Diagnostics
+@using RentLibrary
+@inject HttpClient Http
+@inject IJSRuntime JsRuntime
+
+
+@if (areas == null)
+{
+    <p><em>Загрузка данных...</em></p>
+}
+else
+{
+    <table class="table table-info table-sm">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Наименование</th>
+                <th>Площадь,  м<sup>2</sup></th>
+                <th>Цена за м<sup>2</sup>, EUR</th>
+                <th>Стоимость, EUR</th>
+                <th>Арендуется</th>
+                <th>Дополнительно</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var area in areas)
+            {
+                <tr valign="top">
+                    <td>@area.Id</td>
+                    <td>@area.AreaName</td>
+                    <td>@area.Square</td>
+                    <td>@area.Price</td>
+                    <td>@area.Cost</td>
+                    @if (area.isRented)
+                    {
+                        renter = GetAreaRenter(area);
+                        <td>Да</td>
+                        <td><a href="/renterdetails/@renter.Id">@renter.Id</a></td>
+                    }
+                    else
+                    {
+                        <td>Нет</td>
+                        <td></td>
+                    }
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <hr />
+    <p>
+        <button type="button" class="btn btn-outline-primary" onclick="window.history.go(-1)">Назад</button>
+    </p>
+
+}
+
+
+
+
+@code {
+
+    [Parameter]
+    public string id { get; set; }
+
+    private AreaRect[] areas;
+
+    Task<RenterRect> renter = null;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+     
+        areas = await Http.GetJsonAsync<AreaRect[]>(ConnectAPI.apiUri + "/api/Objects/" + id);
+    }
+
+    async Task<RenterRect> GetAreaRenter(AreaRect ar)
+    {
+        return await Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri + "/api/Areas/" + ar);
+    }
+
+
+
+
+
+}

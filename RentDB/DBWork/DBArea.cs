@@ -42,6 +42,27 @@ namespace RentDB
                 }).ToList();
         }
 
+        public List<AreaRect> GetObjectAreas(int id)
+        {
+            
+            return context.Value.RentAreas
+                .Where(x => x.Layer.Object.Id == id)
+                .Select(x => new AreaRect()
+                {
+                    Id = x.Id,
+                    AreaName = x.Name,
+                    x1 = x.X,
+                    y1 = x.Y,
+                    x2 = Math.Abs(x.Width + x.X),
+                    y2 = Math.Abs(x.Height + x.Y),
+                    Square = x.Square,
+                    Price = x.Price,
+                    Cost = x.Cost,
+                    isRented = x.Renter != null
+                }).ToList();
+        }
+
+
         public string FindAreaByPoint(LayerRect layer ,int x, int y)
         {
             return context.Value.RentAreas
