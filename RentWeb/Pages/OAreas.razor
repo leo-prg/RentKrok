@@ -4,6 +4,7 @@
 @using RentLibrary
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
+@inject NavigationManager NavigationManager
 
 
 @if (areas == null)
@@ -12,50 +13,63 @@
 }
 else
 {
-    <table class="table table-info table-sm">
+
+    <table class="table table-sm table-striped">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Наименование</th>
                 <th>Площадь,  м<sup>2</sup></th>
-                <th>Цена за м<sup>2</sup>, EUR</th>
-                <th>Стоимость, EUR</th>
+                <th>Цена за м<sup>2</sup> без НДС, EUR </th>
+                <th>Стоимость без НДС, EUR</th>
+                <th>Цена за м<sup>2</sup> с НДС, EUR </th>
+                <th>Стоимость с НДС, EUR</th>
                 <th>Арендуется</th>
                 <th>Дополнительно</th>
             </tr>
         </thead>
 
         <tbody>
+            
             @foreach (var area in areas)
             {
-                <tr valign="top">
-                    <td>@area.Id</td>
-                    <td>@area.AreaName</td>
-                    <td>@area.Square</td>
-                    <td>@area.Price</td>
-                    <td>@area.Cost</td>
-                    @if (area.isRented)
-                    {
-                        
-                        renter = GetAreaRenter(area.Id).Result;
+            <tr valign="top">
+                <td>@area.Id</td>
+                <td>@area.AreaName</td>
+                <td>@area.Square</td>
+                <td>@area.Price</td>
+                <td>@Math.Round(area.Price * 1.2, 2)</td>
+                <td>@area.Cost</td>
+                <td>@Math.Round(area.Cost * 1.2, 2)</td>
+                @if (area.isRented)
+                {
+                    <td>Да</td>
+                    <td><button class="btn btn-sm btn-link" @onclick="async () => await OnClick(area.Id)">арендатор</button></td>
+                }
+                else
+                {
+                    <td>Нет</td>
+                    <td>-</td>
+                }
 
-                        <td>Да</td>
-                        
-                        <td><a href="/renterdetails/@renter.Id">ХХХ</a></td>
-                    }
-                    else
-                    {
-                        <td>Нет</td>
-                        <td>-</td>
-                    }
-                </tr>
+            </tr>
             }
 
         </tbody>
+        <tr>
+            <td colspan="2" align="left"><b>Итого</b></td>
+            <td><b>@total_area</b></td>
+            <td></td>
+            <td></td>
+            <td><b>@total_sum</b></td>
+            <td><b>@Math.Round(total_sum * 1.2, 2)</b></td>
+            <td colspan="2"></td>
+
+        </tr>
     </table>
     <hr />
     <p>
-        <button type="button" class="btn btn-outline-primary" onclick="window.history.go(-1)">Назад</button>
+        <button type="button" class="btn btn-outline-primary btn-link" onclick="window.history.go(-1)">Назад</button>
     </p>
 
 }
@@ -71,18 +85,31 @@ else
     private AreaRect[] areas;
 
     RenterRect renter = null;
+    string r_name;
+    int r_id;
+    float total_area=0;
+    float total_sum=0;
 
 
     protected override async Task OnInitializedAsync()
     {
-     
+
         areas = await Http.GetJsonAsync<AreaRect[]>(ConnectAPI.apiUri + "/api/Objects/" + id);
+
+        foreach (var ar in areas)
+        {
+            total_area += ar.Square;
+            total_sum += ar.Cost;
+        }
     }
 
-    public async Task<RenterRect> GetAreaRenter(int id)
+
+    async Task OnClick(int id)
     {
-        var res = await Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri + "/api/Areas/" + id);
-        return res;
+        Debug.WriteLine(id);
+        renter =  await Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri + "/api/Areas/" + id);
+        NavigationManager.NavigateTo("/renterdetails/" + renter.Id);
     }
+
 
 }
