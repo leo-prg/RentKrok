@@ -68,6 +68,8 @@ else
         </tr>
     </table>
     <hr />
+    <h6 style="color:green">Свободные площади: @free_area м<sup>2</sup>.</h6>
+    <hr />
     <p>
         <button type="button" class="btn btn-outline-primary btn-link" onclick="window.history.go(-1)">Назад</button>
     </p>
@@ -89,6 +91,7 @@ else
     int r_id;
     float total_area=0;
     float total_sum=0;
+    float free_area=0;
 
 
     protected override async Task OnInitializedAsync()
@@ -100,6 +103,10 @@ else
         {
             total_area += ar.Square;
             total_sum += ar.Cost;
+            if (!ar.isRented)
+            {
+                free_area += ar.Square;
+            }
         }
     }
 

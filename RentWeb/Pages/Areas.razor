@@ -39,6 +39,7 @@ else
     </label>
 }
 <hr />
+
 @*<p>(@x,@y)</p>*@
 
 @if (area != null)
@@ -81,14 +82,14 @@ else
     </table>
 }
 
+@*preserveAspectRatio="none" preserveAspectRatio="xMinYMin scale"*@
 
-<svg xmlns="http://www.w3.org/2000/svg" version="2.0" @onmousemove="OnMoveSVG" @ref="svgMain" @onclick="OnClick">
-    @if (img_code.Length != 0)
-    {
-        <image x="0" y="0" href=@img_code></image>
-    }
-
-</svg>
+    <svg xmlns="http://www.w3.org/2000/svg" version="2.0" @ref="svgMain" @onclick="OnClick" @onmousemove="OnMoveSVG">
+        @if (img_code.Length != 0)
+        {
+            <image @ref="imgMain" x="0" y="0" href=@img_code ></image>
+        }
+    </svg>
 
 <style>
 
@@ -102,6 +103,7 @@ else
     image {
         cursor: pointer;
         pointer-events: all;
+  
     }
 </style>
 
@@ -122,6 +124,7 @@ else
     RenterRect renter = null;
 
     ElementReference svgMain;
+    ElementReference imgMain;
 
     protected override async Task OnInitializedAsync()
     {
@@ -133,7 +136,7 @@ else
         Debug.WriteLine(e.Value);
         if (e.Value.ToString().Length > 0)
         {
-            layers = await Http.GetJsonAsync<LayerRect[]>(ConnectAPI.apiUri +"/api/Layers/" + e.Value.ToString());
+            layers = await Http.GetJsonAsync<LayerRect[]>(ConnectAPI.apiUri + "/api/Layers/" + e.Value.ToString());
         }
         else
         {
@@ -162,10 +165,10 @@ else
 
     async Task OnClick()
     {
-        area = await Http.GetJsonAsync<AreaRect>(ConnectAPI.apiUri +"/api/Areas?id=" + id_layer + "&x=" + x.ToString() + "&y=" + y.ToString());
+        area = await Http.GetJsonAsync<AreaRect>(ConnectAPI.apiUri + "/api/Areas?id=" + id_layer + "&x=" + x.ToString() + "&y=" + y.ToString());
         if (area != null && area.isRented)
         {
-            renter = await Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri +"/api/Areas/" + area.Id.ToString());
+            renter = await Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri + "/api/Areas/" + area.Id.ToString());
         }
     }
 
