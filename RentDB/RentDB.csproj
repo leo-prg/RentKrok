@@ -64,6 +64,10 @@
     <Compile Include="Migrations\202001301028398_Init.designer.cs">
       <DependentUpon>202001301028398_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003201817333_Image layer size.cs" />
+    <Compile Include="Migrations\202003201817333_Image layer size.designer.cs">
+      <DependentUpon>202003201817333_Image layer size.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -84,6 +88,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202001301028398_Init.resx">
       <DependentUpon>202001301028398_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003201817333_Image layer size.resx">
+      <DependentUpon>202003201817333_Image layer size.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

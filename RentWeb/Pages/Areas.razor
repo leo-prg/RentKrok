@@ -9,34 +9,34 @@
 
 @if (objects == null)
 {
-    <p><em>Загрузка данных...</em></p>
+<p><em>Загрузка данных...</em></p>
 }
 else
 {
 
-    <label for="objects">
-        Объект
-        <select @onchange="OnChangeObject">
-            <option></option>
-            @foreach (var obj in objects)
+<label for="objects">
+    Объект
+    <select @onchange="OnChangeObject">
+        <option></option>
+        @foreach (var obj in objects)
             {
-                <option value="@obj.Id">@obj.Name</option>
+        <option value="@obj.Id">@obj.Name</option>
             }
-        </select>
-    </label>
+    </select>
+</label>
 }
 @if (layers != null)
 {
-    <label class="ml-3" for="layers">
-        Размещение
-        <select @onchange="OnChangeLayer">
-            <option></option>
-            @foreach (var obj in layers)
+<label class="ml-3" for="layers">
+    Размещение
+    <select @onchange="OnChangeLayer">
+        <option></option>
+        @foreach (var obj in layers)
             {
-                <option value="@obj.Id">@obj.Name</option>
+        <option value="@obj.Id">@obj.Name</option>
             }
-        </select>
-    </label>
+    </select>
+</label>
 }
 <hr />
 
@@ -44,134 +44,139 @@ else
 
 @if (area != null)
 {
-    <table class="table table-sm">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Наименование</th>
-                <th>Площадь,  м<sup>2</sup></th>
-                <th>Цена за м<sup>2</sup>, EUR</th>
-                <th>Стоимость, EUR</th>
-                <th>Арендуется</th>
-                <th>Дополнительно</th>
-            </tr>
-        </thead>
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Наименование</th>
+            <th>Площадь,  м<sup>2</sup></th>
+            <th>Цена за м<sup>2</sup>, EUR</th>
+            <th>Стоимость, EUR</th>
+            <th>Арендуется</th>
+            <th>Дополнительно</th>
+        </tr>
+    </thead>
 
-        <tbody>
+    <tbody>
 
-            <tr valign="top">
-                <td>@area.Id</td>
-                <td>@area.AreaName</td>
-                <td>@area.Square</td>
-                <td>@area.Price</td>
-                <td>@area.Cost</td>
-                @if (area.isRented)
+        <tr valign="top">
+            <td>@area.Id</td>
+            <td>@area.AreaName</td>
+            <td>@area.Square</td>
+            <td>@area.Price</td>
+            <td>@area.Cost</td>
+            @if (area.isRented)
                 {
-                    <td>Да</td>
-                    <td><a href="/renterdetails/@renter.Id">@renter.RenterName</a></td>
+            <td>Да</td>
+            <td><a href="/renterdetails/@renter.Id">@renter.RenterName</a></td>
                 }
                 else
                 {
-                    <td>Нет</td>
-                    <td></td>
+            <td>Нет</td>
+            <td></td>
                 }
 
-            </tr>
+        </tr>
 
-        </tbody>
-    </table>
+    </tbody>
+</table>
 }
 
 @*preserveAspectRatio="none" preserveAspectRatio="xMinYMin scale"*@
-
-    <svg xmlns="http://www.w3.org/2000/svg" version="2.0" @ref="svgMain" @onclick="OnClick" @onmousemove="OnMoveSVG">
+<div style="border:3px solid green;width:100%;height:100%;overflow:scroll;" >
+    <svg xmlns="http://www.w3.org/2000/svg" version="2.0" @ref="svgMain" @onclick="OnClick" @onmousemove="OnMoveSVG" height="@Height" width="@Width">
         @if (img_code.Length != 0)
         {
-            <image @ref="imgMain" x="0" y="0" href=@img_code ></image>
+        <image @ref="imgMain" x="0" y="0" href=@img_code width="@Width" height="@Height"></image>
         }
     </svg>
+ </div>
 
-<style>
+    <style>
 
-    svg {
-        width: 100%;
-        height: 100vh;
-        border: dashed;
-        pointer-events: none;
-    }
-
-    image {
-        cursor: pointer;
-        pointer-events: all;
-  
-    }
-</style>
-
-
-@code {
-    private IEnumerable<ObjectRect> objects;
-
-    private LayerRect[] layers;
-
-    private AreaRect[] areas;
-
-    string img_code = "";
-
-    public string id_layer;
-    int x;
-    int y;
-    AreaRect area = null;
-    RenterRect renter = null;
-
-    ElementReference svgMain;
-    ElementReference imgMain;
-
-    protected override async Task OnInitializedAsync()
-    {
-        objects = await Http.GetJsonAsync<ObjectRect[]>(ConnectAPI.apiUri + "/api/Objects");
-    }
-
-    async Task OnChangeObject(ChangeEventArgs e)
-    {
-        Debug.WriteLine(e.Value);
-        if (e.Value.ToString().Length > 0)
-        {
-            layers = await Http.GetJsonAsync<LayerRect[]>(ConnectAPI.apiUri + "/api/Layers/" + e.Value.ToString());
+        svg {
+            width: auto;
+            height: auto;
+            /*border: dashed;*/
+            pointer-events: none;
         }
-        else
-        {
-            layers = null;
+
+        image {
+            cursor: pointer;
+            pointer-events: all;
         }
-        // await JsRuntime.InvokeVoidAsync("ShowAlert", "You clicked a line");
-    }
+    </style>
 
 
-    void OnChangeLayer(ChangeEventArgs e)
-    {
+    @code {
+        private IEnumerable<ObjectRect> objects;
 
-        img_code = "data:image/png;base64," + Convert.ToBase64String(layers.First(l => l.Id.ToString() == e.Value.ToString()).LayerFile);
-        //Debug.WriteLine(img_code);
-        id_layer = e.Value.ToString();
-    }
+        private LayerRect[] layers;
 
+        private AreaRect[] areas;
 
-    async Task OnMoveSVG(MouseEventArgs e)
-    {
-        int[] pt = await JsRuntime.InvokeAsync<int[]>("GetRelativePos", svgMain, e);
+        int Width = 0;
+        int Height = 0;
 
-        x = pt[0];
-        y = pt[1];
-    }
+        string img_code = "";
 
-    async Task OnClick()
-    {
-        area = await Http.GetJsonAsync<AreaRect>(ConnectAPI.apiUri + "/api/Areas?id=" + id_layer + "&x=" + x.ToString() + "&y=" + y.ToString());
-        if (area != null && area.isRented)
+        public string id_layer;
+        int x;
+        int y;
+        AreaRect area = null;
+        RenterRect renter = null;
+
+        ElementReference svgMain;
+        ElementReference imgMain;
+
+        protected override async Task OnInitializedAsync()
         {
-            renter = await Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri + "/api/Areas/" + area.Id.ToString());
+            objects = await Http.GetJsonAsync<ObjectRect[]>(ConnectAPI.apiUri + "/api/Objects");
         }
+
+        async Task OnChangeObject(ChangeEventArgs e)
+        {
+            Debug.WriteLine(e.Value);
+            if (e.Value.ToString().Length > 0)
+            {
+                layers = await Http.GetJsonAsync<LayerRect[]>(ConnectAPI.apiUri + "/api/Layers/" + e.Value.ToString());
+            }
+            else
+            {
+                layers = null;
+            }
+            // await JsRuntime.InvokeVoidAsync("ShowAlert", "You clicked a line");
+        }
+
+
+        void OnChangeLayer(ChangeEventArgs e)
+        {
+
+            img_code = "data:image/png;base64," + Convert.ToBase64String(layers.First(l => l.Id.ToString() == e.Value.ToString()).LayerFile);
+            Height = layers.First(l => l.Id.ToString() == e.Value.ToString()).Height;
+            Width = layers.First(l => l.Id.ToString() == e.Value.ToString()).Width;
+            //Debug.WriteLine(img_code);
+            id_layer = e.Value.ToString();
+        }
+
+
+        async Task OnMoveSVG(MouseEventArgs e)
+        {
+            int[] pt = await JsRuntime.InvokeAsync<int[]>("GetRelativePos", svgMain, e);
+
+            x = pt[0];
+            y = pt[1];
+        }
+
+        async Task OnClick()
+        {
+            area = await Http.GetJsonAsync<AreaRect>(ConnectAPI.apiUri + "/api/Areas?id=" + id_layer + "&x=" + x.ToString() + "&y=" + y.ToString());
+            if (area != null && area.isRented)
+            {
+                renter = await Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri + "/api/Areas/" + area.Id.ToString());
+            }
+        }
+
+
+
     }
-
-
-
-}

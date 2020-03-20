@@ -24,7 +24,11 @@ namespace RentKrok.Controls
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            lrNew = new LayerRect() { Name = tbName.Text, FileName = tbFileName.Text, LayerFile = Transform.ImageToByte(Image.FromFile(tbFileName.Text)) };
+            lrNew = new LayerRect() { Name = tbName.Text,
+                                      FileName = tbFileName.Text,
+                                      LayerFile = Transform.ImageToByte(Image.FromFile(tbFileName.Text)),
+                                      Width = Image.FromFile(tbFileName.Text).Width, 
+                                      Height = Image.FromFile(tbFileName.Text).Height  };
             DialogResult = DialogResult.OK;
         }
 

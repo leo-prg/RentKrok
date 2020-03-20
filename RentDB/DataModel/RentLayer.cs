@@ -19,6 +19,8 @@ namespace RentDB
         [StringLength(255)]
         public string LayerFileName { get; set; }
         public byte[] LayerFile { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
         public virtual List<RentArea> RentAreas { get; set; }
         public RentLayer()
         {
