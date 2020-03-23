@@ -64,6 +64,7 @@ namespace RentKrok.Controls
         private void RenterList_FormClosed(object sender, FormClosedEventArgs e)
         {
             renterOut = dgRenters.CurrentRow.DataBoundItem as RenterRect;
+
         }
 
         private void addNewRenter_Click(object sender, EventArgs e)

@@ -19,20 +19,12 @@ else
 {
 
     <label for="objects">
-        Объект
-        <select @onchange="OnChangeObject">
-            @if (@SavedObject.Length == 0)
-            {
+        Объект 
+        <select @onchange="OnChangeObject" class="form-control">
                 <option></option>
-            }
-
-            else { 
-        <option value=@SavedObject>SAVED</option>
-        }
-
             @foreach (var obj in objects)
             {
-                <option value="@obj.Id">@obj.Name</option>
+                <option value="@obj.Id" selected="@(SavedObject == obj.Id.ToString())">@obj.Name</option>
             }
         </select>
     </label>
@@ -41,15 +33,18 @@ else
 {
     <label class="ml-3" for="layers">
         Размещение
-        <select @onchange="OnChangeLayer">
+        <select @onchange="OnChangeLayer" class="form-control">
             <option></option>
             @foreach (var obj in layers)
             {
-                <option value="@obj.Id">@obj.Name</option>
+                <option value="@obj.Id" selected="@(SavedLayer == obj.Id.ToString())">@obj.Name</option>
             }
         </select>
     </label>
-}
+
+    }
+
+
 <hr />
 
 @*<p>(@x,@y)</p>*@
@@ -95,11 +90,11 @@ else
 }
 
 @*preserveAspectRatio="none" preserveAspectRatio="xMinYMin scale"*@
-<div style="border:3px solid green;width:100%;height:100%;overflow:scroll;">
+<div style="border:3px solid green;width:100%;height:100vh;overflow:scroll;">
     <svg xmlns="http://www.w3.org/2000/svg" version="2.0" @ref="svgMain" @onclick="OnClick" @onmousemove="OnMoveSVG" height="@Height" width="@Width">
         @if (img_code.Length != 0)
         {
-            <image @ref="imgMain" x="0" y="0" href=@img_code width="@Width" height="@Height"></image>
+            <image x="0" y="0" href=@img_code width="@Width" height="@Height"></image>
         }
     </svg>
 </div>
@@ -139,7 +134,6 @@ else
     RenterRect renter = null;
 
     ElementReference svgMain;
-    ElementReference imgMain;
 
     string SavedObject;
     string SavedLayer;
@@ -148,28 +142,48 @@ else
     protected override async Task OnInitializedAsync()
     {
         SavedObject = await LocalStore.GetItemAsync<string>("Object");
+        SavedLayer = await LocalStore.GetItemAsync<string>("Layer");
+
         objects = await Http.GetJsonAsync<ObjectRect[]>(ConnectAPI.apiUri + "/api/Objects");
+                
+        if (SavedObject != null)
+        {
+
+            layers = await Http.GetJsonAsync<LayerRect[]>(ConnectAPI.apiUri + "/api/Layers/" + SavedObject);
+        }
+
+        if (SavedLayer != null)
+        {
+            img_code = "data:image/png;base64," + Convert.ToBase64String(layers.First(l => l.Id.ToString() == SavedLayer).LayerFile);
+            Height = layers.First(l => l.Id.ToString() == SavedLayer).Height;
+            Width = layers.First(l => l.Id.ToString() == SavedLayer).Width;
+            id_layer = SavedLayer;
+        }
+
     }
 
     async Task OnChangeObject(ChangeEventArgs e)
     {
 
-        Debug.WriteLine(e.Value);
+        // Debug.WriteLine(e.Value);
+
+
         if (e.Value.ToString().Length > 0)
         {
+
             layers = await Http.GetJsonAsync<LayerRect[]>(ConnectAPI.apiUri + "/api/Layers/" + e.Value.ToString());
             await LocalStore.SetItemAsync("Object", e.Value.ToString());
         }
-        else
-        {
-            layers = null;
-            await LocalStore.ClearAsync();
-        }
+        //else
+        //{
+        //    layers = null;
+        //    await LocalStore.ClearAsync();
+        //}
         // await JsRuntime.InvokeVoidAsync("ShowAlert", "You clicked a line");
     }
 
 
-    void OnChangeLayer(ChangeEventArgs e)
+    async Task OnChangeLayer(ChangeEventArgs e)
     {
 
         img_code = "data:image/png;base64," + Convert.ToBase64String(layers.First(l => l.Id.ToString() == e.Value.ToString()).LayerFile);
@@ -177,6 +191,7 @@ else
         Width = layers.First(l => l.Id.ToString() == e.Value.ToString()).Width;
         //Debug.WriteLine(img_code);
         id_layer = e.Value.ToString();
+        await LocalStore.SetItemAsync("Layer", e.Value.ToString());
     }
 
 

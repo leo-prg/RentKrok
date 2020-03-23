@@ -125,6 +125,8 @@ namespace RentKrok
                 dgLayers.Columns[2].HeaderText = "Имя файла";
                 dgLayers.Columns[2].Width = 200;
                 dgLayers.Columns[3].Visible = false;
+                dgLayers.Columns[4].Visible = false;
+                dgLayers.Columns[5].Visible = false;
                 dgLayers.CurrentCell = dgLayers.Rows[0].Cells[1]; 
                 LayerPicture.Image = null;
                 if ((dgLayers.CurrentRow.DataBoundItem as LayerRect).LayerFile != null)
@@ -327,7 +329,8 @@ namespace RentKrok
                 // форма выбора существующего арендатора
                 RenterList rl = new RenterList();
                 rl.ShowDialog();
-                dba.Value.AddRenterToArea(dgAreas.CurrentRow.DataBoundItem as AreaRect, rl.renterOut); 
+                dba.Value.AddRenterToArea(dgAreas.CurrentRow.DataBoundItem as AreaRect, rl.renterOut);
+                MessageBox.Show("Арендатор площади: "+rl.renterOut.RenterName, "Аренда Крок", MessageBoxButtons.OK);
             //}
             RefreshAreaList();
         }
