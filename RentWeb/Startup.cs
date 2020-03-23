@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Blazored.LocalStorage;
 
 namespace RentWeb
 {
@@ -7,7 +8,7 @@ namespace RentWeb
     {
         public void ConfigureServices(IServiceCollection services)
         {
-         
+            services.AddBlazoredLocalStorage();
         }
 
         public void Configure(IComponentsApplicationBuilder app)
