@@ -17,7 +17,7 @@ else
 
     <label for="objects">
         Объект 
-        <select @onchange="OnChangeObject" class="form-control">
+        <select @onchange="OnChangeObject">
                 <option></option>
             @foreach (var obj in objects)
             {
@@ -30,7 +30,7 @@ else
 {
     <label class="ml-3" for="layers">
         Размещение
-        <select @onchange="OnChangeLayer" class="form-control">
+        <select @onchange="OnChangeLayer">
             <option></option>
             @foreach (var obj in layers)
             {
@@ -82,8 +82,6 @@ else
         </tbody>
     </table>
 }
-
-<hr/>
 
 @*preserveAspectRatio="none" preserveAspectRatio="xMinYMin scale"*@
 <div style="border:3px solid green;width:100%;height:80vh;overflow:scroll;">
