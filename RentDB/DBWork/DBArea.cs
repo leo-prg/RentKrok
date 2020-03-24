@@ -105,8 +105,15 @@ namespace RentDB
         public void AddRenterToArea(AreaRect area, RenterRect renter)
         {
             var ar = context.Value.RentAreas.Where(a => a.Id == area.Id).Select(c => c).FirstOrDefault();
-            var rent = context.Value.Renters.Where(r => r.Id == renter.Id).Select(c => c).FirstOrDefault();
-            ar.Renter = rent;
+            if (renter != null)
+            {
+                var rent = context.Value.Renters.Where(r => r.Id == renter.Id).Select(c => c).FirstOrDefault();
+                ar.Renter = rent;
+            }
+            else 
+            {
+                context.Value.Entry(ar).Reference(r => r.Renter).CurrentValue = null;
+            }
             context.Value.SaveChanges();
         }
 
@@ -159,6 +166,7 @@ namespace RentDB
             _old.Cost = _new.Cost;
             context.Value.SaveChanges();
         }
+
 
     }
 }

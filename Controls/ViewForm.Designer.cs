@@ -47,6 +47,7 @@
             this.editLayer = new System.Windows.Forms.Button();
             this.editArea = new System.Windows.Forms.Button();
             this.removeObject = new System.Windows.Forms.Button();
+            this.NoArenda = new System.Windows.Forms.Button();
             this.LayerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LayerPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgObjects)).BeginInit();
@@ -66,7 +67,7 @@
             this.LayerPanel.Location = new System.Drawing.Point(0, 0);
             this.LayerPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.LayerPanel.Name = "LayerPanel";
-            this.LayerPanel.Size = new System.Drawing.Size(873, 589);
+            this.LayerPanel.Size = new System.Drawing.Size(873, 600);
             this.LayerPanel.TabIndex = 2;
             // 
             // LayerPicture
@@ -190,7 +191,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mPosition});
-            this.statusStrip1.Location = new System.Drawing.Point(873, 567);
+            this.statusStrip1.Location = new System.Drawing.Point(873, 578);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
             this.statusStrip1.Size = new System.Drawing.Size(472, 22);
@@ -209,7 +210,7 @@
             this.AddAreaInfo.Location = new System.Drawing.Point(890, 521);
             this.AddAreaInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.AddAreaInfo.Name = "AddAreaInfo";
-            this.AddAreaInfo.Size = new System.Drawing.Size(441, 26);
+            this.AddAreaInfo.Size = new System.Drawing.Size(189, 42);
             this.AddAreaInfo.TabIndex = 10;
             this.AddAreaInfo.Text = "Добавить информацию об арендаторе";
             this.AddAreaInfo.UseVisualStyleBackColor = true;
@@ -263,11 +264,24 @@
             this.removeObject.UseVisualStyleBackColor = true;
             this.removeObject.Click += new System.EventHandler(this.removeObject_Click);
             // 
+            // NoArenda
+            // 
+            this.NoArenda.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.NoArenda.Location = new System.Drawing.Point(1144, 521);
+            this.NoArenda.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.NoArenda.Name = "NoArenda";
+            this.NoArenda.Size = new System.Drawing.Size(189, 42);
+            this.NoArenda.TabIndex = 15;
+            this.NoArenda.Text = "Снять с аренды";
+            this.NoArenda.UseVisualStyleBackColor = true;
+            this.NoArenda.Click += new System.EventHandler(this.NoArenda_Click);
+            // 
             // ViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1345, 589);
+            this.ClientSize = new System.Drawing.Size(1345, 600);
+            this.Controls.Add(this.NoArenda);
             this.Controls.Add(this.removeObject);
             this.Controls.Add(this.editArea);
             this.Controls.Add(this.editLayer);
@@ -319,6 +333,7 @@
         private System.Windows.Forms.Button editLayer;
         private System.Windows.Forms.Button editArea;
         private System.Windows.Forms.Button removeObject;
+        private System.Windows.Forms.Button NoArenda;
     }
 }
 

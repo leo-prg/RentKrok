@@ -386,5 +386,11 @@ namespace RentKrok
             }
             RefreshLayerList();
         }
+
+        private void NoArenda_Click(object sender, EventArgs e)
+        {
+            dba.Value.AddRenterToArea(dgAreas.CurrentRow.DataBoundItem as AreaRect, null);
+            RefreshAreaList();
+        }
     }
 }

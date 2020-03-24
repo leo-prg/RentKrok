@@ -8,9 +8,6 @@
 @inject Blazored.LocalStorage.ILocalStorageService LocalStore
 
 
-@*<h3>Арендаторы</h3>*@
-
-
 @if (objects == null)
 {
     <p><em>Загрузка данных...</em></p>
@@ -43,9 +40,6 @@ else
     </label>
 
     }
-
-
-<hr />
 
 @*<p>(@x,@y)</p>*@
 
@@ -89,8 +83,10 @@ else
     </table>
 }
 
+<hr/>
+
 @*preserveAspectRatio="none" preserveAspectRatio="xMinYMin scale"*@
-<div style="border:3px solid green;width:100%;height:100vh;overflow:scroll;">
+<div style="border:3px solid green;width:100%;height:80vh;overflow:scroll;">
     <svg xmlns="http://www.w3.org/2000/svg" version="2.0" @ref="svgMain" @onclick="OnClick" @onmousemove="OnMoveSVG" height="@Height" width="@Width">
         @if (img_code.Length != 0)
         {

@@ -25,6 +25,10 @@ namespace RentDB
         public float Price { get; set; }
         public float Cost { get; set; }
         public virtual Renter Renter { get; set; }
+        public void RemoveRenter()
+        {
+            Renter = null;
+        }
     }
 
 }
