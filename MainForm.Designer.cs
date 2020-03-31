@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabPageRent = new System.Windows.Forms.TabPage();
             this.tabControAdmin = new System.Windows.Forms.TabControl();
-            this.tabPageMap = new System.Windows.Forms.TabPage();
             this.tabPageView = new System.Windows.Forms.TabPage();
+            this.tabPageMap = new System.Windows.Forms.TabPage();
             this.tabControAdmin.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,9 +55,19 @@
             this.tabControAdmin.Location = new System.Drawing.Point(0, 0);
             this.tabControAdmin.Name = "tabControAdmin";
             this.tabControAdmin.SelectedIndex = 0;
-            this.tabControAdmin.Size = new System.Drawing.Size(1349, 606);
+            this.tabControAdmin.Size = new System.Drawing.Size(1349, 628);
             this.tabControAdmin.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabControAdmin.TabIndex = 0;
+            // 
+            // tabPageView
+            // 
+            this.tabPageView.Location = new System.Drawing.Point(4, 24);
+            this.tabPageView.Name = "tabPageView";
+            this.tabPageView.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageView.Size = new System.Drawing.Size(1341, 600);
+            this.tabPageView.TabIndex = 1;
+            this.tabPageView.Text = "Схемы размещения";
+            this.tabPageView.UseVisualStyleBackColor = true;
             // 
             // tabPageMap
             // 
@@ -70,25 +80,14 @@
             this.tabPageMap.UseVisualStyleBackColor = true;
             this.tabPageMap.Enter += new System.EventHandler(this.tabPageMap_Enter);
             // 
-            // tabPageView
-            // 
-            this.tabPageView.Location = new System.Drawing.Point(4, 24);
-            this.tabPageView.Name = "tabPageView";
-            this.tabPageView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageView.Size = new System.Drawing.Size(1341, 578);
-            this.tabPageView.TabIndex = 1;
-            this.tabPageView.Text = "Схемы размещения";
-            this.tabPageView.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1349, 606);
+            this.ClientSize = new System.Drawing.Size(1349, 628);
             this.Controls.Add(this.tabControAdmin);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

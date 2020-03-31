@@ -16,7 +16,8 @@ namespace RentKrok.Controls
     {
 
         public LayerRect lrNew;
-      
+
+          
         public InputLayerInfo()
         {
             InitializeComponent();
@@ -24,11 +25,16 @@ namespace RentKrok.Controls
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            lrNew = new LayerRect() { Name = tbName.Text,
-                                      FileName = tbFileName.Text,
-                                      LayerFile = Transform.ImageToByte(Image.FromFile(tbFileName.Text)),
-                                      Width = Image.FromFile(tbFileName.Text).Width, 
-                                      Height = Image.FromFile(tbFileName.Text).Height  };
+         
+                lrNew = new LayerRect()
+                {
+                    Name = tbName.Text,
+                    FileName = tbFileName.Text,
+                    LayerFile = Transform.ImageToByte(Image.FromFile(tbFileName.Text)),
+                    Width = Image.FromFile(tbFileName.Text).Width,
+                    Height = Image.FromFile(tbFileName.Text).Height
+                };
+         
             DialogResult = DialogResult.OK;
         }
 
@@ -57,7 +63,10 @@ namespace RentKrok.Controls
             {
                 tbName.Text = lrNew.Name;
                 tbFileName.Text = lrNew.FileName;
+          
             }
+
+            
 
         }
     }

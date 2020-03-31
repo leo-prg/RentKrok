@@ -26,6 +26,7 @@ namespace RentDB
             var old_layer = context.Value.RentLayers.Where(x => x.Id == oldL.Id).FirstOrDefault();
             old_layer.Name = newL.Name;
             old_layer.LayerFileName = newL.FileName;
+            old_layer.LayerFile = newL.LayerFile;
             old_layer.Width = newL.Width;
             old_layer.Height = newL.Height;
             // нужно удалить все связанные площади при замене файла слоя ????
@@ -46,7 +47,15 @@ namespace RentDB
             return context.Value.RentLayers
                 .Where(x => x.Object.Id == dbo.Id)
                 .Select(x => new LayerRect() { Id = x.Id, Name = x.Name, FileName = x.LayerFileName, LayerFile = x.LayerFile,
-                    Width = x.Width, Height = x.Height }).ToList();         }
+                    Width = x.Width, Height = x.Height }).ToList();         
+        }
+
+        public void DeleteLayer(LayerRect lRect)
+        {
+            // найдем объект в базе с таким ид 
+            context.Value.RentLayers.Remove(context.Value.RentLayers.Find(lRect.Id));
+            context.Value.SaveChanges();
+        }
 
     }
 }

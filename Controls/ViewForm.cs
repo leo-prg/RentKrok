@@ -209,6 +209,8 @@ namespace RentKrok
                 iai.ShowDialog();
                 if (iai.DialogResult == DialogResult.OK)
                 {
+
+
                     iai.ar.x1 = point1.X;
                     iai.ar.y1 = point1.Y;
                     iai.ar.x2 = point2.X;
@@ -384,13 +386,33 @@ namespace RentKrok
                     dba.Value.UpdateAreaData(old, iai.ar);
                 }
             }
-            RefreshLayerList();
+            RefreshAreaList();
         }
 
         private void NoArenda_Click(object sender, EventArgs e)
         {
             dba.Value.AddRenterToArea(dgAreas.CurrentRow.DataBoundItem as AreaRect, null);
             RefreshAreaList();
+        }
+
+        private void DelArea_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Удалить выбранную площадь?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                dba.Value.DeleteArea(dgAreas.CurrentRow.DataBoundItem as AreaRect);
+            }
+            RefreshAreaList();
+        }
+
+        private void DelLayer_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Удалить выбранное размещение?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                dbl.Value.DeleteLayer(dgLayers.CurrentRow.DataBoundItem as LayerRect);
+            }
+            RefreshLayerList();
         }
     }
 }

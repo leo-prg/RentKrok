@@ -167,6 +167,13 @@ namespace RentDB
             context.Value.SaveChanges();
         }
 
+        public void DeleteArea(AreaRect old)
+        {
+            // найдем объект в базе с таким ид 
+            context.Value.RentAreas.Remove(context.Value.RentAreas.Find(old.Id));
+            context.Value.SaveChanges();
+        }
+
 
     }
 }
