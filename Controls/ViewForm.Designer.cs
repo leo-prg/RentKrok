@@ -51,6 +51,7 @@
             this.DelArea = new System.Windows.Forms.Button();
             this.DelLayer = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ShowRenter = new System.Windows.Forms.Button();
             this.LayerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LayerPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgObjects)).BeginInit();
@@ -76,6 +77,7 @@
             // 
             // LayerPicture
             // 
+            this.LayerPicture.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LayerPicture.Location = new System.Drawing.Point(12, 13);
             this.LayerPicture.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.LayerPicture.Name = "LayerPicture";
@@ -306,6 +308,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.ShowRenter);
             this.panel1.Controls.Add(this.DelLayer);
             this.panel1.Controls.Add(this.DelArea);
             this.panel1.Controls.Add(this.NoArenda);
@@ -325,6 +328,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(469, 588);
             this.panel1.TabIndex = 18;
+            // 
+            // ShowRenter
+            // 
+            this.ShowRenter.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.ShowRenter.Location = new System.Drawing.Point(169, 520);
+            this.ShowRenter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ShowRenter.Name = "ShowRenter";
+            this.ShowRenter.Size = new System.Drawing.Size(136, 42);
+            this.ShowRenter.TabIndex = 18;
+            this.ShowRenter.Text = "Показать арендатора";
+            this.ShowRenter.UseVisualStyleBackColor = true;
+            this.ShowRenter.Click += new System.EventHandler(this.ShowRenter_Click);
             // 
             // ViewForm
             // 
@@ -376,6 +391,7 @@
         private System.Windows.Forms.Button DelArea;
         private System.Windows.Forms.Button DelLayer;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button ShowRenter;
     }
 }
 

@@ -73,32 +73,29 @@
             // 
             // addNewRenter
             // 
-            this.addNewRenter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.addNewRenter.Image = ((System.Drawing.Image)(resources.GetObject("addNewRenter.Image")));
             this.addNewRenter.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.addNewRenter.Name = "addNewRenter";
-            this.addNewRenter.Size = new System.Drawing.Size(23, 22);
-            this.addNewRenter.Text = "Добавить арендатора";
+            this.addNewRenter.Size = new System.Drawing.Size(79, 22);
+            this.addNewRenter.Text = "Добавить";
             this.addNewRenter.Click += new System.EventHandler(this.addNewRenter_Click);
             // 
             // editRenter
             // 
-            this.editRenter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.editRenter.Image = ((System.Drawing.Image)(resources.GetObject("editRenter.Image")));
             this.editRenter.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.editRenter.Name = "editRenter";
-            this.editRenter.Size = new System.Drawing.Size(23, 22);
-            this.editRenter.Text = "Редактировать арендатора";
+            this.editRenter.Size = new System.Drawing.Size(107, 22);
+            this.editRenter.Text = "Редактировать";
             this.editRenter.Click += new System.EventHandler(this.editRenter_Click);
             // 
             // delRenter
             // 
-            this.delRenter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.delRenter.Image = ((System.Drawing.Image)(resources.GetObject("delRenter.Image")));
             this.delRenter.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.delRenter.Name = "delRenter";
-            this.delRenter.Size = new System.Drawing.Size(23, 22);
-            this.delRenter.Text = "Удалить арендатора";
+            this.delRenter.Size = new System.Drawing.Size(71, 22);
+            this.delRenter.Text = "Удалить";
             this.delRenter.Click += new System.EventHandler(this.delRenter_Click);
             // 
             // lCount
@@ -109,12 +106,11 @@
             // 
             // refresgRenter
             // 
-            this.refresgRenter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.refresgRenter.Image = ((System.Drawing.Image)(resources.GetObject("refresgRenter.Image")));
             this.refresgRenter.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.refresgRenter.Name = "refresgRenter";
-            this.refresgRenter.Size = new System.Drawing.Size(23, 22);
-            this.refresgRenter.Text = "Обновить список";
+            this.refresgRenter.Size = new System.Drawing.Size(81, 22);
+            this.refresgRenter.Text = "Обновить";
             this.refresgRenter.Click += new System.EventHandler(this.refresgRenter_Click);
             // 
             // panel1

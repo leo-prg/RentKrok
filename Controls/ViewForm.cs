@@ -328,8 +328,9 @@ namespace RentKrok
             //}
             //else 
             //{
-                // форма выбора существующего арендатора
-                RenterList rl = new RenterList();
+            // форма выбора существующего арендатора
+             MessageBox.Show("Выберите арендатора и закройте форму выбора.", "Аренда Крок", MessageBoxButtons.OK);
+               RenterList rl = new RenterList();
                 rl.ShowDialog();
                 dba.Value.AddRenterToArea(dgAreas.CurrentRow.DataBoundItem as AreaRect, rl.renterOut);
                 MessageBox.Show("Арендатор площади: "+rl.renterOut.RenterName, "Аренда Крок", MessageBoxButtons.OK);
@@ -413,6 +414,19 @@ namespace RentKrok
                 dbl.Value.DeleteLayer(dgLayers.CurrentRow.DataBoundItem as LayerRect);
             }
             RefreshLayerList();
+        }
+
+        private void ShowRenter_Click(object sender, EventArgs e)
+        {
+            AreaRect ar = dgAreas.CurrentRow.DataBoundItem as AreaRect;
+            if (ar.isRented)
+            {
+                using InputRenterInfo iri = new InputRenterInfo
+                {
+                    rrNew = dba.Value.GetAreaRenter(ar)
+                };
+                iri.ShowDialog();
+            }
         }
     }
 }
