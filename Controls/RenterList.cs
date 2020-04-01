@@ -15,6 +15,9 @@ namespace RentKrok.Controls
     public partial class RenterList : Form
     {
         public RenterRect renterOut;
+
+        bool sortOrder = false;
+
         Lazy<DBRenter> dbr = new Lazy<DBRenter>(); // арендатор
         public RenterList()
         {
@@ -28,6 +31,7 @@ namespace RentKrok.Controls
 
         protected void RefreshRentersList()
         {
+           
             dgRenters.DataSource = dbr.Value.GetAllRenters();
             dgRenters.Columns[0].Visible = false;
             dgRenters.Columns[1].HeaderText = "Арендатор";
@@ -45,6 +49,7 @@ namespace RentKrok.Controls
             dgRenters.Columns[7].Visible = false;
             dgRenters.CurrentCell = dgRenters.Rows[0].Cells[1];
             lCount.Text = string.Format(@"Количество арендаторов: {0}", dgRenters.Rows.Count.ToString());
+            
         }
 
         private void dgRenters_DoubleClick(object sender, EventArgs e)
@@ -76,7 +81,9 @@ namespace RentKrok.Controls
                 // добавляем самого арендатора?? а если существует уже в базе запрос на создание нового 
                 dbr.Value.AddRenter(iri.rrNew);
             }
+            Point cAddress = dgRenters.CurrentCellAddress;
             RefreshRentersList();
+            dgRenters.Rows[cAddress.Y].Cells[cAddress.X].Selected = true;
         }
 
         private void editRenter_Click(object sender, EventArgs e)
@@ -90,7 +97,9 @@ namespace RentKrok.Controls
                     dbr.Value.UpdateRenter(oldR, iri.rrNew);
                 }
             }
+            Point cAddress = dgRenters.CurrentCellAddress;
             RefreshRentersList();
+            dgRenters.Rows[cAddress.Y].Cells[cAddress.X].Selected = true;
         }
 
         private void delRenter_Click(object sender, EventArgs e)
@@ -106,7 +115,33 @@ namespace RentKrok.Controls
 
         private void refresgRenter_Click(object sender, EventArgs e)
         {
+
+            Point cAddress = dgRenters.CurrentCellAddress;
             RefreshRentersList();
+            dgRenters.Rows[cAddress.Y].Cells[cAddress.X].Selected = true;
+
+        }
+
+        private void dgRenters_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            //dgRenters.Sort(dgRenters.Columns[0], sortOrder ? ListSortDirection.Ascending : ListSortDirection.Descending);
+            //sortOrder = !sortOrder;
+
+            //DataGridViewColumn newColumn =  dgRenters.Columns.GetColumnCount(
+            //DataGridViewElementStates.Selected) == 1 ?
+            //dgRenters.SelectedColumns[0] : null;
+
+            //if (sortOrder)
+            //{
+            //    dgRenters.Sort(newColumn, ListSortDirection.Ascending);
+            //    sortOrder = !sortOrder;
+            //}
+            //else
+            //{
+            //    dgRenters.Sort(newColumn, ListSortDirection.Descending);
+            //    sortOrder = !sortOrder;
+            //}
         }
     }
 }

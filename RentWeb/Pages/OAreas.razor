@@ -20,8 +20,8 @@ else
                 <th>ID</th>
                 <th>Наименование</th>
                 <th>Площадь,  м<sup>2</sup></th>
-                <th>Цена за м<sup>2</sup> без НДС, EUR </th>
-                <th>Стоимость без НДС, EUR</th>
+                @*<th>Цена за м<sup>2</sup> без НДС, EUR </th>
+                <th>Стоимость без НДС, EUR</th>*@
                 <th>Цена за м<sup>2</sup> с НДС, EUR </th>
                 <th>Стоимость с НДС, EUR</th>
                 <th>Арендуется</th>
@@ -39,8 +39,8 @@ else
                 <td>@area.Square</td>
                 <td>@area.Price</td>
                 <td>@area.Cost</td>
-                <td>@Math.Round(area.Price * 1.2, 2)</td>
-                <td>@Math.Round(area.Cost * 1.2, 2)</td>
+                @*<td>@Math.Round(area.Price * 1.2, 2)</td>
+                <td>@Math.Round(area.Cost * 1.2, 2)</td>*@
                 @if (area.isRented)
                 {
                     <td>Да</td>
@@ -61,7 +61,7 @@ else
             <td></td>
             <td><b>@total_sum</b></td>
             <td></td>
-            <td><b>@Math.Round(total_sum * 1.2, 2)</b></td>
+            @*<td><b>@Math.Round(total_sum * 1.2, 2)</b></td>*@
             <td colspan="2"></td>
 
         </tr>

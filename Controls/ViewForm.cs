@@ -161,7 +161,7 @@ namespace RentKrok
                 dgAreas.Columns[8].Width = 75;
                 dgAreas.Columns[9].HeaderText = "Аренда";
                 dgAreas.Columns[9].Width = 55;
-                dgAreas.CurrentCell = dgAreas.Rows[0].Cells[1]; 
+               // dgAreas.CurrentCell = dgAreas.Rows[0].Cells[1]; 
             }
             else { dgAreas.Columns.Clear(); }
         }
@@ -335,7 +335,9 @@ namespace RentKrok
                 dba.Value.AddRenterToArea(dgAreas.CurrentRow.DataBoundItem as AreaRect, rl.renterOut);
                 MessageBox.Show("Арендатор площади: "+rl.renterOut.RenterName, "Аренда Крок", MessageBoxButtons.OK);
             //}
+            Point cAddress = dgAreas.CurrentCellAddress;
             RefreshAreaList();
+            dgAreas.Rows[cAddress.Y].Cells[cAddress.X].Selected = true;
         }
         // редактирование объекта
         private void editObject_Click(object sender, EventArgs e)
@@ -349,7 +351,10 @@ namespace RentKrok
                     dbo.Value.UpdateObject(old, ioi.orNew);
                 }
             }
+            Point cAddress = dgObjects.CurrentCellAddress;
             RefreshObjectList();
+            dgObjects.Rows[cAddress.Y].Cells[cAddress.X].Selected = true;
+            
         }
         // редактирование слоя
         private void editLayer_Click(object sender, EventArgs e)
@@ -363,7 +368,10 @@ namespace RentKrok
                     dbl.Value.UpdateObjectLayer(old, ili.lrNew);
                 }
             }
+            Point cAddress = dgLayers.CurrentCellAddress;
             RefreshLayerList();
+            dgLayers.Rows[cAddress.Y].Cells[cAddress.X].Selected = true;
+            
         }
 
         private void removeObject_Click(object sender, EventArgs e)
@@ -387,13 +395,18 @@ namespace RentKrok
                     dba.Value.UpdateAreaData(old, iai.ar);
                 }
             }
+            Point cAddress = dgAreas.CurrentCellAddress;
             RefreshAreaList();
+            dgAreas.Rows[cAddress.Y].Cells[cAddress.X].Selected = true;
+            
         }
 
         private void NoArenda_Click(object sender, EventArgs e)
         {
             dba.Value.AddRenterToArea(dgAreas.CurrentRow.DataBoundItem as AreaRect, null);
+            Point cAddress = dgAreas.CurrentCellAddress;
             RefreshAreaList();
+            dgAreas.Rows[cAddress.Y].Cells[cAddress.X].Selected = true;
         }
 
         private void DelArea_Click(object sender, EventArgs e)

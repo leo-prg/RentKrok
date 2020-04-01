@@ -38,6 +38,7 @@
             this.tbPrice = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbCost = new System.Windows.Forms.TextBox();
+            this.calcFromSum = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label2
@@ -125,9 +126,20 @@
             // 
             this.tbCost.Location = new System.Drawing.Point(14, 120);
             this.tbCost.Name = "tbCost";
-            this.tbCost.ReadOnly = true;
             this.tbCost.Size = new System.Drawing.Size(145, 23);
             this.tbCost.TabIndex = 14;
+            this.tbCost.TextChanged += new System.EventHandler(this.tbCost_TextChanged);
+            // 
+            // calcFromSum
+            // 
+            this.calcFromSum.AutoSize = true;
+            this.calcFromSum.Location = new System.Drawing.Point(176, 122);
+            this.calcFromSum.Name = "calcFromSum";
+            this.calcFromSum.Size = new System.Drawing.Size(120, 19);
+            this.calcFromSum.TabIndex = 16;
+            this.calcFromSum.Text = "расчет от суммы";
+            this.calcFromSum.UseVisualStyleBackColor = true;
+            this.calcFromSum.CheckedChanged += new System.EventHandler(this.calcFromSum_CheckedChanged);
             // 
             // InputAreaInfo
             // 
@@ -137,6 +149,7 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(313, 207);
             this.ControlBox = false;
+            this.Controls.Add(this.calcFromSum);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbCost);
             this.Controls.Add(this.label3);
@@ -172,5 +185,6 @@
         private System.Windows.Forms.TextBox tbPrice;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbCost;
+        private System.Windows.Forms.CheckBox calcFromSum;
     }
 }

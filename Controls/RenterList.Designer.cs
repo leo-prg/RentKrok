@@ -55,6 +55,7 @@
             this.dgRenters.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgRenters.Size = new System.Drawing.Size(706, 418);
             this.dgRenters.TabIndex = 0;
+            this.dgRenters.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgRenters_ColumnHeaderMouseClick);
             this.dgRenters.DoubleClick += new System.EventHandler(this.dgRenters_DoubleClick);
             // 
             // toolStrip1
