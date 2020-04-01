@@ -77,12 +77,36 @@ namespace RentKrok
         // добавление площади 
         private void addArea_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Выделите необходимую площадь на изображении с помощью мыши.");
-            this.LayerPicture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseDown);
-            this.LayerPicture.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseUp);
-            this.LayerPicture.Cursor = System.Windows.Forms.Cursors.Cross;
-            // убираем обработку клика
-            this.LayerPicture.Click -= new System.EventHandler(this.LayerPicture_Click);
+            LayerRect LR = dgLayers.CurrentRow.DataBoundItem as LayerRect;
+
+            if (!LR.FileName.Contains("ПустаяСхема")) // если пустая схема автоматически будем создавать площадь с нулями координат
+            {
+                MessageBox.Show("Выделите необходимую площадь на изображении с помощью мыши.");
+                this.LayerPicture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseDown);
+                this.LayerPicture.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlanePic_MouseUp);
+                this.LayerPicture.Cursor = System.Windows.Forms.Cursors.Cross;
+                // убираем обработку клика
+                this.LayerPicture.Click -= new System.EventHandler(this.LayerPicture_Click);
+            }
+            else
+            {
+
+                using (InputAreaInfo iai = new InputAreaInfo())
+                {
+                    iai.ShowDialog();
+                    if (iai.DialogResult == DialogResult.OK)
+                    {
+                        iai.ar.x1 = 0;
+                        iai.ar.y1 = 0;
+                        iai.ar.x2 = 0;
+                        iai.ar.y2 = 0;
+                        // Здесь добавим в базу с привязкой к вбранному слою его площади 
+                        dba.Value.AddLayerArea(dgLayers.CurrentRow.DataBoundItem as LayerRect, iai.ar);
+                        RefreshAreaList();
+                    }
+                }
+
+            }
         }
         
         // обновление списка объектов
@@ -332,8 +356,12 @@ namespace RentKrok
              MessageBox.Show("Выберите арендатора и закройте форму выбора.", "Аренда Крок", MessageBoxButtons.OK);
                RenterList rl = new RenterList();
                 rl.ShowDialog();
+              if (dgAreas.CurrentRow != null)
+                { 
                 dba.Value.AddRenterToArea(dgAreas.CurrentRow.DataBoundItem as AreaRect, rl.renterOut);
-                MessageBox.Show("Арендатор площади: "+rl.renterOut.RenterName, "Аренда Крок", MessageBoxButtons.OK);
+               }
+
+            MessageBox.Show("Арендатор площади: "+rl.renterOut.RenterName, "Аренда Крок", MessageBoxButtons.OK);
             //}
             Point cAddress = dgAreas.CurrentCellAddress;
             RefreshAreaList();
