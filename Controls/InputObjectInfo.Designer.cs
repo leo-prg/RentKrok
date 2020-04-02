@@ -102,9 +102,9 @@
             this.cdNumber.AutoSize = true;
             this.cdNumber.Location = new System.Drawing.Point(14, 103);
             this.cdNumber.Name = "cdNumber";
-            this.cdNumber.Size = new System.Drawing.Size(118, 15);
+            this.cdNumber.Size = new System.Drawing.Size(122, 15);
             this.cdNumber.TabIndex = 7;
-            this.cdNumber.Text = "Кадастровый номер";
+            this.cdNumber.Text = "Инвентарный номер";
             // 
             // tbCdNumber
             // 

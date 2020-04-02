@@ -120,7 +120,7 @@ namespace RentKrok
             dgObjects.Columns[1].Width = 180;
             dgObjects.Columns[2].HeaderText = "Адрес объекта";
             dgObjects.Columns[2].Width = 180;
-            dgObjects.Columns[3].HeaderText = "Кадастровый номер";
+            dgObjects.Columns[3].HeaderText = "Инв. номер";
             dgObjects.Columns[3].Width = 150;
             dgObjects.Columns[4].Visible = false;
             dgObjects.Columns[5].Visible = false;
@@ -357,15 +357,15 @@ namespace RentKrok
                RenterList rl = new RenterList();
                 rl.ShowDialog();
               if (dgAreas.CurrentRow != null)
-                { 
+               { 
                 dba.Value.AddRenterToArea(dgAreas.CurrentRow.DataBoundItem as AreaRect, rl.renterOut);
                }
 
             MessageBox.Show("Арендатор площади: "+rl.renterOut.RenterName, "Аренда Крок", MessageBoxButtons.OK);
             //}
-            Point cAddress = dgAreas.CurrentCellAddress;
+           
             RefreshAreaList();
-            dgAreas.Rows[cAddress.Y].Cells[cAddress.X].Selected = true;
+           
         }
         // редактирование объекта
         private void editObject_Click(object sender, EventArgs e)
