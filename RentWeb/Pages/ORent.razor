@@ -1,5 +1,6 @@
 ﻿@page "/orent"
 @using RentLibrary
+@using System.Diagnostics
 @inject HttpClient Http
 @*<h3>Объекты аренды</h3>*@
 
@@ -17,18 +18,18 @@ else
                 <th>Наименование объекта</th>
                 <th>Адрес объекта</th>
                 <th>Инв. номер</th>
-                <th>Действие</th>
+                @*<th>Действие</th>*@
             </tr>
         </thead>
         <tbody>
             @foreach (var obj in objects)
             {
                 <tr>
-                    <td>@obj.Id</td>
+                    <td @onclick="(() => OpenEdit(obj) )"><a>@obj.Id</a></td>
                     <td><a href="/oareas/@obj.Id">@obj.Name</a></td>
                     <td>@obj.Address</td>
                     <td>@obj.CNo</td>
-                    <td><button class="btn btn-sm btn-secondary" @onclick="(() => OpenEdit(obj) )">Edit</button></td>
+                    @*<td><button class="btn btn-sm btn-secondary" @onclick="(() => OpenEdit(obj) )">Edit</button></td>*@
                 </tr>
 
             }
@@ -39,7 +40,7 @@ else
     @if (ShowEdit)
     {
         <!-- This is the popup to create or edit a forecast -->
-        <div class="modal modal-backdrop" role="dialog" style="display:block" >
+        <div class="modal modal-backdrop" role="dialog" style="display:block">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -73,7 +74,7 @@ else
                         <!-- Only show button if not a new record -->
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success">Сохранить</button>
+                        <button type="button" class="btn btn-success" @onclick="( () => Save(editObject, editObject))" >Сохранить</button>
                         <button type="button" class="btn btn-danger" @onclick="CloseEdit">Отмена</button>
 
                     </div>
@@ -106,8 +107,11 @@ else
         editObject = obj;
         ShowEdit = true;
     }
+
     void Save(ObjectRect objOld, ObjectRect objNew)
-    { 
-       
+    {
+        Debug.WriteLine(objOld.Id);
+        Debug.WriteLine(objNew.Name);
+        ShowEdit = false;
     }
 }
