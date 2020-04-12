@@ -6,3 +6,4 @@
     var cursorpt = pt.matrixTransform(svg.getScreenCTM().inverse());
     return [Math.round(cursorpt.x), Math.round(cursorpt.y)];
 } 
+

@@ -31,18 +31,22 @@ namespace RentAPI.Controllers
         }
 
         // POST: api/Renters
-        public void Post([FromBody]string value)
+        public void Post(RenterRect newRenter)
         {
+            dbr.Value.AddRenter(newRenter);
         }
 
         // PUT: api/Renters/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(RenterRect newRenter)
         {
+           dbr.Value.UpdateRenter(newRenter, newRenter);
         }
 
         // DELETE: api/Renters/5
         public void Delete(int id)
         {
+            RenterRect rr = dbr.Value.GetRenterById(id);
+            dbr.Value.DropRenter(rr);
         }
     }
 }

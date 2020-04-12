@@ -4,7 +4,7 @@
 @using RentLibrary
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
-
+@inject NavigationManager NavigationManager
 @*<h3>Арендаторы</h3>*@
 
 
@@ -14,6 +14,11 @@
 }
 else
 {
+<div>
+    <button class="btn btn-primary" @onclick="(() => OpenModal(new RenterRect { StartDate = DateTime.Today, EndDate = DateTime.Today }))">Новый</button>
+    @*<button class="btn btn-primary" @onclick="(() => Refresh() )">Обновить</button>*@
+</div>
+    <br />
     <table class="table table-hover">
         <thead>
             <tr>
@@ -23,31 +28,192 @@ else
                 <th>Дата начала</th>
                 <th>Дата окончания</th>
                 <th>Примечание</th>
+                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var r in renters)
             {
-            <tr>
-                <td>@r.Id</td>
-                <td><a href="/renterdetails/@r.Id.ToString()">@r.RenterName</a></td>
-                <td>@r.Contract</td>
-                <td>@r.StartDate.ToString("dd.MM.yyyy")</td>
-                <td>@r.EndDate.ToString("dd.MM.yyyy")</td>
-                <td>@r.Annotation</td>
-            </tr>
+                <tr>
+                    <td>@r.Id</td>
+                    <td><a href="/renterdetails/@r.Id.ToString()">@r.RenterName</a></td>
+                    <td>@r.Contract</td>
+                    <td>@r.StartDate.ToString("dd.MM.yyyy")</td>
+                    <td>@r.EndDate.ToString("dd.MM.yyyy")</td>
+                    <td>@r.Annotation</td>
+                    <td>
+                        <button class="btn btn-sm btn-success" @onclick="(() => OpenModal(r))">Изменить</button>
+                        <button class="btn btn-sm btn-danger" @onclick="(() => Confirm(r))">Удалить</button>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
+
+    @if (ShowModal)
+    {
+        <!-- This is the popup to create or edit a forecast -->
+        //<div class="modal position-fixed" role="dialog" style="display:block" >
+        <div class="modal fade show" style="display:block" aria-modal="true" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Редактирование арендатора</h4>
+                        <!-- Button to close the popup -->
+                        <button type="button" class="close" @onclick="CloseModal">&times;</button>
+                        @*<button type="button" class="close"
+                                    @onclick="CloseEdit">
+                                <span aria-hidden="true">X</span>
+                            </button>*@
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Наименование</span>
+                            </div>
+                            <input type="text" class="form-control" @bind="selRenter.RenterName">
+                        </div>
+                        <br />
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Номер договора</span>
+                            </div>
+                            <input type="text" class="form-control" @bind="selRenter.Contract">
+                        </div>
+                        <br />
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Дата начала</span>
+                            </div>
+                            <input type="date" class="form-control" @bind="selRenter.StartDate">
+                        </div>
+                        <br />
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Дата окончания</span>
+                            </div>
+                            <input type="date" class="form-control" @bind="selRenter.EndDate">
+                        </div>
+                        <br />
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Контактные лица</span>
+                            </div>
+                            <textarea type="text" class="form-control" rows="2" @bind="selRenter.ContactPerson"></textarea>
+                        </div>
+                        <br />
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Контактные данные</span>
+                            </div>
+                            <textarea type="text" class="form-control" rows="3" @bind="selRenter.ContactPhone"></textarea>
+                        </div>
+                        <br />
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Примечание</span>
+                            </div>
+                            <textarea type="text" class="form-control" rows="3" @bind="selRenter.Annotation"></textarea>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" @onclick="(() => SaveRenter(selRenter))">Сохранить</button>
+                        <button type="button" class="btn btn-danger" @onclick="CloseModal">Отмена</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (ShowConfirm)
+    {
+        <div class="modal" style="display:block" aria-modal="true" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Подтверждение</h4>
+                        <button type="button" class="close" @onclick="( () => { ShowConfirm = !ShowConfirm ; })">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+
+                        Вы действительно хотите удалить <b>@selRenter.RenterName</b> ?
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn" @onclick="( () => { ShowConfirm = !ShowConfirm ; })">Отмена</button>
+                        <button type="button" class="btn btn-danger" @onclick="( () => { DelRenter(selRenter.Id); })">Удалить</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+
 }
 
 @code {
-    private RenterRect[] renters;
+        private RenterRect[] renters { get; set; }
+
+        private RenterRect selRenter;
 
 
+        bool ShowModal = false;
+        bool ShowConfirm = false;
 
-    protected override async Task OnInitializedAsync()
+        protected override async Task OnInitializedAsync()
+        {
+            await RefreshList();
+        }
+
+   private async Task RefreshList()
     {
-        renters = await Http.GetJsonAsync<RenterRect[]>(ConnectAPI.apiUri+"/api/Renters");
+        renters = await Http.GetJsonAsync<RenterRect[]>(ConnectAPI.apiUri + "/api/Renters");
+        StateHasChanged();
+    }
+
+    void OpenModal(RenterRect renter)
+    {
+        ShowModal = true;
+        selRenter = renter;
+    }
+
+    void CloseModal()
+    {
+        ShowModal = false;
+        selRenter = null;
+    }
+
+    async void DelRenter(int id)
+    {
+        ShowConfirm = false;
+        await Http.DeleteAsync(ConnectAPI.apiUri + "/api/Renters?id=" + id);
+        await RefreshList();
+    }
+
+    async void SaveRenter(RenterRect newRenter)
+    {
+        ShowModal = false;
+        // проверить ИД если есть значит редактирование, если нету - значит новый арендатор
+        if (newRenter.Id > 0)
+        {
+             await  Http.PutJsonAsync(ConnectAPI.apiUri + "/api/Renters", newRenter);
+        }
+        else
+        {
+            await Http.PostJsonAsync(ConnectAPI.apiUri + "/api/Renters", newRenter);
+        }
+        await RefreshList();
+    }
+
+    void Confirm(RenterRect renter)
+    {
+        ShowConfirm = true;
+        selRenter = renter;
     }
 }

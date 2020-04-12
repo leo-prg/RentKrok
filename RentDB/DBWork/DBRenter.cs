@@ -71,13 +71,14 @@ namespace RentDB
         {
             // найти все площади в которых айди арендатора удаляется -  и очистить
             var areasOfRenter = context.Value.RentAreas.Where(r => r.Renter.Id == renter.Id).Select(s => s);
-
-            foreach (var area in areasOfRenter)
+            if (areasOfRenter != null)
             {
-                area.Renter = null;
-                context.Value.SaveChanges();
+                foreach (RentArea area in areasOfRenter)
+                {
+                    area.Renter = null;
+                    context.Value.SaveChanges();
+                }
             }
-
             // затем уже удалить 
                 context.Value.Renters.Remove(context.Value.Renters.Find(renter.Id));
                 context.Value.SaveChanges();
