@@ -20,12 +20,12 @@ else
                 <th>ID</th>
                 <th>Наименование</th>
                 <th>Площадь,  м<sup>2</sup></th>
-                @*<th>Цена за м<sup>2</sup> без НДС, EUR </th>
-                    <th>Стоимость без НДС, EUR</th>*@
                 <th>Цена за м<sup>2</sup> с НДС, EUR </th>
                 <th>Стоимость с НДС, EUR</th>
                 <th>Арендуется</th>
                 <th>Дополнительно</th>
+                <th>Действия</th>
+
             </tr>
         </thead>
 
@@ -39,8 +39,6 @@ else
                     <td>@area.Square</td>
                     <td>@area.Price</td>
                     <td>@area.Cost</td>
-                    @*<td>@Math.Round(area.Price * 1.2, 2)</td>
-                        <td>@Math.Round(area.Cost * 1.2, 2)</td>*@
                     @if (area.isRented)
                     {
                         <td>Да</td>
@@ -51,8 +49,11 @@ else
                         <td>Нет</td>
                         <td>-</td>
                     }
-
+                    <td>
+                        <button class="btn btn-sm btn-success" @onclick="(() => OpenModal(area))">Изменить</button>
+                    </td>
                 </tr>
+
             }
         </tbody>
         <tr>
@@ -71,12 +72,74 @@ else
     <hr />
 
     <p>
-    <button type="button" class="btn btn-outline-primary btn-link" onclick="window.history.go(-1)">Назад</button>
+        <button type="button" class="btn btn-outline-primary btn-link" onclick="window.history.go(-1)">Назад</button>
     </p>
 
 }
 
+@if (ShowModal)
+{
+    <div class="modal fade show" style="display:block" aria-modal="true" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Редактирование площади</h4>
+                    <button type="button" class="close" @onclick="CloseModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Наименование</span>
+                        </div>
+                        <input type="text" class="form-control" @bind="selArea.AreaName">
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Площадь</span>
+                        </div>
+                        <input type="text" class="form-control" readonly @bind="selArea.Square">
+                        <div class="input-group-append">
+                            <span class="input-group-text">м<sup>2</sup></span>
+                        </div>
+                    </div>
+                    <br />
 
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Цена c НДС</span>
+                        </div>
+                        <input type="number" class="form-control" @bind="selArea.Price">
+                        <div class="input-group-append">
+                            <span class="input-group-text">EUR</span>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Стоимость c НДС</span>
+                        </div>
+                        <input type="number" class="form-control" @bind="selArea.Cost">
+                        <div class="input-group-append">
+                            <span class="input-group-text">EUR</span>
+                        </div>
+                    </div>
+                    <br />
+                    @*<div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Арендатор</span>
+                        </div>
+                        <input type="text" class="form-control" @bind="selAreaRenter.RenterName">
+                    </div>*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success">Сохранить</button>
+                    <button type="button" class="btn btn-danger" @onclick="CloseModal">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 
 @code {
@@ -85,6 +148,13 @@ else
     public string id { get; set; }
 
     private AreaRect[] areas;
+
+    private AreaRect selArea;
+    private RenterRect selAreaRenter;
+
+
+
+    bool ShowModal = false;
 
     RenterRect renter = null;
     string r_name;
@@ -97,7 +167,7 @@ else
     protected override async Task OnInitializedAsync()
     {
 
-        areas = await Http.GetJsonAsync<AreaRect[]>(ConnectAPI.apiUri + "/api/Objects/" + id);
+        await RefreshList();
 
         foreach (var ar in areas)
         {
@@ -110,6 +180,12 @@ else
         }
     }
 
+    private async Task RefreshList()
+    {
+        areas = await Http.GetJsonAsync<AreaRect[]>(ConnectAPI.apiUri + "/api/Objects/" + id);
+        StateHasChanged();
+    }
+
 
     async Task OnClick(int id)
     {
@@ -118,5 +194,23 @@ else
         NavigationManager.NavigateTo("/renterdetails/" + renter.Id);
     }
 
+
+    async void OpenModal(AreaRect area)
+    {
+        selArea = area;
+        Debug.WriteLine(selArea.AreaName);
+
+        selAreaRenter = await Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri + "/api/Areas/" + area.Id);
+        Debug.WriteLine(selAreaRenter.RenterName);
+        CloseModal();
+        Debug.WriteLine(ShowModal);
+    }
+
+    void CloseModal()
+    {
+        ShowModal = !ShowModal;
+        selArea = null;
+        selAreaRenter = null;
+    }
 
 }

@@ -30,6 +30,8 @@ namespace RentAPI.Controllers
 
         }
 
+
+
         // POST: api/Renters
         public void Post(RenterRect newRenter)
         {

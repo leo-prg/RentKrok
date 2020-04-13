@@ -38,7 +38,7 @@ namespace RentAPI.Controllers
         }
 
         // PUT: api/Renters/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(AreaRect area, [FromBody]string value)
         {
         }
 
