@@ -126,47 +126,44 @@ else
                         </div>
                     </div>
                     <br />
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Арендатор</span>
+                    @if (selArea.isRented == true)
+                    {
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Арендатор</span>
+                            </div>
+                            <input type="text" class="form-control" @bind="selAreaRenter.RenterName">
                         </div>
-                        <input type="text" class="form-control" @bind="selAreaRenter.RenterName">
-                    </div>
-                    <br />
-                    <button type="button" class="btn btn-info" @onclick=" () => NoRenter(selArea)">Снять с аренды</button>
-                    <br />
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Арендатор</span>
+                        <br />
+                        <button type="button" class="btn btn-info" @onclick=" () => NoRenter(selArea)">Снять с аренды</button>
+                    }
+                    else
+                    {
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Арендатор</span>
+                            </div>
+                            <select @bind="@rId">
+                                <option></option>
+                                @foreach (var r in renters)
+                                {
+                                    <option value="@r.Id">@r.Contract @r.RenterName</option>
+                                }
+                            </select>
                         </div>
-                        <select @bind="@rId">
-                            <option></option>
-                            @foreach (var r in renters)
-                            {
-                                <option value="@r.Id">@r.RenterName</option>
-                            }
-                        </select>
-                    </div>
+                        <br />
+                        <button type="button" class="btn btn-info" @onclick=" () => SetRenter(selArea)">Сдать в аренду</button>
+                    }
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" @onclick="Save">Сохранить</button>
+                    <button type="button" class="btn btn-success" @onclick="() => SaveRenter(selArea)">Сохранить</button>
                     <button type="button" class="btn btn-danger" @onclick="CloseModal">Отмена</button>
                 </div>
             </div>
         </div>
     </div>
 }
-
-<style>
-    .modal-backdrop {
-        z-index: 1040;
-    }
-
-    .modal {
-        z-index: 9999;
-        background-color: transparent !important;
-    }
-</style>
 
 @code {
 
@@ -230,6 +227,7 @@ else
         else selAreaRenter = new RenterRect {  RenterName = "нет арендатора"};
         Debug.WriteLine(selAreaRenter.RenterName);
         renters = await Http.GetJsonAsync<RenterRect[]>(ConnectAPI.apiUri + "/api/Renters");
+        rId = 0;
 
         ShowModal = true;
         Debug.WriteLine(ShowModal);
@@ -249,9 +247,19 @@ else
         await RefreshList();
     }
 
-    void Save()
+    async void SetRenter(AreaRect area)
     {
-        Debug.WriteLine(rId);
+        await Http.PutJsonAsync(ConnectAPI.apiUri + "/api/Areas/AddRenter?name=" + area.AreaName + "&id=" + rId.ToString(), null);
+        await RefreshList();
     }
+
+    async void SaveRenter(AreaRect area)
+    {
+        await Http.PutJsonAsync(ConnectAPI.apiUri + "/api/Areas/", area);
+        await RefreshList();
+        CloseModal();
+        StateHasChanged();
+    }
+
 
 }

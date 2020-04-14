@@ -43,8 +43,9 @@ namespace RentAPI.Controllers
         }
 
         // PUT: api/Renters/5
-        public void Put(AreaRect area, [FromBody]string value)
+        public void Put(AreaRect area)
         {
+            dba.Value.UpdateAreaData(area, area);
         }
 
         // DELETE: api/Renters/5
@@ -53,6 +54,7 @@ namespace RentAPI.Controllers
         {
           
         }
+
         [HttpPut]
         public void NoRenter(string name)
         {
