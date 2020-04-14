@@ -1,6 +1,7 @@
 ﻿@page "/oareas/{id}"
 
 @using System.Diagnostics
+@using System.Threading
 @using RentLibrary
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
@@ -79,7 +80,7 @@ else
 
 @if (ShowModal)
 {
-    <div class="modal fade show" style="display:block" aria-modal="true" role="dialog">
+    <div class=" modal show fade" data-backdrop="false"  style="display:block" aria-modal="true" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -125,15 +126,30 @@ else
                         </div>
                     </div>
                     <br />
-                    @*<div class="input-group">
+                    <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Арендатор</span>
                         </div>
                         <input type="text" class="form-control" @bind="selAreaRenter.RenterName">
-                    </div>*@
+                    </div>
+                    <br />
+                    <button type="button" class="btn btn-info" @onclick=" () => NoRenter(selArea)">Снять с аренды</button>
+                    <br />
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Арендатор</span>
+                        </div>
+                        <select @bind="@rId">
+                            <option></option>
+                            @foreach (var r in renters)
+                            {
+                                <option value="@r.Id">@r.RenterName</option>
+                            }
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success">Сохранить</button>
+                    <button type="button" class="btn btn-success" @onclick="Save">Сохранить</button>
                     <button type="button" class="btn btn-danger" @onclick="CloseModal">Отмена</button>
                 </div>
             </div>
@@ -141,6 +157,16 @@ else
     </div>
 }
 
+<style>
+    .modal-backdrop {
+        z-index: 1040;
+    }
+
+    .modal {
+        z-index: 9999;
+        background-color: transparent !important;
+    }
+</style>
 
 @code {
 
@@ -152,9 +178,10 @@ else
     private AreaRect selArea;
     private RenterRect selAreaRenter;
 
+    private RenterRect[] renters;
 
-
-    bool ShowModal = false;
+    int rId;
+    private bool ShowModal = false;
 
     RenterRect renter = null;
     string r_name;
@@ -199,18 +226,32 @@ else
     {
         selArea = area;
         Debug.WriteLine(selArea.AreaName);
-
-        selAreaRenter = await Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri + "/api/Areas/" + area.Id);
+        if (selArea.isRented) selAreaRenter = await Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri + "/api/Areas/" + selArea.Id);
+        else selAreaRenter = new RenterRect {  RenterName = "нет арендатора"};
         Debug.WriteLine(selAreaRenter.RenterName);
-        CloseModal();
+        renters = await Http.GetJsonAsync<RenterRect[]>(ConnectAPI.apiUri + "/api/Renters");
+
+        ShowModal = true;
         Debug.WriteLine(ShowModal);
+        StateHasChanged();
     }
 
     void CloseModal()
     {
-        ShowModal = !ShowModal;
+        ShowModal = false;
         selArea = null;
         selAreaRenter = null;
+    }
+
+    async void NoRenter(AreaRect area)
+    {
+        await Http.PutJsonAsync(ConnectAPI.apiUri + "/api/Areas/NoRenter?name="+ area.AreaName, null);
+        await RefreshList();
+    }
+
+    void Save()
+    {
+        Debug.WriteLine(rId);
     }
 
 }

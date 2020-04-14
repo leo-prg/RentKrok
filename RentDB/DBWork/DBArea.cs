@@ -136,26 +136,26 @@ namespace RentDB
 
         public RenterRect GetAreaRenter(int id)
         {
-            RenterRect rr = context.Value.RentAreas
-                  .Where(a => a.Id == id)
-                  .Select(r => new RenterRect()
-                  {
-                      Id = r.Renter.Id,
-                      RenterName = r.Renter.RenterName,
-                      Contract = r.Renter.Contract,
-                      StartDate = (DateTime?)r.Renter.StartDate ?? DateTime.Now,
-                      EndDate = (DateTime?)r.Renter.EndDate ?? DateTime.Now,
-                      ContactPerson = r.Renter.ContactPerson,
-                      ContactPhone = r.Renter.ContactPhone,
-                      Annotation = r.Renter.Annotation
-                  }).FirstOrDefault();
+                RenterRect rr = context.Value.RentAreas
+                      .Where(a => a.Id == id)
+                      .Select(r => new RenterRect()
+                      {
+                          Id = r.Renter.Id,
+                          RenterName = r.Renter.RenterName,
+                          Contract = r.Renter.Contract,
+                          StartDate = (DateTime?)r.Renter.StartDate ?? DateTime.Now,
+                          EndDate = (DateTime?)r.Renter.EndDate ?? DateTime.Now,
+                          ContactPerson = r.Renter.ContactPerson,
+                          ContactPhone = r.Renter.ContactPhone,
+                          Annotation = r.Renter.Annotation
+                      }).FirstOrDefault();
 
-            if (rr != null) { return rr; }
-            else { return null; }
+                if (rr != null) { return rr; }
+                else { return null; }
+           
+        } 
 
-        }
-
-
+    
         public void UpdateAreaData(AreaRect old, AreaRect _new)
         {
             // найдем объект в базе с таким ид 

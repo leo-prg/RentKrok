@@ -15,6 +15,7 @@ namespace RentAPI.Controllers
     public class AreasController : ApiController
     {
         Lazy<DBArea> dba = new Lazy<DBArea>();
+        Lazy<DBRenter> dbr = new Lazy<DBRenter>();
         // GET: api/Areas
         public AreaRect Get(int id, int x, int y)
         {
@@ -28,7 +29,11 @@ namespace RentAPI.Controllers
         public RenterRect Get(int id)
         {
             //return "value";
-            return dba.Value.GetAreaRenter(id);
+            if (id > 0)
+            { 
+                return dba.Value.GetAreaRenter(id); 
+            }
+            else return null;
 
         }
 
@@ -43,8 +48,27 @@ namespace RentAPI.Controllers
         }
 
         // DELETE: api/Renters/5
+        // удаляем не площадь а арендатора - высвобождаем
         public void Delete(int id)
         {
+          
         }
+        [HttpPut]
+        public void NoRenter(string name)
+        {
+            AreaRect area = dba.Value.FindAreaByName(name);
+            dba.Value.AddRenterToArea(area, null);
+        }
+      
+        [HttpPut]
+        
+        public void AddRenter(string name, int id)
+        {
+            AreaRect area = dba.Value.FindAreaByName(name);
+            RenterRect renter = dbr.Value.GetRenterById(id);
+            dba.Value.AddRenterToArea(area, renter);
+        }
+
+
     }
 }
