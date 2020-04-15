@@ -30,8 +30,8 @@ namespace RentAPI.Controllers
         {
             //return "value";
             if (id > 0)
-            { 
-                return dba.Value.GetAreaRenter(id); 
+            {
+                return dba.Value.GetAreaRenter(id);
             }
             else return null;
 
@@ -52,19 +52,20 @@ namespace RentAPI.Controllers
         // удаляем не площадь а арендатора - высвобождаем
         public void Delete(int id)
         {
-          
+
         }
 
         [HttpPut]
-        public void NoRenter(string name)
+        [Route("api/Areas/NoRenter")]
+        public void NoRenter([FromUri()] string name)
         {
             AreaRect area = dba.Value.FindAreaByName(name);
             dba.Value.AddRenterToArea(area, null);
         }
       
         [HttpPut]
-        
-        public void AddRenter(string name, int id)
+        [Route("api/Areas/AddRenter")]
+        public void AddRenter( [FromUri()] string name, [FromUri()] int id)
         {
             AreaRect area = dba.Value.FindAreaByName(name);
             RenterRect renter = dbr.Value.GetRenterById(id);

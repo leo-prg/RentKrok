@@ -244,12 +244,14 @@ else
     async void NoRenter(AreaRect area)
     {
         await Http.PutJsonAsync(ConnectAPI.apiUri + "/api/Areas/NoRenter?name="+ area.AreaName, null);
+        StateHasChanged();
         await RefreshList();
     }
 
     async void SetRenter(AreaRect area)
     {
         await Http.PutJsonAsync(ConnectAPI.apiUri + "/api/Areas/AddRenter?name=" + area.AreaName + "&id=" + rId.ToString(), null);
+        StateHasChanged();
         await RefreshList();
     }
 
