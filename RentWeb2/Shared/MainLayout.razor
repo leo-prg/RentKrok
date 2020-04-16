@@ -1,0 +1,19 @@
+﻿@inherits LayoutComponentBase
+
+<div class="sidebar">
+    <NavMenu />
+</div>
+
+<div class="main">
+    <div class="top-row px-4 auth">
+        <img src="logo.jpg" width="50" height="50" />
+        <h3 class="ml-3">Девелоперская компания ООО "Крок"</h3>
+        <LoginDisplay />
+        <a href="http://krokooo.by" target="_blank" class="ml-md-auto">Веб-сайт</a>
+
+    </div>
+
+    <div class="content px-4">
+        @Body
+    </div>
+</div>

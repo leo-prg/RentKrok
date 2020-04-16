@@ -1,0 +1,45 @@
+﻿<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">@CurDT</a>
+
+</div>
+
+<div>
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Главная
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="orent">
+                <span class="oi oi-map" aria-hidden="true"></span>Объекты
+            </NavLink>
+            <ul>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="areas">
+                        <span class="oi oi-layers" aria-hidden="true"></span>Схемы
+                    </NavLink>
+                </li>
+
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="map">
+                        <span class="oi oi-map-marker" aria-hidden="true"></span>Геолокация
+                    </NavLink>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="renters">
+                <span class="oi oi-people" aria-hidden="true"></span>Арендаторы
+            </NavLink>
+        </li>
+
+    </ul>
+</div>
+
+@code {
+    private string CurDT = String.Format("{0:D}", DateTime.Now);
+
+}

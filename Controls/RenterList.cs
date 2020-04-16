@@ -16,7 +16,7 @@ namespace RentKrok.Controls
     {
         public RenterRect renterOut;
 
-        bool sortOrder = false;
+        //bool sortOrder = false;
 
         Lazy<DBRenter> dbr = new Lazy<DBRenter>(); // арендатор
         public RenterList()

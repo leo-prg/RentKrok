@@ -1,0 +1,99 @@
+﻿@page "/renterdetails/{id}"
+
+@using System.Diagnostics
+@using RentLibrary
+@using Data
+
+@inject RenterService renterService;
+@inject IJSRuntime JsRuntime
+
+@inject NavigationManager NavigationManager
+
+@*<h3>Контакты</h3>*@
+
+@if (renter == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+    <div>
+        <h3>Арендатор</h3>
+        <hr />
+        <dl class="d-lg-table-row">
+            <dt>
+                Наименование
+            </dt>
+
+            <dd>
+                @renter.RenterName
+            </dd>
+
+            <dt>
+                Договор №
+            </dt>
+
+            <dd>
+                @renter.Contract
+            </dd>
+
+            <dt>
+                Дата начала действия
+            </dt>
+
+            <dd>
+                @renter.StartDate.ToString("dd.MM.yyyy")
+            </dd>
+
+            <dt>
+                Дата окончания действия
+            </dt>
+
+            <dd>
+                @renter.EndDate.ToString("dd.MM.yyyy")
+            </dd>
+
+
+            <dt>
+                Контактное лицо
+            </dt>
+
+            <dd>
+                @renter.ContactPerson
+            </dd>
+
+            <dt>
+                Контактная информация
+            </dt>
+
+            <dd>
+                @renter.ContactPhone
+            </dd>
+        </dl>
+    </div>
+    <hr />
+    <p>
+        <button type="button" class="btn btn-outline-primary" onclick="window.history.go(-1)">Назад</button>
+        @*<a href="/renters" class="btn btn-outline-primary">К выбору арендаторов</a>
+        <a href="/areas" class="btn btn-outline-primary">К выбору площадей</a>*@
+    </p>
+}
+
+
+@code {
+
+    [Parameter]
+    public string id { get; set; }
+
+    private RenterRect renter;
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        renter = await renterService.GetRenterDetailsAsync(id);
+        //Http.GetJsonAsync<RenterRect>(ConnectAPI.apiUri + "/api/Renters/" + id);
+    }
+
+}
