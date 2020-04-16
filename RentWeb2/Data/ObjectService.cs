@@ -17,10 +17,10 @@ namespace RentWeb2.Data
             return JsonConvert.DeserializeObject<ObjectRect[]>(json);
         }
 
-        public async Task<AreaRect[]> GetObjectsAreasAsync(string areaId)
+        public async Task<AreaRect[]> GetObjectsAreasAsync(string objectId)
         {
             HttpClient http = new HttpClient();
-            var json = await http.GetStringAsync(ConnectAPI.apiUri + "/api/Objects"+areaId);
+            var json = await http.GetStringAsync($"{ConnectAPI.apiUri}/api/Objects/{objectId}");
             return JsonConvert.DeserializeObject<AreaRect[]>(json);
         }
 

@@ -193,6 +193,13 @@ else
 
         await RefreshList();
 
+
+    }
+
+    private async Task RefreshList()
+    {
+        areas = await Http.GetJsonAsync<AreaRect[]>(ConnectAPI.apiUri + "/api/Objects/" + id);
+
         foreach (var ar in areas)
         {
             total_area += ar.Square;
@@ -202,11 +209,6 @@ else
                 free_area += ar.Square;
             }
         }
-    }
-
-    private async Task RefreshList()
-    {
-        areas = await Http.GetJsonAsync<AreaRect[]>(ConnectAPI.apiUri + "/api/Objects/" + id);
         StateHasChanged();
     }
 

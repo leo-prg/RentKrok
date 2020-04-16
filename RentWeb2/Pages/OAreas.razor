@@ -198,6 +198,14 @@ else
 
         await RefreshList();
 
+
+    }
+
+    private async Task RefreshList()
+    {
+        Debug.WriteLine(id);
+        areas = await objectService.GetObjectsAreasAsync(id);
+        //Http.GetJsonAsync<AreaRect[]>(ConnectAPI.apiUri + "/api/Objects/" + id);
         foreach (var ar in areas)
         {
             total_area += ar.Square;
@@ -207,12 +215,6 @@ else
                 free_area += ar.Square;
             }
         }
-    }
-
-    private async Task RefreshList()
-    {
-        areas = await objectService.GetObjectsAreasAsync(id);
-        //Http.GetJsonAsync<AreaRect[]>(ConnectAPI.apiUri + "/api/Objects/" + id);
         StateHasChanged();
     }
 
@@ -253,7 +255,7 @@ else
     async void NoRenter(AreaRect area)
     {
         await areaService.NoRentAreaAsync(area.AreaName);
-            //Http.PutJsonAsync(ConnectAPI.apiUri + "/api/Areas/NoRenter?name=" + area.AreaName, null);
+        //Http.PutJsonAsync(ConnectAPI.apiUri + "/api/Areas/NoRenter?name=" + area.AreaName, null);
         StateHasChanged();
         await RefreshList();
     }
@@ -261,7 +263,7 @@ else
     async void SetRenter(AreaRect area)
     {
         await areaService.SetRenterAreaAsync(area.AreaName, rId);
-            //Http.PutJsonAsync(ConnectAPI.apiUri + "/api/Areas/AddRenter?name=" + area.AreaName + "&id=" + rId.ToString(), null);
+        //Http.PutJsonAsync(ConnectAPI.apiUri + "/api/Areas/AddRenter?name=" + area.AreaName + "&id=" + rId.ToString(), null);
         StateHasChanged();
         await RefreshList();
     }
@@ -269,7 +271,7 @@ else
     async void SaveArea(AreaRect area)
     {
         await areaService.UpdateAreaAsync(area);
-            //Http.PutJsonAsync(ConnectAPI.apiUri + "/api/Areas/", area);
+        //Http.PutJsonAsync(ConnectAPI.apiUri + "/api/Areas/", area);
         await RefreshList();
         CloseModal();
         StateHasChanged();
