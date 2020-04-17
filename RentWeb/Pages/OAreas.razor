@@ -198,6 +198,10 @@ else
 
     private async Task RefreshList()
     {
+        total_area = 0;
+        total_sum = 0;
+        free_area = 0;
+
         areas = await Http.GetJsonAsync<AreaRect[]>(ConnectAPI.apiUri + "/api/Objects/" + id);
 
         foreach (var ar in areas)
